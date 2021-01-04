@@ -1,0 +1,13 @@
+{
+    "required": true,
+    "package": "com.minecraftabnormals.allurement.core.mixin",
+    "compatibilityLevel": "JAVA_8",
+    "minVersion": "0.8",
+    "refmap": "allurement.refmap.json",
+    "mixins": [
+        "ExperienceOrbEntityMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
