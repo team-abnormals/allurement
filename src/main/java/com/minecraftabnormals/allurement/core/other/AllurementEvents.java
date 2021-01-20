@@ -26,11 +26,10 @@ public class AllurementEvents {
 		int level = EnchantmentHelper.getEnchantmentLevel(AllurementEnchantments.SHOCKWAVE.get(), entity.getItemStackFromSlot(EquipmentSlotType.FEET));
 
 		EffectInstance effectinstance = entity.getActivePotionEffect(Effects.JUMP_BOOST);
-		float f = effectinstance == null ? 0.0F : (float)(effectinstance.getAmplifier() + 1);
+		float f = effectinstance == null ? 0.0F : (float) (effectinstance.getAmplifier() + 1);
 		int damage = MathHelper.ceil((event.getDistance() - 3.0F - f) * event.getDamageMultiplier());
 
 		if (level > 0 && damage > 0) {
-			System.out.println(event.getDamageMultiplier());
 			for (LivingEntity target : world.getEntitiesWithinAABB(LivingEntity.class, entity.getBoundingBox().grow(level, 0.0D, level))) {
 				if (entity != target)
 					target.attackEntityFrom(DamageSource.causeMobDamage(entity), event.getDistance());

@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Map;
 
 @Mixin(ExperienceOrbEntity.class)
-public final class ExperienceOrbEntityMixin {
+public class ExperienceOrbEntityMixin {
 
 	@Shadow
 	public int xpValue;
@@ -23,7 +23,6 @@ public final class ExperienceOrbEntityMixin {
 	private void onCollideWithPlayer(PlayerEntity player, CallbackInfo ci) {
 		Map<EquipmentSlotType, ItemStack> map = AllurementEnchantments.ALLEVIATING.get().getEntityEquipment(player);
 		if (!map.isEmpty()) {
-			System.out.println(this.xpValue * 0.25F * map.size());
 			float i = Math.min(this.xpValue * 0.25F * map.size(), player.getMaxHealth() - player.getHealth());
 			this.xpValue -= i * 4.0F;
 			player.heal(i);

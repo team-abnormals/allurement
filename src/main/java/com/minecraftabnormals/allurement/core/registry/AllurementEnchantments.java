@@ -1,10 +1,10 @@
 package com.minecraftabnormals.allurement.core.registry;
 
 import com.minecraftabnormals.allurement.common.enchantment.AlleviatingEnchantment;
+import com.minecraftabnormals.allurement.common.enchantment.ReelingEnchantment;
 import com.minecraftabnormals.allurement.common.enchantment.ShockwaveEnchantment;
 import com.minecraftabnormals.allurement.core.Allurement;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.ThornsEnchantment;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
@@ -18,4 +18,5 @@ public class AllurementEnchantments {
 
 	public static final RegistryObject<Enchantment> ALLEVIATING = ENCHANTMENTS.register("alleviating", () -> new AlleviatingEnchantment(Enchantment.Rarity.RARE, ARMOR_SLOTS));
 	public static final RegistryObject<Enchantment> SHOCKWAVE = ENCHANTMENTS.register("shockwave", () -> new ShockwaveEnchantment(Enchantment.Rarity.UNCOMMON, ARMOR_SLOTS));
+	public static final RegistryObject<Enchantment> REELING = ENCHANTMENTS.register("reeling", () -> new ReelingEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND));
 }

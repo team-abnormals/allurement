@@ -2,7 +2,6 @@ package com.minecraftabnormals.allurement.common.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.enchantment.MendingEnchantment;
 import net.minecraft.enchantment.ProtectionEnchantment;
 import net.minecraft.inventory.EquipmentSlotType;
 
