@@ -8,6 +8,7 @@
     "AbstractArrowEntityMixin",
     "AbstractHorseEntityMixin",
     "CrossbowItemMixin",
+    "EnchantmentHelperMixin",
     "EnchantmentTypeMixin",
     "ExperienceOrbEntityMixin",
     "ItemMixin",
