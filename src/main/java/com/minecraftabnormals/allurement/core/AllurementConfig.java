@@ -25,7 +25,7 @@ public class AllurementConfig {
 
 			builder.push("experience");
 			removeLevelScaling = builder.define("Remove the amount of experience per level increasing", true);
-			experiencePerLevel = builder.define("The amount of experience per level", 30);
+			experiencePerLevel = builder.define("The amount of experience per level", 50);
 			builder.pop();
 		}
 	}
