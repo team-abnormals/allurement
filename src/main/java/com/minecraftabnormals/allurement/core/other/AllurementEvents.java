@@ -4,17 +4,14 @@ import com.minecraftabnormals.allurement.core.Allurement;
 import com.minecraftabnormals.allurement.core.registry.AllurementEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -36,7 +33,7 @@ public class AllurementEvents {
 		if (level > 0 && damage > 0) {
 			for (LivingEntity target : world.getEntitiesWithinAABB(LivingEntity.class, entity.getBoundingBox().grow(level, 0.0D, level))) {
 				if (entity != target)
-					target.attackEntityFrom(DamageSource.causeMobDamage(entity), event.getDistance());
+					target.attackEntityFrom(AllurementDamageSources.causeShockwaveDamage(entity), event.getDistance());
 			}
 
 			if (world instanceof ServerWorld) {
