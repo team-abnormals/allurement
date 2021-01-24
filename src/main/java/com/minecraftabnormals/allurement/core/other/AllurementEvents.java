@@ -4,7 +4,9 @@ import com.minecraftabnormals.allurement.core.Allurement;
 import com.minecraftabnormals.allurement.core.registry.AllurementEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -12,6 +14,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.event.TickEvent.PlayerTickEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -37,6 +41,20 @@ public class AllurementEvents {
 
 			if (world instanceof ServerWorld) {
 				((ServerWorld) world).spawnParticle(ParticleTypes.CLOUD, entity.getPosX(), entity.getPosY(), entity.getPosZ(), 200, level, 0.5, level, 0);
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onLivingUpdate(LivingUpdateEvent event) {
+		LivingEntity entity = event.getEntityLiving();
+		World world = entity.getEntityWorld();
+
+		for (EquipmentSlotType slot : EquipmentSlotType.values()) {
+			ItemStack stack = entity.getItemStackFromSlot(slot);
+			int level = EnchantmentHelper.getEnchantmentLevel(AllurementEnchantments.REFORMING.get(), stack);
+			if (!stack.isEmpty() && stack.isDamaged() && level > 0 && world.getGameTime() % 600 == 0) {
+				stack.setDamage(stack.getDamage() - 1);
 			}
 		}
 	}
