@@ -13,9 +13,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Mod(Allurement.MOD_ID)
 public class Allurement {
 	public static final String MOD_ID = "allurement";
@@ -46,16 +43,5 @@ public class Allurement {
 		event.enqueueWork(() -> {
 
 		});
-	}
-
-	public static Map<String, Integer> getEnchantibilityMap() {
-		Map<String, Integer> map = new HashMap<>();
-		map.put("minecraft:leather_horse_armor", 15);
-		map.put("minecraft:iron_horse_armor", 9);
-		map.put("minecraft:golden_horse_armor", 25);
-		map.put("minecraft:diamond_horse_armor", 10);
-		map.put("nether_extension:netherite_horse_armor", 15);
-		map.put("caverns_and_chasms:necromium_horse_armor", 13);
-		return map;
 	}
 }
