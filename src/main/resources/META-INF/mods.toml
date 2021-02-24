@@ -8,10 +8,11 @@ license = "https://github.com/team-abnormals/allurement/blob/main/LICENSE.txt"
     version = "${file.jarVersion}"
     logoFile = "logo.png"
     authors = "Team Abnormals"
-    credits = "bageldotjpg"
+    credits = "bageldotjpg, five"
     displayName = "Allurement"
     description = '''
-    Template description.
+    Allurement adds a selection of new enchantments to help diversify gear later in the game.
+    Also included are some experience and enchanting tweaks, such as allowing for enchanting horse armor.
     '''
 
 [[dependencies.allurement]]
