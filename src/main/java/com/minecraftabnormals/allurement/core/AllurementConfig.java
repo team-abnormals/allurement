@@ -10,22 +10,31 @@ import org.apache.commons.lang3.tuple.Pair;
 public class AllurementConfig {
 
 	public static class Common {
-		public final ConfigValue<Boolean> enchantingHorseArmor;
+		public final ConfigValue<Boolean> enchantableHorseArmor;
+
+		public final ConfigValue<Boolean> enableAlleviating;
+		public final ConfigValue<Boolean> enableReeling;
+		public final ConfigValue<Boolean> enableReforming;
+		public final ConfigValue<Boolean> enableShockwave;
 
 		public final ConfigValue<Boolean> removeLevelScaling;
 		public final ConfigValue<Integer> experiencePerLevel;
 
 		Common(ForgeConfigSpec.Builder builder) {
 			builder.push("enchantments");
+			enableAlleviating = builder.comment("Armor enchantment that heals the user when collecting experience").define("enableAlleviating", true);
+			enableReeling = builder.comment("Crossbow enchantment that pulls targets towards the user").define("enableReeling", true);
+			enableReforming = builder.comment("Gear enchantment that very slowly repairs items over time").define("enableReforming", true);
+			enableShockwave = builder.comment("Boots enchantment that creates a shockwave when taking fall damage").define("enableShockwave", true);
 			builder.pop();
 
 			builder.push("enchanting");
-			enchantingHorseArmor = builder.define("Allow horse armor to be enchanted", true);
+			enchantableHorseArmor = builder.comment("Allow horse armor to be enchanted").define("enchantableHorseArmor", true);
 			builder.pop();
 
 			builder.push("experience");
-			removeLevelScaling = builder.define("Remove the amount of experience per level increasing (experimental)", false);
-			experiencePerLevel = builder.define("The amount of experience per level", 50);
+			removeLevelScaling = builder.comment("Remove the amount of experience per level increasing (experimental)").define("removeLevelScaling", false);
+			experiencePerLevel = builder.comment("The amount of experience per level").define("experiencePerLevel", 50);
 			builder.pop();
 		}
 	}

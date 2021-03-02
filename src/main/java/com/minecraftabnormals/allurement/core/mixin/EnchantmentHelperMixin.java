@@ -17,7 +17,7 @@ public class EnchantmentHelperMixin {
 
 	@Inject(method = "getMaxEnchantmentLevel", at = @At("HEAD"), cancellable = true)
 	private static void getMaxEnchantmentLevel(Enchantment enchantmentIn, LivingEntity entityIn, CallbackInfoReturnable<Integer> cir) {
-		if (AllurementConfig.COMMON.enchantingHorseArmor.get() && entityIn instanceof HorseEntity) {
+		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && entityIn instanceof HorseEntity) {
 			ItemStack stack = ((HorseEntity) entityIn).func_213803_dV();
 			if (stack.getItem() instanceof HorseArmorItem) {
 				cir.setReturnValue(EnchantmentHelper.getEnchantmentLevel(enchantmentIn, stack));

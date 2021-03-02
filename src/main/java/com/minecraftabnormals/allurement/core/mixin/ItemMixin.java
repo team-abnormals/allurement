@@ -1,6 +1,5 @@
 package com.minecraftabnormals.allurement.core.mixin;
 
-import com.minecraftabnormals.allurement.core.Allurement;
 import com.minecraftabnormals.allurement.core.AllurementConfig;
 import com.minecraftabnormals.allurement.core.other.AllurementEvents;
 import net.minecraft.item.HorseArmorItem;
@@ -12,14 +11,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Map;
-
 @Mixin(Item.class)
 public abstract class ItemMixin extends ForgeRegistryEntry<Item> {
 
 	@Inject(at = @At("HEAD"), method = "getItemEnchantability", cancellable = true)
 	private void getItemEnchantability(CallbackInfoReturnable<Integer> cir) {
-		if (AllurementConfig.COMMON.enchantingHorseArmor.get() && (Object) this instanceof HorseArmorItem) {
+		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && (Object) this instanceof HorseArmorItem) {
 			String name = this.getRegistryName().toString();
 			if (AllurementEvents.ENCHANTABILITY_MAP.containsKey(name)) {
 				cir.setReturnValue(AllurementEvents.ENCHANTABILITY_MAP.get(name));
@@ -29,7 +26,7 @@ public abstract class ItemMixin extends ForgeRegistryEntry<Item> {
 
 	@Inject(at = @At("HEAD"), method = "isEnchantable", cancellable = true)
 	private void isEnchantable(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-		if (AllurementConfig.COMMON.enchantingHorseArmor.get() && (Object) this instanceof HorseArmorItem) {
+		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && (Object) this instanceof HorseArmorItem) {
 			cir.setReturnValue(true);
 		}
 	}

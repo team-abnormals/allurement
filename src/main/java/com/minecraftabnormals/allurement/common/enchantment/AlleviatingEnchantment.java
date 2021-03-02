@@ -1,5 +1,6 @@
 package com.minecraftabnormals.allurement.common.enchantment;
 
+import com.minecraftabnormals.allurement.core.AllurementConfig;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.enchantment.MendingEnchantment;
@@ -29,5 +30,14 @@ public class AlleviatingEnchantment extends Enchantment {
 	@Override
 	public boolean canApplyTogether(Enchantment ench) {
 		return !(ench instanceof MendingEnchantment)  && !(ench instanceof ReformingEnchantment) && super.canApplyTogether(ench);
+	}
+	@Override
+	public boolean canVillagerTrade() {
+		return AllurementConfig.COMMON.enableAlleviating.get();
+	}
+
+	@Override
+	public boolean canGenerateInLoot() {
+		return AllurementConfig.COMMON.enableAlleviating.get();
 	}
 }

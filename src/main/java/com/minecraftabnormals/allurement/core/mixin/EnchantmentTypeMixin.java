@@ -13,7 +13,7 @@ public class EnchantmentTypeMixin {
 
 	@Inject(method = "canEnchantItem(Lnet/minecraft/item/Item;)Z", at = @At("HEAD"), cancellable = true)
 	private void canEnchantItem(Item item, CallbackInfoReturnable<Boolean> cir) {
-		if (AllurementConfig.COMMON.enchantingHorseArmor.get() && item instanceof HorseArmorItem) {
+		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && item instanceof HorseArmorItem) {
 			cir.setReturnValue(true);
 		}
 	}
