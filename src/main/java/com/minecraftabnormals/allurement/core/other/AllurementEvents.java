@@ -29,6 +29,7 @@ public class AllurementEvents {
 		map.put("minecraft:golden_horse_armor", 25);
 		map.put("minecraft:diamond_horse_armor", 10);
 		map.put("nether_extension:netherite_horse_armor", 15);
+		map.put("caverns_and_chasms:silver_horse_armor", 17);
 		map.put("caverns_and_chasms:necromium_horse_armor", 13);
 	});
 
