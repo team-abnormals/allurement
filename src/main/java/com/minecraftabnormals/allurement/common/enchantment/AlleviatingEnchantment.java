@@ -29,8 +29,9 @@ public class AlleviatingEnchantment extends Enchantment {
 
 	@Override
 	public boolean canApplyTogether(Enchantment ench) {
-		return !(ench instanceof MendingEnchantment)  && !(ench instanceof ReformingEnchantment) && super.canApplyTogether(ench);
+		return !(ench instanceof MendingEnchantment) && !(ench instanceof ReformingEnchantment) && super.canApplyTogether(ench);
 	}
+
 	@Override
 	public boolean canVillagerTrade() {
 		return AllurementConfig.COMMON.enableAlleviating.get();

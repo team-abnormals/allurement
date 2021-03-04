@@ -4,6 +4,6 @@
     "enchantment.allurement.reeling": "Reeling",
     "enchantment.allurement.reforming": "Reforming",
 
-    "death.attack.shockwave": "%1$s was stomped",
-    "death.attack.shockwave.player": "%1$s was stomped by %2$s"
+    "death.attack.allurement.shockwave": "%1$s was stomped",
+    "death.attack.allurement.shockwave.player": "%1$s was stomped by %2$s"
 }
