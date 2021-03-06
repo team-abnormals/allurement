@@ -2,6 +2,8 @@ package com.minecraftabnormals.allurement.core.other;
 
 import com.google.common.collect.Maps;
 import com.minecraftabnormals.allurement.core.Allurement;
+import com.minecraftabnormals.allurement.core.AllurementConfig;
+import com.minecraftabnormals.allurement.core.mixin.LivingEntityAccessor;
 import com.minecraftabnormals.allurement.core.registry.AllurementEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
@@ -16,6 +18,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -51,6 +54,16 @@ public class AllurementEvents {
 
 			if (world instanceof ServerWorld) {
 				((ServerWorld) world).spawnParticle(ParticleTypes.CLOUD, entity.getPosX(), entity.getPosY(), entity.getPosZ(), 200, level, 0.5, level, 0);
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onLivingHurt(LivingHurtEvent event) {
+		if (AllurementConfig.COMMON.soulSpeedHurtsMore.get() && event.getEntityLiving() != null) {
+			LivingEntity entity = event.getEntityLiving();
+			if (EnchantmentHelper.hasSoulSpeed(entity) && ((LivingEntityAccessor) entity).isSoulSpeedBlock()) {
+				event.setAmount(event.getAmount() * 1.5F);
 			}
 		}
 	}

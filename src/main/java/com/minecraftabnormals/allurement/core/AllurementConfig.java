@@ -12,6 +12,7 @@ public class AllurementConfig {
 	public static class Common {
 		public final ConfigValue<Boolean> enchantableHorseArmor;
 		public final ConfigValue<Boolean> riptideWorksInCauldrons;
+		public final ConfigValue<Boolean> soulSpeedHurtsMore;
 
 		public final ConfigValue<Boolean> enableAlleviating;
 		public final ConfigValue<Boolean> enableReeling;
@@ -24,9 +25,10 @@ public class AllurementConfig {
 		Common(ForgeConfigSpec.Builder builder) {
 			builder.comment("Allurement common configuration").push("common");
 			builder.push("enchantments");
-			
+
 			enchantableHorseArmor = builder.comment("Allow horse armor to be enchanted").define("Enchantable horse armor", true);
 			riptideWorksInCauldrons = builder.comment("Allow Riptide to function when in cauldrons").define("Riptide works in cauldrons", true);
+			soulSpeedHurtsMore = builder.comment("Instead of losing durability as you run, Soul Speed makes incoming damage increase when on Soul Speed blocks").define("Soul Speed change", true);
 
 			builder.push("additions");
 

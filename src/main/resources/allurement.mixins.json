@@ -13,6 +13,8 @@
     "EntityMixin",
     "ExperienceOrbEntityMixin",
     "ItemMixin",
+    "LivingEntityAccessor",
+    "LivingEntityMixin",
     "PlayerEntityMixin"
   ],
   "client": [
