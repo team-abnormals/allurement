@@ -10,6 +10,7 @@
     "CrossbowItemMixin",
     "EnchantmentHelperMixin",
     "EnchantmentTypeMixin",
+    "EntityMixin",
     "ExperienceOrbEntityMixin",
     "ItemMixin",
     "PlayerEntityMixin"

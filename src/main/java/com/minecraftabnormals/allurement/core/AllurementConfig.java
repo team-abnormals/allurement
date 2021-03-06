@@ -11,6 +11,7 @@ public class AllurementConfig {
 
 	public static class Common {
 		public final ConfigValue<Boolean> enchantableHorseArmor;
+		public final ConfigValue<Boolean> riptideWorksInCauldrons;
 
 		public final ConfigValue<Boolean> enableAlleviating;
 		public final ConfigValue<Boolean> enableReeling;
@@ -21,20 +22,27 @@ public class AllurementConfig {
 		public final ConfigValue<Integer> experiencePerLevel;
 
 		Common(ForgeConfigSpec.Builder builder) {
+			builder.comment("Allurement common configuration").push("common");
 			builder.push("enchantments");
-			enableAlleviating = builder.comment("Armor enchantment that heals the user when collecting experience").define("enableAlleviating", true);
-			enableReeling = builder.comment("Crossbow enchantment that pulls targets towards the user").define("enableReeling", true);
-			enableReforming = builder.comment("Gear enchantment that very slowly repairs items over time").define("enableReforming", true);
-			enableShockwave = builder.comment("Boots enchantment that creates a shockwave when taking fall damage").define("enableShockwave", true);
-			builder.pop();
+			
+			enchantableHorseArmor = builder.comment("Allow horse armor to be enchanted").define("Enchantable horse armor", true);
+			riptideWorksInCauldrons = builder.comment("Allow Riptide to function when in cauldrons").define("Riptide works in cauldrons", true);
 
-			builder.push("enchanting");
-			enchantableHorseArmor = builder.comment("Allow horse armor to be enchanted").define("enchantableHorseArmor", true);
-			builder.pop();
+			builder.push("additions");
 
+			enableAlleviating = builder.comment("Armor enchantment that heals the user when collecting experience").define("Enable Alleviating", true);
+			enableReeling = builder.comment("Crossbow enchantment that pulls targets towards the user").define("Enable Reeling", true);
+			enableReforming = builder.comment("Gear enchantment that very slowly repairs items over time").define("Enable Reforming", true);
+			enableShockwave = builder.comment("Boots enchantment that creates a shockwave when taking fall damage").define("Enable Shockwave", true);
+
+			builder.pop();
+			builder.pop();
 			builder.push("experience");
-			removeLevelScaling = builder.comment("Remove the amount of experience per level increasing (experimental)").define("removeLevelScaling", false);
-			experiencePerLevel = builder.comment("The amount of experience per level").define("experiencePerLevel", 50);
+
+			removeLevelScaling = builder.comment("Remove the amount of experience per level increasing (experimental)").define("Remove level scaling", false);
+			experiencePerLevel = builder.comment("The amount of experience per level, if level scaling is removed").define("Experience per level", 50);
+
+			builder.pop();
 			builder.pop();
 		}
 	}

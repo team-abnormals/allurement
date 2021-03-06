@@ -32,7 +32,6 @@ public abstract class AbstractArrowEntityMixin extends Entity {
 			if (vector3d.lengthSquared() > 0.0D) {
 				result.getEntity().addVelocity(vector3d.x, 0.1D, vector3d.z);
 			}
-
 		}
 	}
 }
