@@ -3,6 +3,11 @@
     "enchantment.allurement.shockwave": "Shockwave",
     "enchantment.allurement.reeling": "Reeling",
     "enchantment.allurement.reforming": "Reforming",
+    
+    "enchantment.allurement.alleviating.desc": "Heals when collecting Experience Orbs.",
+    "enchantment.allurement.shockwave.desc": "Falling creates a damaging shockwave.",
+    "enchantment.allurement.reeling.desc": "Arrows pull targets on impact.",
+    "enchantment.allurement.reforming.desc": "Slowly repairs the item when held or worn.",
 
     "death.attack.allurement.shockwave": "%1$s was stomped",
     "death.attack.allurement.shockwave.player": "%1$s was stomped by %2$s"
