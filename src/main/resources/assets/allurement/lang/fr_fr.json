@@ -1,0 +1,14 @@
+{
+    "enchantment.allurement.alleviating": "Apaisant",
+    "enchantment.allurement.shockwave": "Onde de choc",
+    "enchantment.allurement.reeling": "Remontage",
+    "enchantment.allurement.reforming": "Réformation",
+    
+    "enchantment.allurement.alleviating.desc": "Soigne en ramassant des orbes d'expérience.",
+    "enchantment.allurement.shockwave.desc": "Les chutes créent une onde de choc.",
+    "enchantment.allurement.reeling.desc": "Les flèches ramènent les cibles à l'impact.",
+    "enchantment.allurement.reforming.desc": "Répare lentement l'objet lorsqu'il est porté ou en main.",
+
+    "death.attack.allurement.shockwave": "%1$s été piétiné",
+    "death.attack.allurement.shockwave.player": "%1$s a été piétiné par %2$s"
+}
