@@ -1,5 +1,6 @@
 package com.minecraftabnormals.allurement.core.mixin;
 
+import com.minecraftabnormals.allurement.core.AllurementConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -27,15 +28,13 @@ public abstract class AbstractArrowEntityMixin extends Entity {
 	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/projectile/AbstractArrowEntity;getPierceLevel()B", shift = Shift.BEFORE), method = "onEntityHit", cancellable = true)
 	private void onEntityHit(EntityRayTraceResult result, CallbackInfo ci) {
 		if (result.getEntity() instanceof LivingEntity && this.knockbackStrength < 0) {
-			double horizontalForce = this.knockbackStrength * 0.5D;
-			double verticalForce = this.knockbackStrength * 0.25D;
+			double horizontalForce = this.knockbackStrength * AllurementConfig.COMMON.reelingHorizontalFactor.get();
+			double verticalForce = this.knockbackStrength * AllurementConfig.COMMON.reelingVerticalFactor.get();
 			Vector3d vector3d = this.getMotion().normalize().mul(horizontalForce, verticalForce, horizontalForce);
-
 			if (vector3d.lengthSquared() > 0.0D) {
 				verticalForce = Math.max(0.1D, vector3d.y);
 				if (vector3d.y < 0.0D)
 					verticalForce = Math.min(-0.1D, vector3d.y);
-
 				result.getEntity().addVelocity(vector3d.x, verticalForce, vector3d.z);
 			}
 		}
