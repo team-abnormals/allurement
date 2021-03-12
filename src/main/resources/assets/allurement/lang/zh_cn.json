@@ -1,0 +1,14 @@
+{
+    "enchantment.allurement.alleviating": "经验愈合",
+    "enchantment.allurement.shockwave": "冲击波",
+    "enchantment.allurement.reeling": "牵引",
+    "enchantment.allurement.reforming": "重塑",
+	
+	"enchantment.allurement.alleviating.desc": "在使用者获得经验时赋予治疗效果",
+    "enchantment.allurement.shockwave.desc": "落地时对周围的敌人造成伤害，大小取决于摔落的高度",
+    "enchantment.allurement.reeling.desc": "击中目标时将其拉向使用者",
+    "enchantment.allurement.reforming.desc": "随时间非常缓慢地自我修复",
+
+    "death.attack.allurement.shockwave": "%1$s 死于冲击波",
+    "death.attack.allurement.shockwave.player": "%1$s 被 %2$s 践踏而死"
+}

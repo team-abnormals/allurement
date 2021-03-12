@@ -4,10 +4,10 @@
     "enchantment.allurement.reeling": "Reeling",
     "enchantment.allurement.reforming": "Reforming",
     
-    "enchantment.allurement.alleviating.desc": "Heals when collecting Experience Orbs.",
-    "enchantment.allurement.shockwave.desc": "Falling creates a damaging shockwave.",
-    "enchantment.allurement.reeling.desc": "Arrows pull targets on impact.",
-    "enchantment.allurement.reforming.desc": "Slowly repairs the item when held or worn.",
+    "enchantment.allurement.alleviating.desc": "Heals the player upon collection of experience",
+    "enchantment.allurement.shockwave.desc": "Creates a shockwave that damages nearby enemies, based on how high you fall",
+    "enchantment.allurement.reeling.desc": "Pulls mobs close upon arrow impact",
+    "enchantment.allurement.reforming.desc": "Repairs durability very slowly over time",
 
     "death.attack.allurement.shockwave": "%1$s was stomped",
     "death.attack.allurement.shockwave.player": "%1$s was stomped by %2$s"

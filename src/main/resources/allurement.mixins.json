@@ -7,6 +7,7 @@
   "mixins": [
     "AbstractArrowEntityMixin",
     "AbstractHorseEntityMixin",
+    "BowItemMixin",
     "CrossbowItemMixin",
     "EnchantmentHelperMixin",
     "EnchantmentTypeMixin",
@@ -18,6 +19,7 @@
     "PlayerEntityMixin"
   ],
   "client": [
+    "ArrowRendererMixin",
     "LeatherHorseArmorLayerMixin"
   ],
   "injectors": {

@@ -1,0 +1,9 @@
+{
+    "enchantment.allurement.alleviating": "Łagodzenie",
+    "enchantment.allurement.shockwave": "Fala uderzeniowa",
+    "enchantment.allurement.reeling": "Nawijanie",
+    "enchantment.allurement.reforming": "Reformowanie",
+
+    "death.attack.allurement.shockwave": "Gracz %1$s został zdeptany",
+    "death.attack.allurement.shockwave.player": "Gracz %1$s został zdeptany przez %2$s"
+}

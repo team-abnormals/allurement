@@ -1,0 +1,9 @@
+{
+    "enchantment.allurement.alleviating": "Alivio",
+    "enchantment.allurement.shockwave": "Onda de choque",
+    "enchantment.allurement.reeling": "Tracción",
+    "enchantment.allurement.reforming": "Reformación",
+
+    "death.attack.allurement.shockwave": "%1$s ha sido pisoteado",
+    "death.attack.allurement.shockwave.player": "%1$s ha sido pisoteado por %2$s"
+}
