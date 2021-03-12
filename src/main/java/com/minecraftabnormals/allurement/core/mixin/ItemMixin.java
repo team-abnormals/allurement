@@ -2,6 +2,7 @@ package com.minecraftabnormals.allurement.core.mixin;
 
 import com.minecraftabnormals.allurement.core.AllurementConfig;
 import com.minecraftabnormals.allurement.core.other.AllurementEvents;
+import com.minecraftabnormals.allurement.core.other.AllurementUtil;
 import net.minecraft.item.HorseArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,8 +19,10 @@ public abstract class ItemMixin extends ForgeRegistryEntry<Item> {
 	private void getItemEnchantability(CallbackInfoReturnable<Integer> cir) {
 		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && (Object) this instanceof HorseArmorItem) {
 			String name = this.getRegistryName().toString();
-			if (AllurementEvents.ENCHANTABILITY_MAP.containsKey(name)) {
-				cir.setReturnValue(AllurementEvents.ENCHANTABILITY_MAP.get(name));
+			if (AllurementUtil.ENCHANTABILITY_MAP.containsKey(name)) {
+				cir.setReturnValue(AllurementUtil.ENCHANTABILITY_MAP.get(name));
+			} else {
+				cir.setReturnValue(1);
 			}
 		}
 	}
