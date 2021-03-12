@@ -1,7 +1,9 @@
 package com.minecraftabnormals.allurement.common.enchantment;
 
 import com.minecraftabnormals.allurement.core.AllurementConfig;
-import net.minecraft.enchantment.*;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.enchantment.ThornsEnchantment;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;

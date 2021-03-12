@@ -1,7 +1,6 @@
 package com.minecraftabnormals.allurement.core.mixin;
 
 import com.minecraftabnormals.allurement.core.AllurementConfig;
-import com.minecraftabnormals.allurement.core.other.AllurementEvents;
 import com.minecraftabnormals.allurement.core.other.AllurementUtil;
 import net.minecraft.item.HorseArmorItem;
 import net.minecraft.item.Item;

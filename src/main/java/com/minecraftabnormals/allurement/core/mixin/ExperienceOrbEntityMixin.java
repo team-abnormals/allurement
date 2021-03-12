@@ -19,7 +19,7 @@ public class ExperienceOrbEntityMixin {
 
 	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;onItemPickup(Lnet/minecraft/entity/Entity;I)V", shift = At.Shift.AFTER), method = "onCollideWithPlayer", cancellable = true)
 	private void onCollideWithPlayer(PlayerEntity player, CallbackInfo ci) {
-		int count =  AllurementUtil.getTotalEnchantmentLevel(AllurementEnchantments.ALLEVIATING.get(), player, EquipmentSlotType.Group.ARMOR);
+		int count = AllurementUtil.getTotalEnchantmentLevel(AllurementEnchantments.ALLEVIATING.get(), player, EquipmentSlotType.Group.ARMOR);
 		if (count > 0) {
 			float i = Math.min(this.xpValue * 0.25F * count, player.getMaxHealth() - player.getHealth());
 			this.xpValue -= i * 4.0F;
