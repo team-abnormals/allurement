@@ -13,6 +13,7 @@ public class AllurementConfig {
 		public final ConfigValue<Boolean> enchantableHorseArmor;
 		public final ConfigValue<Boolean> riptideWorksInCauldrons;
 		public final ConfigValue<Boolean> soulSpeedHurtsMore;
+		public final ConfigValue<Boolean> infinityRequiresArrows;
 
 		public final ConfigValue<Boolean> enableAlleviating;
 		public final ConfigValue<Boolean> enableReeling;
@@ -28,6 +29,7 @@ public class AllurementConfig {
 			enchantableHorseArmor = builder.comment("Allow horse armor to be enchanted").define("Enchantable horse armor", true);
 			riptideWorksInCauldrons = builder.comment("Allow Riptide to function when in cauldrons").define("Riptide works in cauldrons", true);
 			soulSpeedHurtsMore = builder.comment("Instead of losing durability as you run, Soul Speed makes incoming damage increase when on Soul Speed blocks").define("Soul Speed change", true);
+			infinityRequiresArrows = builder.comment("If Infinity requires an arrow in the player's inventory in order to shoot").define("Infinity requires arrows", false);
 
 			builder.push("additions");
 			enableAlleviating = builder.comment("Armor enchantment that heals the user when collecting experience").define("Enable Alleviating", true);
