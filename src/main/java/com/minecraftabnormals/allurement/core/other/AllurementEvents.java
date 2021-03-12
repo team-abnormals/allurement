@@ -81,7 +81,7 @@ public class AllurementEvents {
 
 		if (AllurementConfig.COMMON.soulSpeedHurtsMore.get() && event.getEntityLiving() != null) {
 			if (EnchantmentHelper.hasSoulSpeed(entity) && ((LivingEntityAccessor) entity).isSoulSpeedBlock()) {
-				event.setAmount(event.getAmount() * 1.5F);
+				event.setAmount(event.getAmount() * AllurementConfig.COMMON.soulSpeedDamageFactor.get());
 			}
 		}
 	}
