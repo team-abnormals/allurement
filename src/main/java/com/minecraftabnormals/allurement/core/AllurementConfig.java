@@ -11,14 +11,24 @@ public class AllurementConfig {
 
 	public static class Common {
 		public final ConfigValue<Boolean> enchantableHorseArmor;
+
 		public final ConfigValue<Boolean> riptideWorksInCauldrons;
+
 		public final ConfigValue<Boolean> soulSpeedHurtsMore;
+		public final ConfigValue<Float> soulSpeedDamageFactor;
+
 		public final ConfigValue<Boolean> infinityRequiresArrows;
 
 		public final ConfigValue<Boolean> enableAlleviating;
+
 		public final ConfigValue<Boolean> enableReeling;
+		public final ConfigValue<Double> reelingHorizontalFactor;
+		public final ConfigValue<Double> reelingVerticalFactor;
+
 		public final ConfigValue<Boolean> enableReforming;
+
 		public final ConfigValue<Boolean> enableShockwave;
+
 		public final ConfigValue<Boolean> enableAbsorbing;
 
 		public final ConfigValue<Boolean> removeLevelScaling;
@@ -27,24 +37,53 @@ public class AllurementConfig {
 		Common(ForgeConfigSpec.Builder builder) {
 			builder.push("enchantments");
 
-			enchantableHorseArmor = builder.comment("Allow horse armor to be enchanted").define("Enchantable horse armor", true);
-			riptideWorksInCauldrons = builder.comment("Allow Riptide to function when in cauldrons").define("Riptide works in cauldrons", true);
-			soulSpeedHurtsMore = builder.comment("Instead of losing durability as you run, Soul Speed makes incoming damage increase when on Soul Speed blocks").define("Soul Speed change", true);
-			infinityRequiresArrows = builder.comment("If Infinity requires an arrow in the player's inventory in order to shoot").define("Infinity requires arrows", false);
-
-			builder.push("additions");
+			builder.push("alleviating");
 			enableAlleviating = builder.comment("Armor enchantment that heals the user when collecting experience").define("Enable Alleviating", true);
-			enableReeling = builder.comment("Crossbow enchantment that pulls targets towards the user").define("Enable Reeling", true);
+			builder.pop();
+
+			builder.push("reeling");
+			enableReeling = builder.comment("Crossbow enchantment that pulls targets towards the user").define("Reeling", true);
+			reelingHorizontalFactor = builder.comment("How much the entity is affected on the horizontal axis").define("Horizontal factor", 0.5D);
+			reelingVerticalFactor = builder.comment("How much the entity is affected on the vertical axis").define("Vertical factor", 0.25D);
+			builder.pop();
+
+			builder.push("reforming");
 			enableReforming = builder.comment("Gear enchantment that very slowly repairs items over time").define("Enable Reforming", true);
+			builder.pop();
+
+			builder.push("shockwave");
 			enableShockwave = builder.comment("Boots enchantment that creates a shockwave when taking fall damage").define("Enable Shockwave", true);
+			builder.pop();
+
+			builder.push("absorbing");
 			enableAbsorbing = builder.comment("Armor enchantment that stores incoming damage and applies it to user's next attack").define("Enable Absorbing", true);
 			builder.pop();
 
 			builder.pop();
+			builder.push("tweaks");
 
-			builder.push("experience");
+			builder.push("horse_armor");
+			enchantableHorseArmor = builder.comment("Allow horse armor to be enchanted").define("Enchantable horse armor", true);
+			builder.pop();
+
+			builder.push("riptide");
+			riptideWorksInCauldrons = builder.comment("Allow Riptide to function when in cauldrons").define("Riptide works in cauldrons", true);
+			builder.pop();
+
+			builder.push("soul_speed");
+			soulSpeedHurtsMore = builder.comment("Instead of losing durability as you run, Soul Speed makes incoming damage increase when on Soul Speed blocks").define("Soul Speed change", true);
+			soulSpeedDamageFactor = builder.comment("How much damage is multiplied when hurt on Soul Speed blocks").define("Damage factor", 1.5F);
+			builder.pop();
+
+			builder.push("infinity");
+			infinityRequiresArrows = builder.comment("If Infinity requires an arrow in the player's inventory in order to shoot").define("Infinity requires arrows", false);
+			builder.pop();
+
+			builder.push("level_scaling");
 			removeLevelScaling = builder.comment("Remove the amount of experience per level increasing (experimental)").define("Remove level scaling", false);
-			experiencePerLevel = builder.comment("The amount of experience per level, if level scaling is removed").define("Experience per level", 50);
+			experiencePerLevel = builder.comment("The amount of experience per level, if level scaling is removed (experimental)").define("Experience per level", 50);
+			builder.pop();
+
 			builder.pop();
 		}
 	}
@@ -54,7 +93,7 @@ public class AllurementConfig {
 		public final ConfigValue<Boolean> infinityArrowGlint;
 
 		Client(ForgeConfigSpec.Builder builder) {
-			builder.push("enchantments");
+			builder.push("tweaks");
 			builder.push("infinity");
 			infinityArrowTexture = builder.comment("Adds a special texture for arrows shot from infinity bows").define("Infinity arrow texture", true);
 			infinityArrowGlint = builder.comment("Adds a glint on arrows shot from infinity bows").define("Infinity arrow glint", true);
