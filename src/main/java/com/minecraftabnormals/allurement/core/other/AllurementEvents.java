@@ -1,12 +1,13 @@
 package com.minecraftabnormals.allurement.core.other;
 
-import com.google.common.collect.Maps;
+import com.minecraftabnormals.abnormals_core.common.world.storage.tracking.IDataManager;
 import com.minecraftabnormals.allurement.core.Allurement;
 import com.minecraftabnormals.allurement.core.AllurementConfig;
 import com.minecraftabnormals.allurement.core.mixin.LivingEntityAccessor;
 import com.minecraftabnormals.allurement.core.registry.AllurementEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -15,7 +16,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -26,19 +26,10 @@ import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.Map;
+import java.util.Map.Entry;
 
 @Mod.EventBusSubscriber(modid = Allurement.MOD_ID)
 public class AllurementEvents {
-	public static final Map<String, Integer> ENCHANTABILITY_MAP = Util.make(Maps.newHashMap(), (map) -> {
-		map.put("minecraft:leather_horse_armor", 15);
-		map.put("minecraft:iron_horse_armor", 9);
-		map.put("minecraft:golden_horse_armor", 25);
-		map.put("minecraft:diamond_horse_armor", 10);
-		map.put("nether_extension:netherite_horse_armor", 15);
-		map.put("caverns_and_chasms:silver_horse_armor", 17);
-		map.put("caverns_and_chasms:necromium_horse_armor", 13);
-	});
 
 	@SubscribeEvent
 	public static void onLivingFall(LivingFallEvent event) {
@@ -64,8 +55,31 @@ public class AllurementEvents {
 
 	@SubscribeEvent
 	public static void onLivingHurt(LivingHurtEvent event) {
+		LivingEntity entity = event.getEntityLiving();
+		Entity source = event.getSource().getTrueSource();
+		IDataManager manager = (IDataManager) entity;
+
+		if (source instanceof LivingEntity) {
+			int count = AllurementUtil.getTotalEnchantmentLevel(AllurementEnchantments.ABSORBING.get(), entity, EquipmentSlotType.Group.ARMOR);
+			if (count > 0) {
+				manager.setValue(Allurement.ABSORBED_DAMAGE, event.getAmount() * count * 0.075F);
+			}
+
+			LivingEntity attacker = (LivingEntity) source;
+			Entry<EquipmentSlotType, ItemStack> entry = EnchantmentHelper.getRandomItemWithEnchantment(AllurementEnchantments.ABSORBING.get(), attacker);
+			if (entry != null) {
+				IDataManager attackManager = (IDataManager) attacker;
+				float absorbedDamage = attackManager.getValue(Allurement.ABSORBED_DAMAGE);
+
+				if (absorbedDamage > 0.0F) {
+					event.setAmount(event.getAmount() + absorbedDamage);
+					attackManager.setValue(Allurement.ABSORBED_DAMAGE, 0.0F);
+					entry.getValue().damageItem(2, attacker, (livingEntity) -> livingEntity.sendBreakAnimation(entry.getKey()));
+				}
+			}
+		}
+
 		if (AllurementConfig.COMMON.soulSpeedHurtsMore.get() && event.getEntityLiving() != null) {
-			LivingEntity entity = event.getEntityLiving();
 			if (EnchantmentHelper.hasSoulSpeed(entity) && ((LivingEntityAccessor) entity).isSoulSpeedBlock()) {
 				event.setAmount(event.getAmount() * 1.5F);
 			}

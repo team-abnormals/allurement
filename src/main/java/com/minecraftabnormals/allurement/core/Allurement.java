@@ -17,7 +17,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class Allurement {
 	public static final String MOD_ID = "allurement";
 	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
+
 	public static final TrackedData<Boolean> INFINITY_ARROW = TrackedData.Builder.create(DataProcessors.BOOLEAN, () -> false).enableSaving().build();
+	public static final TrackedData<Float> ABSORBED_DAMAGE = TrackedData.Builder.create(DataProcessors.FLOAT, () -> 0.0F).enableSaving().build();
 
 	public Allurement() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -27,6 +29,7 @@ public class Allurement {
 		MinecraftForge.EVENT_BUS.register(this);
 
 		TrackedDataManager.INSTANCE.registerData(new ResourceLocation(MOD_ID, "shot_infinity_arrow"), INFINITY_ARROW);
+		TrackedDataManager.INSTANCE.registerData(new ResourceLocation(MOD_ID, "absorbed_damage"), ABSORBED_DAMAGE);
 
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AllurementConfig.COMMON_SPEC);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, AllurementConfig.CLIENT_SPEC);

@@ -19,6 +19,7 @@ public class AllurementConfig {
 		public final ConfigValue<Boolean> enableReeling;
 		public final ConfigValue<Boolean> enableReforming;
 		public final ConfigValue<Boolean> enableShockwave;
+		public final ConfigValue<Boolean> enableAbsorbing;
 
 		public final ConfigValue<Boolean> removeLevelScaling;
 		public final ConfigValue<Integer> experiencePerLevel;
@@ -36,6 +37,7 @@ public class AllurementConfig {
 			enableReeling = builder.comment("Crossbow enchantment that pulls targets towards the user").define("Enable Reeling", true);
 			enableReforming = builder.comment("Gear enchantment that very slowly repairs items over time").define("Enable Reforming", true);
 			enableShockwave = builder.comment("Boots enchantment that creates a shockwave when taking fall damage").define("Enable Shockwave", true);
+			enableAbsorbing = builder.comment("Armor enchantment that stores incoming damage and applies it to user's next attack").define("Enable Absorbing", true);
 			builder.pop();
 
 			builder.pop();
