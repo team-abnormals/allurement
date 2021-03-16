@@ -10,13 +10,15 @@
     "BowItemMixin",
     "CrossbowItemMixin",
     "EnchantmentHelperMixin",
+    "EnchantmentMixin",
     "EnchantmentTypeMixin",
     "EntityMixin",
     "ExperienceOrbEntityMixin",
     "ItemMixin",
     "LivingEntityAccessor",
     "LivingEntityMixin",
-    "PlayerEntityMixin"
+    "PlayerEntityMixin",
+    "SlotMixin"
   ],
   "client": [
     "ArrowRendererMixin",

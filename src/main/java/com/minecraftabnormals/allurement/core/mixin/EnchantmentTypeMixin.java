@@ -8,7 +8,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(targets = {"net.minecraft.enchantment.EnchantmentType$1", "net.minecraft.enchantment.EnchantmentType$2", "net.minecraft.enchantment.EnchantmentType$3", "net.minecraft.enchantment.EnchantmentType$4", "net.minecraft.enchantment.EnchantmentType$5"})
+@Mixin(targets = {
+		"net.minecraft.enchantment.EnchantmentType$1", // ARMOR
+		"net.minecraft.enchantment.EnchantmentType$2", // ARMOR_FEET
+		"net.minecraft.enchantment.EnchantmentType$3", // ARMOR_LEGS
+		"net.minecraft.enchantment.EnchantmentType$4", // ARMOR_CHEST
+		"net.minecraft.enchantment.EnchantmentType$5", // ARMOR_HEAD
+		"net.minecraft.enchantment.EnchantmentType$12" // WEARABLE
+})
 public class EnchantmentTypeMixin {
 
 	@Inject(method = "canEnchantItem(Lnet/minecraft/item/Item;)Z", at = @At("HEAD"), cancellable = true)
