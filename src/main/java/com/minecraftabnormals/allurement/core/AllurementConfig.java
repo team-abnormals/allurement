@@ -19,6 +19,8 @@ public class AllurementConfig {
 
 		public final ConfigValue<Boolean> infinityRequiresArrows;
 
+		public final ConfigValue<Boolean> disableProtection;
+
 		public final ConfigValue<Boolean> enableAlleviating;
 
 		public final ConfigValue<Boolean> enableReeling;
@@ -77,6 +79,10 @@ public class AllurementConfig {
 
 			builder.push("infinity");
 			infinityRequiresArrows = builder.comment("If Infinity requires an arrow in the player's inventory in order to shoot").define("Infinity requires arrows", false);
+			builder.pop();
+
+			builder.push("protection");
+			disableProtection = builder.comment("Remove the base Protection enchantment, requiring players to choose between the other types").define("Disable Protection", false);
 			builder.pop();
 
 			builder.push("level_scaling");

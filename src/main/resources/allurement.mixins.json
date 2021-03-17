@@ -18,6 +18,7 @@
     "LivingEntityAccessor",
     "LivingEntityMixin",
     "PlayerEntityMixin",
+    "ProtectionEnchantmentMixin",
     "SlotMixin"
   ],
   "client": [
