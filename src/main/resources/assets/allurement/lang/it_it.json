@@ -1,0 +1,19 @@
+{
+    "enchantment.allurement.alleviating": "Lenire",
+    "enchantment.allurement.alleviating.desc": "Cura il giocatore quando raccoglie Esperienza",
+
+    "enchantment.allurement.shockwave": "Onda Shock",
+    "enchantment.allurement.shockwave.desc": "Crea un onda shock che danneggia le entità vicine quando si prende danno da caduta",
+
+    "enchantment.allurement.reeling": "Attirare",
+    "enchantment.allurement.reeling.desc": "Attira il bersaglio colpito dalla freccia verso l'utente",
+
+    "enchantment.allurement.reforming": "Riformazione",
+    "enchantment.allurement.reforming.desc": "Ripara la durabilità dell'oggetto molto lentamente mentre è equipaggiato",
+
+    "enchantment.allurement.absorbing": "Assorbimento",
+    "enchantment.allurement.absorbing.desc": "Immagazzina una parte del danno e lo applica al tuo prossimo attacco",
+
+    "death.attack.allurement.shockwave": "%1$s è stato calpestato",
+    "death.attack.allurement.shockwave.player": "%1$s è stato calpestato da %2$s"
+}
