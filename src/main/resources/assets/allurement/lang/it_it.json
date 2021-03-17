@@ -11,8 +11,8 @@
     "enchantment.allurement.reforming": "Riformazione",
     "enchantment.allurement.reforming.desc": "Ripara la durabilità dell'oggetto molto lentamente mentre è equipaggiato",
 
-    "enchantment.allurement.absorbing": "Assorbimento",
-    "enchantment.allurement.absorbing.desc": "Immagazzina una parte del danno e lo applica al tuo prossimo attacco",
+    "enchantment.allurement.vengeance": "Vendetta",
+    "enchantment.allurement.vengeance.desc": "Immagazzina una parte del danno e lo applica al tuo prossimo attacco",
 
     "death.attack.allurement.shockwave": "%1$s è stato calpestato",
     "death.attack.allurement.shockwave.player": "%1$s è stato calpestato da %2$s"

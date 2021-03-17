@@ -60,13 +60,13 @@ public class AllurementEvents {
 		IDataManager manager = (IDataManager) entity;
 
 		if (source instanceof LivingEntity) {
-			int count = AllurementUtil.getTotalEnchantmentLevel(AllurementEnchantments.ABSORBING.get(), entity, EquipmentSlotType.Group.ARMOR);
+			int count = AllurementUtil.getTotalEnchantmentLevel(AllurementEnchantments.VENGEANCE.get(), entity, EquipmentSlotType.Group.ARMOR);
 			if (count > 0) {
 				manager.setValue(Allurement.ABSORBED_DAMAGE, event.getAmount() * count * 0.075F);
 			}
 
 			LivingEntity attacker = (LivingEntity) source;
-			Entry<EquipmentSlotType, ItemStack> entry = EnchantmentHelper.getRandomItemWithEnchantment(AllurementEnchantments.ABSORBING.get(), attacker);
+			Entry<EquipmentSlotType, ItemStack> entry = EnchantmentHelper.getRandomItemWithEnchantment(AllurementEnchantments.VENGEANCE.get(), attacker);
 			if (entry != null) {
 				IDataManager attackManager = (IDataManager) attacker;
 				float absorbedDamage = attackManager.getValue(Allurement.ABSORBED_DAMAGE);

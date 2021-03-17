@@ -8,9 +8,9 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 
-public class AbsorbingEnchantment extends Enchantment {
+public class VengeanceEnchantment extends Enchantment {
 
-	public AbsorbingEnchantment(Enchantment.Rarity rarityIn, EquipmentSlotType... slots) {
+	public VengeanceEnchantment(Enchantment.Rarity rarityIn, EquipmentSlotType... slots) {
 		super(rarityIn, EnchantmentType.ARMOR_CHEST, slots);
 	}
 
@@ -41,16 +41,16 @@ public class AbsorbingEnchantment extends Enchantment {
 
 	@Override
 	public boolean isTreasureEnchantment() {
-		return !AllurementConfig.COMMON.enableAbsorbing.get();
+		return !AllurementConfig.COMMON.enableVengeance.get();
 	}
 
 	@Override
 	public boolean canVillagerTrade() {
-		return AllurementConfig.COMMON.enableAbsorbing.get();
+		return AllurementConfig.COMMON.enableVengeance.get();
 	}
 
 	@Override
 	public boolean canGenerateInLoot() {
-		return AllurementConfig.COMMON.enableAbsorbing.get();
+		return AllurementConfig.COMMON.enableVengeance.get();
 	}
 }

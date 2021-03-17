@@ -29,7 +29,7 @@ public class AllurementConfig {
 
 		public final ConfigValue<Boolean> enableShockwave;
 
-		public final ConfigValue<Boolean> enableAbsorbing;
+		public final ConfigValue<Boolean> enableVengeance;
 
 		public final ConfigValue<Boolean> removeLevelScaling;
 		public final ConfigValue<Integer> experiencePerLevel;
@@ -55,8 +55,8 @@ public class AllurementConfig {
 			enableShockwave = builder.comment("Boots enchantment that creates a shockwave when taking fall damage").define("Enable Shockwave", true);
 			builder.pop();
 
-			builder.push("absorbing");
-			enableAbsorbing = builder.comment("Armor enchantment that stores incoming damage and applies it to user's next attack").define("Enable Absorbing", true);
+			builder.push("vengeance");
+			enableVengeance = builder.comment("Armor enchantment that stores incoming damage and applies it to user's next attack").define("Enable Absorbing", true);
 			builder.pop();
 
 			builder.pop();
