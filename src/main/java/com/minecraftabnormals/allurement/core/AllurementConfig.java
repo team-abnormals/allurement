@@ -40,7 +40,7 @@ public class AllurementConfig {
 			builder.push("enchantments");
 
 			builder.push("alleviating");
-			enableAlleviating = builder.comment("Armor enchantment that heals the user when collecting experience").define("Enable Alleviating", true);
+			enableAlleviating = builder.comment("Armor enchantment that heals the user when collecting experience").define("Enable Vengeance", true);
 			builder.pop();
 
 			builder.push("reeling");
