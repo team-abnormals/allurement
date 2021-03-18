@@ -22,6 +22,7 @@ public class AllurementConfig {
 		public final ConfigValue<Boolean> disableProtection;
 
 		public final ConfigValue<Boolean> enableAlleviating;
+		public final ConfigValue<Float> alleviatingHealingFactor;
 
 		public final ConfigValue<Boolean> enableReeling;
 		public final ConfigValue<Double> reelingHorizontalFactor;
@@ -43,6 +44,7 @@ public class AllurementConfig {
 
 			builder.push("alleviating");
 			enableAlleviating = builder.comment("Armor enchantment that heals the user when collecting experience").define("Enable Alleviating", true);
+			alleviatingHealingFactor = builder.comment("How much the experience value is multiplied by into health").define("Healing factor", 0.25F);
 			builder.pop();
 
 			builder.push("reeling");
