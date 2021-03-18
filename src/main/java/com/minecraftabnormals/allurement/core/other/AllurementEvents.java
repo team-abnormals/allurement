@@ -62,7 +62,7 @@ public class AllurementEvents {
 		if (source instanceof LivingEntity) {
 			int count = AllurementUtil.getTotalEnchantmentLevel(AllurementEnchantments.VENGEANCE.get(), entity, EquipmentSlotType.Group.ARMOR);
 			if (count > 0) {
-				manager.setValue(Allurement.ABSORBED_DAMAGE, event.getAmount() * count * 0.075F);
+				manager.setValue(Allurement.ABSORBED_DAMAGE, event.getAmount() * count * AllurementConfig.COMMON.vengeanceDamageFactor.get());
 			}
 
 			LivingEntity attacker = (LivingEntity) source;

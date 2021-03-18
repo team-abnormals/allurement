@@ -33,6 +33,7 @@ public class AllurementConfig {
 		public final ConfigValue<Boolean> enableShockwave;
 
 		public final ConfigValue<Boolean> enableVengeance;
+		public final ConfigValue<Float> vengeanceDamageFactor;
 
 		public final ConfigValue<Boolean> removeLevelScaling;
 		public final ConfigValue<Integer> experiencePerLevel;
@@ -45,7 +46,7 @@ public class AllurementConfig {
 			builder.pop();
 
 			builder.push("reeling");
-			enableReeling = builder.comment("Crossbow enchantment that pulls targets towards the user").define("Reeling", true);
+			enableReeling = builder.comment("Crossbow enchantment that pulls targets towards the user").define("Enable Reeling", true);
 			reelingHorizontalFactor = builder.comment("How much the entity is affected on the horizontal axis").define("Horizontal factor", 0.5D);
 			reelingVerticalFactor = builder.comment("How much the entity is affected on the vertical axis").define("Vertical factor", 0.25D);
 			builder.pop();
@@ -61,6 +62,7 @@ public class AllurementConfig {
 
 			builder.push("vengeance");
 			enableVengeance = builder.comment("Armor enchantment that stores incoming damage and applies it to user's next attack").define("Enable Vengeance", true);
+			vengeanceDamageFactor = builder.comment("How much the damage taken with vengeance is multiplied for attacks").define("Damage factor", 0.075F);
 			builder.pop();
 
 			builder.pop();
