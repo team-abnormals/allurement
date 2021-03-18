@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "minecraft:aqua_affinity",
-    "allurement:alleviating"
+    "allurement:alleviating",
+    "allurement:vengeance"
   ]
 }
