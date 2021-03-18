@@ -22,8 +22,9 @@ public class ExperienceOrbEntityMixin {
 	private void onCollideWithPlayer(PlayerEntity player, CallbackInfo ci) {
 		int count = AllurementUtil.getTotalEnchantmentLevel(AllurementEnchantments.ALLEVIATING.get(), player, EquipmentSlotType.Group.ARMOR);
 		if (count > 0) {
-			float i = Math.min(this.xpValue * AllurementConfig.COMMON.alleviatingHealingFactor.get() * count, player.getMaxHealth() - player.getHealth());
-			this.xpValue -= i / AllurementConfig.COMMON.alleviatingHealingFactor.get() / count;
+			float factor = AllurementConfig.COMMON.alleviatingHealingFactor.get() * count;
+			float i = Math.min(this.xpValue * factor, player.getMaxHealth() - player.getHealth());
+			this.xpValue -= Math.round(i / factor);
 			player.heal(i);
 		}
 	}
