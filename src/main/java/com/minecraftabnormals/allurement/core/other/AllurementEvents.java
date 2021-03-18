@@ -94,7 +94,7 @@ public class AllurementEvents {
 		for (EquipmentSlotType slot : EquipmentSlotType.values()) {
 			ItemStack stack = entity.getItemStackFromSlot(slot);
 			int level = EnchantmentHelper.getEnchantmentLevel(AllurementEnchantments.REFORMING.get(), stack);
-			if (!stack.isEmpty() && stack.isDamaged() && level > 0 && world.getGameTime() % 600 == 0) {
+			if (!stack.isEmpty() && stack.isDamaged() && level > 0 && world.getGameTime() % AllurementConfig.COMMON.reformingTickRate.get() == 0) {
 				stack.setDamage(stack.getDamage() - 1);
 			}
 		}

@@ -28,6 +28,7 @@ public class AllurementConfig {
 		public final ConfigValue<Double> reelingVerticalFactor;
 
 		public final ConfigValue<Boolean> enableReforming;
+		public final ConfigValue<Integer> reformingTickRate;
 
 		public final ConfigValue<Boolean> enableShockwave;
 
@@ -51,6 +52,7 @@ public class AllurementConfig {
 
 			builder.push("reforming");
 			enableReforming = builder.comment("Gear enchantment that very slowly repairs items over time").define("Enable Reforming", true);
+			reformingTickRate = builder.comment("How many ticks it takes a reforming item to repair").define("Reforming tick rate", 600);
 			builder.pop();
 
 			builder.push("shockwave");
