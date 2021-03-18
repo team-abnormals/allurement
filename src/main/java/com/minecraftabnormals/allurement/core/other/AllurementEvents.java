@@ -44,7 +44,7 @@ public class AllurementEvents {
 		if (level > 0 && damage > 0) {
 			for (LivingEntity target : world.getEntitiesWithinAABB(LivingEntity.class, entity.getBoundingBox().grow(level, 0.0D, level))) {
 				if (entity != target)
-					target.attackEntityFrom(AllurementDamageSources.causeShockwaveDamage(entity), damage);
+					target.attackEntityFrom(AllurementDamageSources.causeShockwaveDamage(entity), event.getDistance());
 			}
 
 			if (world instanceof ServerWorld) {

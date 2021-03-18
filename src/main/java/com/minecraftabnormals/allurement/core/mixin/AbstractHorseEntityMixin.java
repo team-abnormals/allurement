@@ -1,5 +1,6 @@
 package com.minecraftabnormals.allurement.core.mixin;
 
+import com.minecraftabnormals.allurement.core.other.AllurementDamageSources;
 import com.minecraftabnormals.allurement.core.registry.AllurementEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
@@ -8,7 +9,6 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -33,7 +33,7 @@ public abstract class AbstractHorseEntityMixin extends AnimalEntity {
 			if (level > 0 && damage > 0) {
 				for (LivingEntity target : world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(level, 0.0D, level))) {
 					if (this != target && !this.isRidingOrBeingRiddenBy(target))
-						target.attackEntityFrom(DamageSource.causeMobDamage(this), damage);
+						target.attackEntityFrom(AllurementDamageSources.causeShockwaveDamage(this), distance);
 				}
 
 				if (world instanceof ServerWorld) {
