@@ -15,5 +15,6 @@
     "enchantment.allurement.vengeance.desc": "Stores some incoming damage and applies it to your next attack",
 
     "death.attack.allurement.shockwave": "%1$s was stomped",
-    "death.attack.allurement.shockwave.player": "%1$s was stomped by %2$s"
+    "death.attack.allurement.shockwave.player": "%1$s was stomped by %2$s",
+    "death.attack.allurement.shockwave.player.item": "%1$s was stomped by %2$s using %3$s"
 }
