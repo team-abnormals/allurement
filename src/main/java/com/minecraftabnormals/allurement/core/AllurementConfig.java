@@ -1,17 +1,21 @@
 package com.minecraftabnormals.allurement.core;
 
 
+import com.google.common.collect.Lists;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import org.apache.commons.lang3.tuple.Pair;
+
+import java.util.List;
 
 @EventBusSubscriber(modid = Allurement.MOD_ID)
 public class AllurementConfig {
 
 	public static class Common {
 		public final ConfigValue<Boolean> enchantableHorseArmor;
-		public final ConfigValue<Boolean> horseArmorGeneratesEnchanted;
+		public final ConfigValue<Boolean> enchantedHorseArmorGenerates;
+		public final ConfigValue<List<String>> enchantedHorseArmorLootTableDenyList;
 
 		public final ConfigValue<Boolean> riptideWorksInCauldrons;
 
@@ -73,7 +77,8 @@ public class AllurementConfig {
 
 			builder.push("horse_armor");
 			enchantableHorseArmor = builder.comment("Allow horse armor to be enchanted").define("Enchantable horse armor", true);
-			horseArmorGeneratesEnchanted = builder.comment("If horse armor can appear enchanted when found in loot tables").define("Horse armor generates enchanted", true);
+			enchantedHorseArmorGenerates = builder.comment("If horse armor can appear enchanted when found in loot tables").define("Generates in loot tables", true);
+			enchantedHorseArmorLootTableDenyList = builder.comment("Which loot tables horse armor can't appear enchanted in").define("Unenchanted loot tables", Lists.newArrayList("minecraft:chests/village/village_weaponsmith", "minecraft:chests/stronghold_corridor", "minecraft:chests/nether_bridge"));
 			builder.pop();
 
 			builder.push("riptide");

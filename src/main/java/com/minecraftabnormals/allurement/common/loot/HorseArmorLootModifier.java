@@ -25,11 +25,13 @@ public class HorseArmorLootModifier extends LootModifier {
 	@Nonnull
 	@Override
 	protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
-		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && AllurementConfig.COMMON.horseArmorGeneratesEnchanted.get()) {
-			Random random = context.getRandom();
-			for (ItemStack stack : generatedLoot) {
-				if (stack.getItem() instanceof HorseArmorItem) {
-					EnchantmentHelper.addRandomEnchantment(random, stack, RandomValueRange.of(20.0F, 39.0F).generateInt(random), true);
+		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && AllurementConfig.COMMON.enchantedHorseArmorGenerates.get()) {
+			if (!AllurementConfig.COMMON.enchantedHorseArmorLootTableDenyList.get().contains(context.getQueriedLootTableId().toString())) {
+				Random random = context.getRandom();
+				for (ItemStack stack : generatedLoot) {
+					if (stack.getItem() instanceof HorseArmorItem) {
+						EnchantmentHelper.addRandomEnchantment(random, stack, RandomValueRange.of(20.0F, 39.0F).generateInt(random), true);
+					}
 				}
 			}
 		}
