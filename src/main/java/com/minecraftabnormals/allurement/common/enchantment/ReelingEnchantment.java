@@ -10,21 +10,19 @@ public class ReelingEnchantment extends Enchantment {
 		super(rarityIn, EnchantmentType.CROSSBOW, slots);
 	}
 
+	@Override
 	public int getMinEnchantability(int enchantmentLevel) {
 		return 12 + (enchantmentLevel - 1) * 20;
 	}
 
+	@Override
 	public int getMaxEnchantability(int enchantmentLevel) {
 		return this.getMinEnchantability(enchantmentLevel) + 25;
 	}
 
+	@Override
 	public int getMaxLevel() {
 		return 2;
-	}
-
-	@Override
-	public boolean isTreasureEnchantment() {
-		return !AllurementConfig.COMMON.enableReeling.get();
 	}
 
 	@Override

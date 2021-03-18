@@ -19,4 +19,11 @@ public class EnchantmentMixin {
 		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && stack.getItem() instanceof HorseArmorItem && enchantment.isIn(Enchantments.UNUSABLE_ON_HORSE_ARMOR))
 			callbackInfoReturnable.setReturnValue(false);
 	}
+
+	@Inject(method = "canApplyAtEnchantingTable", at = @At("RETURN"), cancellable = true, remap = false)
+	private void canApplyAtEnchantingTable(ItemStack stack, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
+		Enchantment enchantment = (Enchantment) (Object) this;
+		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && stack.getItem() instanceof HorseArmorItem && enchantment.isIn(Enchantments.UNUSABLE_ON_HORSE_ARMOR))
+			callbackInfoReturnable.setReturnValue(false);
+	}
 }

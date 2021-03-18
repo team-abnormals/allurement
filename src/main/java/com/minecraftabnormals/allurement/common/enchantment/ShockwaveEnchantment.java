@@ -33,11 +33,6 @@ public class ShockwaveEnchantment extends Enchantment {
 	}
 
 	@Override
-	public boolean isTreasureEnchantment() {
-		return !AllurementConfig.COMMON.enableShockwave.get();
-	}
-
-	@Override
 	public boolean canVillagerTrade() {
 		return AllurementConfig.COMMON.enableShockwave.get();
 	}

@@ -11,18 +11,17 @@ public class AlleviatingEnchantment extends Enchantment {
 		super(rarityIn, EnchantmentType.ARMOR, slots);
 	}
 
+	@Override
 	public int getMinEnchantability(int enchantmentLevel) {
 		return enchantmentLevel * 25;
 	}
 
+	@Override
 	public int getMaxEnchantability(int enchantmentLevel) {
 		return this.getMinEnchantability(enchantmentLevel) + 50;
 	}
 
-	public boolean isTreasureEnchantment() {
-		return true;
-	}
-
+	@Override
 	public int getMaxLevel() {
 		return 1;
 	}
@@ -30,6 +29,11 @@ public class AlleviatingEnchantment extends Enchantment {
 	@Override
 	public boolean canApplyTogether(Enchantment ench) {
 		return !(ench instanceof MendingEnchantment) && !(ench instanceof ReformingEnchantment) && super.canApplyTogether(ench);
+	}
+
+	@Override
+	public boolean isTreasureEnchantment() {
+		return true;
 	}
 
 	@Override

@@ -40,11 +40,6 @@ public class VengeanceEnchantment extends Enchantment {
 	}
 
 	@Override
-	public boolean isTreasureEnchantment() {
-		return !AllurementConfig.COMMON.enableVengeance.get();
-	}
-
-	@Override
 	public boolean canVillagerTrade() {
 		return AllurementConfig.COMMON.enableVengeance.get();
 	}
