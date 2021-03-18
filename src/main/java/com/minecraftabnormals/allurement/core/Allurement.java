@@ -5,6 +5,7 @@ import com.minecraftabnormals.abnormals_core.common.world.storage.tracking.Track
 import com.minecraftabnormals.abnormals_core.common.world.storage.tracking.TrackedDataManager;
 import com.minecraftabnormals.abnormals_core.core.util.registry.RegistryHelper;
 import com.minecraftabnormals.allurement.core.registry.AllurementEnchantments;
+import com.minecraftabnormals.allurement.core.registry.AllurementLootModifiers;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -26,6 +27,7 @@ public class Allurement {
 
 		REGISTRY_HELPER.register(bus);
 		AllurementEnchantments.ENCHANTMENTS.register(bus);
+		AllurementLootModifiers.LOOT_MODIFIERS.register(bus);
 		MinecraftForge.EVENT_BUS.register(this);
 
 		TrackedDataManager.INSTANCE.registerData(new ResourceLocation(MOD_ID, "shot_infinity_arrow"), INFINITY_ARROW);

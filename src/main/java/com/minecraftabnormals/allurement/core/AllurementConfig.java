@@ -11,6 +11,7 @@ public class AllurementConfig {
 
 	public static class Common {
 		public final ConfigValue<Boolean> enchantableHorseArmor;
+		public final ConfigValue<Boolean> horseArmorGeneratesEnchanted;
 
 		public final ConfigValue<Boolean> riptideWorksInCauldrons;
 
@@ -72,6 +73,7 @@ public class AllurementConfig {
 
 			builder.push("horse_armor");
 			enchantableHorseArmor = builder.comment("Allow horse armor to be enchanted").define("Enchantable horse armor", true);
+			horseArmorGeneratesEnchanted = builder.comment("If horse armor can appear enchanted when found in loot tables").define("Horse armor generates enchanted", true);
 			builder.pop();
 
 			builder.push("riptide");
