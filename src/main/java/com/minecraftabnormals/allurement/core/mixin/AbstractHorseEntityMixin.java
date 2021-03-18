@@ -33,7 +33,7 @@ public abstract class AbstractHorseEntityMixin extends AnimalEntity {
 			if (level > 0 && damage > 0) {
 				for (LivingEntity target : world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(level, 0.0D, level))) {
 					if (this != target && !this.isRidingOrBeingRiddenBy(target))
-						target.attackEntityFrom(AllurementDamageSources.causeShockwaveDamage(this), distance);
+						target.attackEntityFrom(AllurementDamageSources.causeShockwaveDamage(this), damage);
 				}
 
 				if (world instanceof ServerWorld) {
