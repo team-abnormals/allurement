@@ -15,6 +15,6 @@
     "enchantment.allurement.vengeance.desc": "Almacena parte del daño recibido y lo aplica a tu próximo ataque",
 
     "death.attack.allurement.shockwave": "%1$s ha sido pisoteado",
-    "death.attack.allurement.shockwave.player": "%2$s ha pisoteado a %1$s"
+    "death.attack.allurement.shockwave.player": "%2$s ha pisoteado a %1$s",
     "death.attack.allurement.shockwave.player.item": "%2$s ha pisoteado a %1$s con su %3$s"
 }
