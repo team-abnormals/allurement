@@ -1,9 +1,20 @@
 {
     "enchantment.allurement.alleviating": "Alivio",
+    "enchantment.allurement.alleviating.desc": "Cura al jugador al acumular experiencia",
+
     "enchantment.allurement.shockwave": "Onda de choque",
+    "enchantment.allurement.shockwave.desc": "Crea una onda de choque al recibir daño por caída que daña a las entidades cercanas",
+
     "enchantment.allurement.reeling": "Tracción",
+    "enchantment.allurement.reeling.desc": "Atrae al objetivo impactado por la flecha hacia el usuario",
+
     "enchantment.allurement.reforming": "Reformación",
+    "enchantment.allurement.reforming.desc": "Repara la durabilidad del objeto muy lentamente mientras esté equipado",
+
+    "enchantment.allurement.vengeance": "Venganza",
+    "enchantment.allurement.vengeance.desc": "Almacena parte del daño recibido y lo aplica a tu próximo ataque",
 
     "death.attack.allurement.shockwave": "%1$s fue pisoteado",
-    "death.attack.allurement.shockwave.player": "%1$s fue pisoteado por %2$s"
+    "death.attack.allurement.shockwave.player": "%1$s fue pisoteado por %2$s",
+    "death.attack.allurement.shockwave.player.item": "%1$s fue pisoteado por %2$s usando %3$s"
 }
