@@ -26,7 +26,7 @@ public abstract class ArrowRendererMixin<T extends AbstractArrowEntity> extends 
 		super(renderManager);
 	}
 
-	@ModifyVariable(method = "render", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/client/renderer/IRenderTypeBuffer;getBuffer(Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/IVertexBuilder;"))
+	@ModifyVariable(method = "render", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/client/renderer/IRenderTypeBuffer;getBuffer(Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/IVertexBuilder;", shift = At.Shift.AFTER))
 	private IVertexBuilder render(IVertexBuilder builderIn, T entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
 		IDataManager manager = ((IDataManager) entityIn);
 		if (manager.getValue(Allurement.INFINITY_ARROW)) {
