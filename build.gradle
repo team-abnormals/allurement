@@ -72,11 +72,15 @@ dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft}-${project.forge}"
     implementation fg.deobf("com.minecraftabnormals:abnormals-core:${project.minecraft}-${project.abnormalsCore}")
 
+    compileOnly fg.deobf("curse.maven:quark-243121:${project.quark}")
     compileOnly fg.deobf("mezz.jei:jei-${project.minecraft}:${project.jei}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${project.minecraft}:${project.jei}")
 }
 
 repositories {
+    maven {
+        url "https://www.cursemaven.com"
+    }
     maven {
         url "https://maven.jaackson.me"
     }
