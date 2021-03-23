@@ -69,7 +69,7 @@ public class AllurementConfig {
 
 			builder.push("vengeance");
 			enableVengeance = builder.comment("Armor enchantment that stores incoming damage and applies it to user's next attack").define("Enable Vengeance", true);
-			vengeanceDamageFactor = builder.comment("How much the damage taken with vengeance is multiplied for attacks").define("Damage factor", 0.075F);
+			vengeanceDamageFactor = builder.comment("How much the damage taken with vengeance is multiplied for attacks").define("Damage factor", 0.025F);
 			builder.pop();
 
 			builder.pop();
