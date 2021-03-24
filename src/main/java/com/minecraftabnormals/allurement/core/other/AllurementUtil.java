@@ -6,8 +6,11 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Util;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
+import vazkii.quark.content.tools.module.ColorRunesModule;
 
 import java.util.Map;
 
@@ -35,5 +38,10 @@ public class AllurementUtil {
 
 	public static int getEnchantmentCount(Enchantment ench, LivingEntity entity) {
 		return getTotalEnchantmentLevel(ench, entity, EquipmentSlotType.Group.ARMOR) + getTotalEnchantmentLevel(ench, entity, EquipmentSlotType.Group.HAND);
+	}
+
+	public static void setColorRuneTarget(ItemStack stack) {
+		if(ModList.get().isLoaded("quark"))
+			ColorRunesModule.setTargetStack(stack);
 	}
 }
