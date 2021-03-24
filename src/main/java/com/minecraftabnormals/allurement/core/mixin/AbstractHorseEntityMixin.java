@@ -31,13 +31,13 @@ public abstract class AbstractHorseEntityMixin extends AnimalEntity {
 			int damage = MathHelper.ceil((distance * 0.5F - 3.0F) * damageMultiplier);
 
 			if (level > 0 && damage > 0) {
-				for (LivingEntity target : world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(level, 0.0D, level))) {
-					if (this != target && !this.isRidingOrBeingRiddenBy(target))
+				for (LivingEntity target : this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(level, 0.0D, level))) {
+					if (this != target && !this.getPassengers().contains(target))
 						target.attackEntityFrom(AllurementDamageSources.causeShockwaveDamage(this), damage);
 				}
 
-				if (world instanceof ServerWorld) {
-					((ServerWorld) world).spawnParticle(ParticleTypes.CLOUD, this.getPosX(), this.getPosY(), this.getPosZ(), 200, level, 0.5, level, 0);
+				if (!this.world.isRemote()) {
+					((ServerWorld) this.world).spawnParticle(ParticleTypes.CLOUD, this.getPosX(), this.getPosY(), this.getPosZ(), 200, level, 0.5, level, 0);
 				}
 			}
 		}
