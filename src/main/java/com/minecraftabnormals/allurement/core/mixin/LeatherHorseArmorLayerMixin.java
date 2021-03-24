@@ -10,11 +10,9 @@ import net.minecraft.client.renderer.entity.layers.LeatherHorseArmorLayer;
 import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.item.HorseArmorItem;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.ModList;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import vazkii.quark.content.tools.module.ColorRunesModule;
 
 @Mixin(LeatherHorseArmorLayer.class)
 public class LeatherHorseArmorLayerMixin {
