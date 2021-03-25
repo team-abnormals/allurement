@@ -41,7 +41,7 @@ public class AllurementUtil {
 	}
 
 	public static void setColorRuneTarget(ItemStack stack) {
-		if(ModList.get().isLoaded("quark"))
+		if (ModList.get().isLoaded("quark"))
 			ColorRunesModule.setTargetStack(stack);
 	}
 }

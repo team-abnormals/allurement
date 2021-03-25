@@ -36,7 +36,7 @@ public class AllurementDamageSources {
 
 		@Override
 		public ITextComponent getDeathMessage(LivingEntity target) {
-			ItemStack stack = this.attacker instanceof LivingEntity ? ((LivingEntity)this.attacker).getItemStackFromSlot(EquipmentSlotType.FEET) : ItemStack.EMPTY;
+			ItemStack stack = this.attacker instanceof LivingEntity ? ((LivingEntity) this.attacker).getItemStackFromSlot(EquipmentSlotType.FEET) : ItemStack.EMPTY;
 			String s = "death.attack." + this.damageType;
 			return !stack.isEmpty() && stack.hasDisplayName() ? new TranslationTextComponent(s + ".player.item", target.getDisplayName(), this.attacker.getDisplayName(), stack.getTextComponent()) : new TranslationTextComponent(s + ".player", target.getDisplayName(), this.attacker.getDisplayName());
 		}
