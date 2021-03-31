@@ -57,7 +57,7 @@ public class AllurementConfig {
 
 			builder.push("missile");
 			enableMissile = builder.comment("Weapon enchantment that launches enemies upwards rather than away").define("Enable Missile", true);
-			missileVerticalFactor = builder.comment("How much the target is affected on the vertical axis").define("Vertical factor", 0.25D);
+			missileVerticalFactor = builder.comment("How much the target is affected on the vertical axis").define("Vertical factor", 0.35D);
 			builder.pop();
 
 			builder.push("reeling");
