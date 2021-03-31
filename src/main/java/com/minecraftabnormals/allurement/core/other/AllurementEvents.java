@@ -9,6 +9,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -76,6 +77,13 @@ public class AllurementEvents {
 					attackManager.setValue(Allurement.ABSORBED_DAMAGE, 0.0F);
 					entry.getValue().damageItem(2, attacker, (livingEntity) -> livingEntity.sendBreakAnimation(entry.getKey()));
 				}
+			}
+
+			ItemStack weapon = attacker.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
+			int missileLevel = EnchantmentHelper.getEnchantmentLevel(AllurementEnchantments.MISSILE.get(), weapon);
+			if (missileLevel > 0) {
+				entity.setOnGround(false);
+				entity.addVelocity(0, AllurementConfig.COMMON.missileVerticalFactor.get() * (missileLevel + 1) * (1.0D - entity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE)), 0);
 			}
 		}
 

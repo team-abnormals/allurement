@@ -2,14 +2,17 @@
     "enchantment.allurement.alleviating": "Alleviating",
     "enchantment.allurement.alleviating.desc": "Heals the player upon collection of experience",
 
-    "enchantment.allurement.shockwave": "Shockwave",
-    "enchantment.allurement.shockwave.desc": "Creates a shockwave when taking fall damage that damages nearby entities",
+    "enchantment.allurement.missile": "Missile",
+    "enchantment.allurement.missile.desc": "Launches the target upwards instead of away",
 
     "enchantment.allurement.reeling": "Reeling",
     "enchantment.allurement.reeling.desc": "Pulls targets towards the user upon arrow impact",
 
     "enchantment.allurement.reforming": "Reforming",
     "enchantment.allurement.reforming.desc": "Repairs the durability items very slowly over time when in use",
+
+    "enchantment.allurement.shockwave": "Shockwave",
+    "enchantment.allurement.shockwave.desc": "Creates a shockwave when taking fall damage that damages nearby entities",
 
     "enchantment.allurement.vengeance": "Vengeance",
     "enchantment.allurement.vengeance.desc": "Stores some incoming damage and applies it to your next attack",

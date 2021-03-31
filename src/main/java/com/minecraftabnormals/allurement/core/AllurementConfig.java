@@ -29,6 +29,9 @@ public class AllurementConfig {
 		public final ConfigValue<Boolean> enableAlleviating;
 		public final ConfigValue<Float> alleviatingHealingFactor;
 
+		public final ConfigValue<Boolean> enableMissile;
+		public final ConfigValue<Double> missileVerticalFactor;
+
 		public final ConfigValue<Boolean> enableReeling;
 		public final ConfigValue<Double> reelingHorizontalFactor;
 		public final ConfigValue<Double> reelingVerticalFactor;
@@ -52,10 +55,15 @@ public class AllurementConfig {
 			alleviatingHealingFactor = builder.comment("How much the experience value is multiplied by into health").define("Healing factor", 0.25F);
 			builder.pop();
 
+			builder.push("missile");
+			enableMissile = builder.comment("Weapon enchantment that launches enemies upwards rather than away").define("Enable Missile", true);
+			missileVerticalFactor = builder.comment("How much the target is affected on the vertical axis").define("Vertical factor", 0.25D);
+			builder.pop();
+
 			builder.push("reeling");
 			enableReeling = builder.comment("Crossbow enchantment that pulls targets towards the user").define("Enable Reeling", true);
-			reelingHorizontalFactor = builder.comment("How much the entity is affected on the horizontal axis").define("Horizontal factor", 0.5D);
-			reelingVerticalFactor = builder.comment("How much the entity is affected on the vertical axis").define("Vertical factor", 0.25D);
+			reelingHorizontalFactor = builder.comment("How much the target is affected on the horizontal axis").define("Horizontal factor", 0.5D);
+			reelingVerticalFactor = builder.comment("How much the target is affected on the vertical axis").define("Vertical factor", 0.25D);
 			builder.pop();
 
 			builder.push("reforming");
