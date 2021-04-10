@@ -63,7 +63,7 @@ public class AllurementEvents {
 		if (source instanceof LivingEntity) {
 			int count = AllurementUtil.getTotalEnchantmentLevel(AllurementEnchantments.VENGEANCE.get(), entity, EquipmentSlotType.Group.ARMOR);
 			if (count > 0) {
-				manager.setValue(Allurement.ABSORBED_DAMAGE, event.getAmount() * count * AllurementConfig.COMMON.vengeanceDamageFactor.get());
+				manager.setValue(Allurement.ABSORBED_DAMAGE, event.getAmount() * count * AllurementConfig.COMMON.vengeanceDamageFactor.get().floatValue());
 			}
 
 			LivingEntity attacker = (LivingEntity) source;
@@ -89,7 +89,7 @@ public class AllurementEvents {
 
 		if (AllurementConfig.COMMON.soulSpeedHurtsMore.get() && event.getEntityLiving() != null) {
 			if (EnchantmentHelper.hasSoulSpeed(entity) && ((LivingEntityAccessor) entity).isSoulSpeedBlock()) {
-				event.setAmount(event.getAmount() * AllurementConfig.COMMON.soulSpeedDamageFactor.get());
+				event.setAmount(event.getAmount() * AllurementConfig.COMMON.soulSpeedDamageFactor.get().floatValue());
 			}
 		}
 	}
