@@ -18,7 +18,7 @@ import java.util.Random;
 
 public class HorseArmorLootModifier extends LootModifier {
 
-	protected HorseArmorLootModifier(ILootCondition[] conditionsIn) {
+	public HorseArmorLootModifier(ILootCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 

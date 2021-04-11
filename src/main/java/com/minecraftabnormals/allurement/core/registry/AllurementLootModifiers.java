@@ -12,5 +12,5 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class AllurementLootModifiers {
 	public static final DeferredRegister<GlobalLootModifierSerializer<?>> LOOT_MODIFIERS = DeferredRegister.create(ForgeRegistries.LOOT_MODIFIER_SERIALIZERS, Allurement.MOD_ID);
 
-	public static final RegistryObject<GlobalLootModifierSerializer<?>> ENCHANTED_HORSE_ARMOR = LOOT_MODIFIERS.register("enchanted_horse_armor", HorseArmorSerializer::new);
+	public static final RegistryObject<HorseArmorSerializer> ENCHANTED_HORSE_ARMOR = LOOT_MODIFIERS.register("enchanted_horse_armor", HorseArmorSerializer::new);
 }
