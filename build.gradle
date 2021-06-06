@@ -79,21 +79,15 @@ dependencies {
     compileOnly fg.deobf("curse.maven:quark-243121:${project.quark}")
     compileOnly fg.deobf("mezz.jei:jei-${project.minecraft}:${project.jei}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${project.minecraft}:${project.jei}")
+
+    annotationProcessor 'org.spongepowered:mixin:0.8.2:processor'
 }
 
 repositories {
-    maven {
-        url "https://www.cursemaven.com"
-    }
-    maven {
-        url "https://maven.jaackson.me"
-    }
-    maven {
-        url "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
-        url "https://modmaven.k-4u.nl"
-    }
+    maven { url "https://www.cursemaven.com" }
+    maven { url "https://maven.jaackson.me" }
+    maven { url "https://dvs1.progwml6.com/files/maven/" }
+    maven { url "https://modmaven.k-4u.nl" }
 }
 
 jar {

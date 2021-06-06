@@ -80,10 +80,10 @@ public class AllurementEvents {
 			}
 
 			ItemStack weapon = attacker.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
-			int missileLevel = EnchantmentHelper.getEnchantmentLevel(AllurementEnchantments.MISSILE.get(), weapon);
+			int missileLevel = EnchantmentHelper.getEnchantmentLevel(AllurementEnchantments.LAUNCH.get(), weapon);
 			if (missileLevel > 0) {
 				entity.setOnGround(false);
-				entity.addVelocity(0, AllurementConfig.COMMON.missileVerticalFactor.get() * (missileLevel + 1) * (1.0D - entity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE)), 0);
+				entity.addVelocity(0, AllurementConfig.COMMON.launchVerticalFactor.get() * (missileLevel + 1) * (1.0D - entity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE)), 0);
 			}
 		}
 

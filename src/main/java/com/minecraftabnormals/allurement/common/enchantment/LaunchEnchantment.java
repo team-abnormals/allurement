@@ -6,8 +6,8 @@ import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.enchantment.KnockbackEnchantment;
 import net.minecraft.inventory.EquipmentSlotType;
 
-public class MissileEnchantment extends Enchantment {
-	public MissileEnchantment(Enchantment.Rarity rarityIn, EquipmentSlotType... slots) {
+public class LaunchEnchantment extends Enchantment {
+	public LaunchEnchantment(Enchantment.Rarity rarityIn, EquipmentSlotType... slots) {
 		super(rarityIn, EnchantmentType.WEAPON, slots);
 	}
 

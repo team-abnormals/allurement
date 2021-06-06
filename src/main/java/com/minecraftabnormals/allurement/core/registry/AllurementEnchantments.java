@@ -15,7 +15,7 @@ public class AllurementEnchantments {
 	private static final EquipmentSlotType[] ARMOR_SLOTS = new EquipmentSlotType[]{EquipmentSlotType.HEAD, EquipmentSlotType.CHEST, EquipmentSlotType.LEGS, EquipmentSlotType.FEET};
 
 	public static final RegistryObject<Enchantment> ALLEVIATING = ENCHANTMENTS.register("alleviating", () -> new AlleviatingEnchantment(Enchantment.Rarity.RARE, ARMOR_SLOTS));
-	public static final RegistryObject<Enchantment> MISSILE = ENCHANTMENTS.register("missile", () -> new MissileEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlotType.MAINHAND));
+	public static final RegistryObject<Enchantment> LAUNCH = ENCHANTMENTS.register("launch", () -> new LaunchEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlotType.MAINHAND));
 	public static final RegistryObject<Enchantment> REELING = ENCHANTMENTS.register("reeling", () -> new ReelingEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND));
 	public static final RegistryObject<Enchantment> REFORMING = ENCHANTMENTS.register("reforming", () -> new ReformingEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.values()));
 	public static final RegistryObject<Enchantment> SHOCKWAVE = ENCHANTMENTS.register("shockwave", () -> new ShockwaveEnchantment(Enchantment.Rarity.UNCOMMON, ARMOR_SLOTS));

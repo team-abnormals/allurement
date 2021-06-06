@@ -29,8 +29,8 @@ public class AllurementConfig {
 		public final ConfigValue<Boolean> enableAlleviating;
 		public final ConfigValue<Float> alleviatingHealingFactor;
 
-		public final ConfigValue<Boolean> enableMissile;
-		public final ConfigValue<Double> missileVerticalFactor;
+		public final ConfigValue<Boolean> enableLaunch;
+		public final ConfigValue<Double> launchVerticalFactor;
 
 		public final ConfigValue<Boolean> enableReeling;
 		public final ConfigValue<Double> reelingHorizontalFactor;
@@ -56,8 +56,8 @@ public class AllurementConfig {
 			builder.pop();
 
 			builder.push("missile");
-			enableMissile = builder.comment("Weapon enchantment that launches enemies upwards rather than away").define("Enable Missile", true);
-			missileVerticalFactor = builder.comment("How much the target is affected on the vertical axis").define("Vertical factor", 0.35D);
+			enableLaunch = builder.comment("Weapon enchantment that launches enemies upwards rather than away").define("Enable Launch", true);
+			launchVerticalFactor = builder.comment("How much the target is affected on the vertical axis").define("Vertical factor", 0.35D);
 			builder.pop();
 
 			builder.push("reeling");

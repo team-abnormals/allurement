@@ -2,8 +2,8 @@
     "enchantment.allurement.alleviating": "Alleviating",
     "enchantment.allurement.alleviating.desc": "Heals the player upon collection of experience",
 
-    "enchantment.allurement.missile": "Missile",
-    "enchantment.allurement.missile.desc": "Launches the target upwards instead of away",
+    "enchantment.allurement.launch": "Launch",
+    "enchantment.allurement.launch.desc": "Launches the target upwards instead of away",
 
     "enchantment.allurement.reeling": "Reeling",
     "enchantment.allurement.reeling.desc": "Pulls targets towards the user upon arrow impact",
