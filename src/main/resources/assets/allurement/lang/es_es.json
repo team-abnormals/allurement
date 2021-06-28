@@ -2,8 +2,8 @@
     "enchantment.allurement.alleviating": "Alivio",
     "enchantment.allurement.alleviating.desc": "Cura al jugador al acumular experiencia",
 
-    "enchantment.allurement.missile": "Misil",
-    "enchantment.allurement.missile.desc": "Lanza al objetivo hacia arriba en vez de alejarlo",
+    "enchantment.allurement.launch": "Lanzamiento",
+    "enchantment.allurement.launch.desc": "Lanza al objetivo hacia arriba en lugar de alejarlo",
 
     "enchantment.allurement.reeling": "Captura",
     "enchantment.allurement.reeling.desc": "Atrae al objetivo impactado por la flecha hacia el usuario",
