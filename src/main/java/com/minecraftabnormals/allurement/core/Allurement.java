@@ -3,6 +3,7 @@ package com.minecraftabnormals.allurement.core;
 import com.minecraftabnormals.abnormals_core.common.world.storage.tracking.DataProcessors;
 import com.minecraftabnormals.abnormals_core.common.world.storage.tracking.TrackedData;
 import com.minecraftabnormals.abnormals_core.common.world.storage.tracking.TrackedDataManager;
+import com.minecraftabnormals.abnormals_core.core.util.DataUtil;
 import com.minecraftabnormals.abnormals_core.core.util.registry.RegistryHelper;
 import com.minecraftabnormals.allurement.core.data.EnchantmentTagGenerator;
 import com.minecraftabnormals.allurement.core.data.LootModifierGenerator;
@@ -42,6 +43,7 @@ public class Allurement {
 
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AllurementConfig.COMMON_SPEC);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, AllurementConfig.CLIENT_SPEC);
+		DataUtil.registerConfigCondition(Allurement.MOD_ID, AllurementConfig.COMMON, AllurementConfig.CLIENT);
 	}
 
 	private void dataSetup(GatherDataEvent event) {

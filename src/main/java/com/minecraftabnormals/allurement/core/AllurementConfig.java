@@ -2,6 +2,7 @@ package com.minecraftabnormals.allurement.core;
 
 
 import com.google.common.collect.Lists;
+import com.minecraftabnormals.abnormals_core.core.annotations.ConfigKey;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -13,38 +14,81 @@ import java.util.List;
 public class AllurementConfig {
 
 	public static class Common {
+
+		@ConfigKey("horse_armor_is_enchantable")
 		public final ConfigValue<Boolean> enchantableHorseArmor;
+
+		@ConfigKey("enchanted_horse_armor_generates")
 		public final ConfigValue<Boolean> enchantedHorseArmorGenerates;
+
+		@ConfigKey("unenchanted_horse_armor_loot_tables")
 		public final ConfigValue<List<String>> unenchantedHorseArmorLootTables;
 
+		@ConfigKey("riptide_works_in_cauldrons")
 		public final ConfigValue<Boolean> riptideWorksInCauldrons;
 
+
+		@ConfigKey("soul_speed_increases_damage")
 		public final ConfigValue<Boolean> soulSpeedHurtsMore;
+
+		@ConfigKey("soul_speed_damage_factor")
 		public final ConfigValue<Float> soulSpeedDamageFactor;
 
+
+		@ConfigKey("infinity_requires_arrows")
 		public final ConfigValue<Boolean> infinityRequiresArrows;
 
+
+		@ConfigKey("protection_disabled")
 		public final ConfigValue<Boolean> disableProtection;
 
+
+		@ConfigKey("alleviating_enabled")
 		public final ConfigValue<Boolean> enableAlleviating;
+
+		@ConfigKey("alleviating_healing_factor")
 		public final ConfigValue<Float> alleviatingHealingFactor;
 
+
+		@ConfigKey("launch_enabled")
 		public final ConfigValue<Boolean> enableLaunch;
+
+		@ConfigKey("launch_vertical_factor")
 		public final ConfigValue<Double> launchVerticalFactor;
 
+
+		@ConfigKey("reeling_enabled")
 		public final ConfigValue<Boolean> enableReeling;
+
+		@ConfigKey("reeling_horizontal_factor")
 		public final ConfigValue<Double> reelingHorizontalFactor;
+
+		@ConfigKey("reeling_vertical_factor")
 		public final ConfigValue<Double> reelingVerticalFactor;
 
+
+		@ConfigKey("reforming_enabled")
 		public final ConfigValue<Boolean> enableReforming;
+
+		@ConfigKey("reforming_tick_rate")
 		public final ConfigValue<Integer> reformingTickRate;
 
+
+		@ConfigKey("shockwave_enabled")
 		public final ConfigValue<Boolean> enableShockwave;
 
+
+		@ConfigKey("vengeance_enabled")
 		public final ConfigValue<Boolean> enableVengeance;
+
+		@ConfigKey("vengeance_damage_factor")
 		public final ConfigValue<Float> vengeanceDamageFactor;
 
+
+		@ConfigKey("level_scaling_removed")
 		public final ConfigValue<Boolean> removeLevelScaling;
+
+		@ConfigKey("experience_per_level")
 		public final ConfigValue<Integer> experiencePerLevel;
 
 		Common(ForgeConfigSpec.Builder builder) {
@@ -116,7 +160,11 @@ public class AllurementConfig {
 	}
 
 	public static class Client {
+
+		@ConfigKey("infinity_arrow_texture_enabled")
 		public final ConfigValue<Boolean> infinityArrowTexture;
+
+		@ConfigKey("infinity_arrow_glint_enabled")
 		public final ConfigValue<Boolean> infinityArrowGlint;
 
 		Client(ForgeConfigSpec.Builder builder) {
