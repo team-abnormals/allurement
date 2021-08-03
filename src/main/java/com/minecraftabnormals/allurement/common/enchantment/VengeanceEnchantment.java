@@ -15,13 +15,13 @@ public class VengeanceEnchantment extends Enchantment {
 	}
 
 	@Override
-	public int getMinEnchantability(int enchantmentLevel) {
+	public int getMinCost(int enchantmentLevel) {
 		return 10 + 20 * (enchantmentLevel - 1);
 	}
 
 	@Override
-	public int getMaxEnchantability(int enchantmentLevel) {
-		return super.getMinEnchantability(enchantmentLevel) + 50;
+	public int getMaxCost(int enchantmentLevel) {
+		return super.getMinCost(enchantmentLevel) + 50;
 	}
 
 	@Override
@@ -30,22 +30,22 @@ public class VengeanceEnchantment extends Enchantment {
 	}
 
 	@Override
-	public boolean canApplyTogether(Enchantment ench) {
-		return !(ench instanceof ThornsEnchantment) && super.canApplyTogether(ench);
+	public boolean checkCompatibility(Enchantment ench) {
+		return !(ench instanceof ThornsEnchantment) && super.checkCompatibility(ench);
 	}
 
 	@Override
-	public boolean canApply(ItemStack stack) {
-		return stack.getItem() instanceof ArmorItem || super.canApply(stack);
+	public boolean canEnchant(ItemStack stack) {
+		return stack.getItem() instanceof ArmorItem || super.canEnchant(stack);
 	}
 
 	@Override
-	public boolean canVillagerTrade() {
+	public boolean isTradeable() {
 		return AllurementConfig.COMMON.enableVengeance.get();
 	}
 
 	@Override
-	public boolean canGenerateInLoot() {
+	public boolean isDiscoverable() {
 		return AllurementConfig.COMMON.enableVengeance.get();
 	}
 }

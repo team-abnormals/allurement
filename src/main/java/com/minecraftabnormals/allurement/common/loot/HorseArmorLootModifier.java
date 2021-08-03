@@ -30,7 +30,7 @@ public class HorseArmorLootModifier extends LootModifier {
 				Random random = context.getRandom();
 				for (ItemStack stack : generatedLoot) {
 					if (stack.getItem() instanceof HorseArmorItem) {
-						EnchantmentHelper.addRandomEnchantment(random, stack, RandomValueRange.of(20.0F, 39.0F).generateInt(random), true);
+						EnchantmentHelper.enchantItem(random, stack, RandomValueRange.between(20.0F, 39.0F).getInt(random), true);
 					}
 				}
 			}

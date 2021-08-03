@@ -13,13 +13,13 @@ public class ShockwaveEnchantment extends Enchantment {
 	}
 
 	@Override
-	public int getMinEnchantability(int enchantmentLevel) {
+	public int getMinCost(int enchantmentLevel) {
 		return 5 + (enchantmentLevel - 1) * 6;
 	}
 
 	@Override
-	public int getMaxEnchantability(int enchantmentLevel) {
-		return this.getMinEnchantability(enchantmentLevel) + 6;
+	public int getMaxCost(int enchantmentLevel) {
+		return this.getMinCost(enchantmentLevel) + 6;
 	}
 
 	@Override
@@ -28,17 +28,17 @@ public class ShockwaveEnchantment extends Enchantment {
 	}
 
 	@Override
-	public boolean canApplyTogether(Enchantment ench) {
-		return !(ench instanceof ProtectionEnchantment && ((ProtectionEnchantment) ench).protectionType == ProtectionEnchantment.Type.FALL) && super.canApplyTogether(ench);
+	public boolean checkCompatibility(Enchantment ench) {
+		return !(ench instanceof ProtectionEnchantment && ((ProtectionEnchantment) ench).type == ProtectionEnchantment.Type.FALL) && super.checkCompatibility(ench);
 	}
 
 	@Override
-	public boolean canVillagerTrade() {
+	public boolean isTradeable() {
 		return AllurementConfig.COMMON.enableShockwave.get();
 	}
 
 	@Override
-	public boolean canGenerateInLoot() {
+	public boolean isDiscoverable() {
 		return AllurementConfig.COMMON.enableShockwave.get();
 	}
 }

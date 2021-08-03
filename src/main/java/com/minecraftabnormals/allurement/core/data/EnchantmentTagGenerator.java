@@ -17,8 +17,8 @@ public class EnchantmentTagGenerator extends ForgeRegistryTagsProvider<Enchantme
 	}
 
 	@Override
-	protected void registerTags() {
-		this.getOrCreateBuilder(AllurementTags.Enchantments.UNUSABLE_ON_HORSE_ARMOR).add(Enchantments.AQUA_AFFINITY, AllurementEnchantments.ALLEVIATING.get(), AllurementEnchantments.VENGEANCE.get());
+	protected void addTags() {
+		this.tag(AllurementTags.Enchantments.UNUSABLE_ON_HORSE_ARMOR).add(Enchantments.AQUA_AFFINITY, AllurementEnchantments.ALLEVIATING.get(), AllurementEnchantments.VENGEANCE.get());
 	}
 
 	@Override

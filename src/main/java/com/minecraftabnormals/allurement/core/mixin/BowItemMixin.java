@@ -18,8 +18,8 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(BowItem.class)
 public class BowItemMixin {
 
-	@Inject(method = "onPlayerStoppedUsing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;addEntity(Lnet/minecraft/entity/Entity;)Z", shift = At.Shift.BEFORE), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
-	private void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft, CallbackInfo ci, PlayerEntity player, boolean creativeOrInfEnch, ItemStack ammo, int pullTime, float velocity, boolean creativeOrInfinite, ArrowItem arrow, AbstractArrowEntity arrowEntity) {
+	@Inject(method = "releaseUsing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;addFreshEntity(Lnet/minecraft/entity/Entity;)Z", shift = At.Shift.BEFORE), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
+	private void releaseUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft, CallbackInfo ci, PlayerEntity player, boolean creativeOrInfEnch, ItemStack ammo, int pullTime, float velocity, boolean creativeOrInfinite, ArrowItem arrow, AbstractArrowEntity arrowEntity) {
 		IDataManager manager = (IDataManager) arrowEntity;
 		boolean infinite = arrow.isInfinite(ammo, stack, player);
 		manager.setValue(Allurement.INFINITY_ARROW, infinite);

@@ -19,23 +19,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class AbstractArrowEntityMixin extends Entity {
 
 	@Shadow
-	private int knockbackStrength;
+	private int knockback;
 
 	public AbstractArrowEntityMixin(EntityType<?> entityTypeIn, World worldIn) {
 		super(entityTypeIn, worldIn);
 	}
 
-	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/projectile/AbstractArrowEntity;getPierceLevel()B", shift = Shift.BEFORE), method = "onEntityHit", cancellable = true)
+	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/projectile/AbstractArrowEntity;getPierceLevel()B", shift = Shift.BEFORE), method = "onHitEntity", cancellable = true)
 	private void onEntityHit(EntityRayTraceResult result, CallbackInfo ci) {
-		if (result.getEntity() instanceof LivingEntity && this.knockbackStrength < 0) {
-			double horizontalForce = this.knockbackStrength * AllurementConfig.COMMON.reelingHorizontalFactor.get();
-			double verticalForce = this.knockbackStrength * AllurementConfig.COMMON.reelingVerticalFactor.get();
-			Vector3d vector3d = this.getMotion().normalize().mul(horizontalForce, verticalForce, horizontalForce);
-			if (vector3d.lengthSquared() > 0.0D) {
+		if (result.getEntity() instanceof LivingEntity && this.knockback < 0) {
+			double horizontalForce = this.knockback * AllurementConfig.COMMON.reelingHorizontalFactor.get();
+			double verticalForce = this.knockback * AllurementConfig.COMMON.reelingVerticalFactor.get();
+			Vector3d vector3d = this.getDeltaMovement().normalize().multiply(horizontalForce, verticalForce, horizontalForce);
+			if (vector3d.lengthSqr() > 0.0D) {
 				verticalForce = Math.max(0.1D, vector3d.y);
 				if (vector3d.y < 0.0D)
 					verticalForce = Math.min(-0.1D, vector3d.y);
-				result.getEntity().addVelocity(vector3d.x, verticalForce, vector3d.z);
+				result.getEntity().push(vector3d.x, verticalForce, vector3d.z);
 			}
 		}
 	}

@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin {
 
-	@Inject(at = @At("RETURN"), method = "xpBarCap", cancellable = true)
+	@Inject(at = @At("RETURN"), method = "getXpNeededForNextLevel", cancellable = true)
 	private void xpBarCap(CallbackInfoReturnable<Integer> cir) {
 		if (AllurementConfig.COMMON.removeLevelScaling.get())
 			cir.setReturnValue(AllurementConfig.COMMON.experiencePerLevel.get());

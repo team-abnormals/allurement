@@ -29,8 +29,8 @@ public class AllurementUtil {
 	public static int getTotalEnchantmentLevel(Enchantment ench, LivingEntity entity, EquipmentSlotType.Group group) {
 		int count = 0;
 		for (EquipmentSlotType slot : EquipmentSlotType.values()) {
-			if (slot.getSlotType() == group) {
-				count += EnchantmentHelper.getEnchantmentLevel(ench, entity.getItemStackFromSlot(slot));
+			if (slot.getType() == group) {
+				count += EnchantmentHelper.getItemEnchantmentLevel(ench, entity.getItemBySlot(slot));
 			}
 		}
 		return count;

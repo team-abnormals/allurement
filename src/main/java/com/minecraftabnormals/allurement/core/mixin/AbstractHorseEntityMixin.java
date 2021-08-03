@@ -24,20 +24,20 @@ public abstract class AbstractHorseEntityMixin extends AnimalEntity {
 		super(type, worldIn);
 	}
 
-	@Inject(at = @At("RETURN"), method = "onLivingFall", cancellable = true)
+	@Inject(at = @At("RETURN"), method = "causeFallDamage", cancellable = true)
 	private void onLivingFall(float distance, float damageMultiplier, CallbackInfoReturnable<Boolean> cir) {
 		if (cir.getReturnValue()) {
-			int level = EnchantmentHelper.getEnchantmentLevel(AllurementEnchantments.SHOCKWAVE.get(), this.getItemStackFromSlot(EquipmentSlotType.CHEST));
+			int level = EnchantmentHelper.getItemEnchantmentLevel(AllurementEnchantments.SHOCKWAVE.get(), this.getItemBySlot(EquipmentSlotType.CHEST));
 			int damage = MathHelper.ceil((distance * 0.5F - 3.0F) * damageMultiplier);
 
 			if (level > 0 && damage > 0) {
-				for (LivingEntity target : this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(level, 0.0D, level))) {
+				for (LivingEntity target : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(level, 0.0D, level))) {
 					if (this != target && !this.getPassengers().contains(target))
-						target.attackEntityFrom(AllurementDamageSources.causeShockwaveDamage(this), damage);
+						target.hurt(AllurementDamageSources.causeShockwaveDamage(this), damage);
 				}
 
-				if (!this.world.isRemote()) {
-					((ServerWorld) this.world).spawnParticle(ParticleTypes.CLOUD, this.getPosX(), this.getPosY(), this.getPosZ(), 200, level, 0.5, level, 0);
+				if (!this.level.isClientSide()) {
+					((ServerWorld) this.level).sendParticles(ParticleTypes.CLOUD, this.getX(), this.getY(), this.getZ(), 200, level, 0.5, level, 0);
 				}
 			}
 		}

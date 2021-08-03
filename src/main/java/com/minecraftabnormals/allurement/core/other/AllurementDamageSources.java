@@ -30,26 +30,26 @@ public class AllurementDamageSources {
 
 		@Override
 		@Nullable
-		public Entity getTrueSource() {
+		public Entity getEntity() {
 			return this.attacker;
 		}
 
 		@Override
-		public ITextComponent getDeathMessage(LivingEntity target) {
-			ItemStack stack = this.attacker instanceof LivingEntity ? ((LivingEntity) this.attacker).getItemStackFromSlot(EquipmentSlotType.FEET) : ItemStack.EMPTY;
-			String s = "death.attack." + this.damageType;
-			return !stack.isEmpty() && stack.hasDisplayName() ? new TranslationTextComponent(s + ".player.item", target.getDisplayName(), this.attacker.getDisplayName(), stack.getTextComponent()) : new TranslationTextComponent(s + ".player", target.getDisplayName(), this.attacker.getDisplayName());
+		public ITextComponent getLocalizedDeathMessage(LivingEntity target) {
+			ItemStack stack = this.attacker instanceof LivingEntity ? ((LivingEntity) this.attacker).getItemBySlot(EquipmentSlotType.FEET) : ItemStack.EMPTY;
+			String s = "death.attack." + this.msgId;
+			return !stack.isEmpty() && stack.hasCustomHoverName() ? new TranslationTextComponent(s + ".player.item", target.getDisplayName(), this.attacker.getDisplayName(), stack.getDisplayName()) : new TranslationTextComponent(s + ".player", target.getDisplayName(), this.attacker.getDisplayName());
 		}
 
 		@Override
-		public boolean isDifficultyScaled() {
+		public boolean scalesWithDifficulty() {
 			return this.attacker != null && this.attacker instanceof LivingEntity && !(this.attacker instanceof PlayerEntity);
 		}
 
 		@Override
 		@Nullable
-		public Vector3d getDamageLocation() {
-			return this.attacker != null ? this.attacker.getPositionVec() : null;
+		public Vector3d getSourcePosition() {
+			return this.attacker != null ? this.attacker.position() : null;
 		}
 
 		@Override

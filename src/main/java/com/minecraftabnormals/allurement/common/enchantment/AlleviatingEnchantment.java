@@ -12,13 +12,13 @@ public class AlleviatingEnchantment extends Enchantment {
 	}
 
 	@Override
-	public int getMinEnchantability(int enchantmentLevel) {
+	public int getMinCost(int enchantmentLevel) {
 		return enchantmentLevel * 25;
 	}
 
 	@Override
-	public int getMaxEnchantability(int enchantmentLevel) {
-		return this.getMinEnchantability(enchantmentLevel) + 50;
+	public int getMaxCost(int enchantmentLevel) {
+		return this.getMinCost(enchantmentLevel) + 50;
 	}
 
 	@Override
@@ -27,22 +27,22 @@ public class AlleviatingEnchantment extends Enchantment {
 	}
 
 	@Override
-	public boolean canApplyTogether(Enchantment ench) {
-		return !(ench instanceof MendingEnchantment) && !(ench instanceof ReformingEnchantment) && super.canApplyTogether(ench);
+	public boolean checkCompatibility(Enchantment ench) {
+		return !(ench instanceof MendingEnchantment) && !(ench instanceof ReformingEnchantment) && super.checkCompatibility(ench);
 	}
 
 	@Override
-	public boolean isTreasureEnchantment() {
+	public boolean isTreasureOnly() {
 		return true;
 	}
 
 	@Override
-	public boolean canVillagerTrade() {
+	public boolean isTradeable() {
 		return AllurementConfig.COMMON.enableAlleviating.get();
 	}
 
 	@Override
-	public boolean canGenerateInLoot() {
+	public boolean isDiscoverable() {
 		return AllurementConfig.COMMON.enableAlleviating.get();
 	}
 }

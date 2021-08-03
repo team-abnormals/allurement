@@ -8,8 +8,10 @@ license = "https://github.com/team-abnormals/allurement/blob/main/LICENSE.txt"
     version = "${file.jarVersion}"
     logoFile = "logo.png"
     itemIcon = "minecraft:enchanted_book"
+    configBackground = "minecraft:textures/block/obsidian.png"
     authors = "Team Abnormals"
     credits = "bageldotjpg, five"
+    displayURL = "https://www.teamabnormals.com/mods/allurement"
     displayName = "Allurement"
     description = '''
     Allurement adds a selection of new enchantments to help diversify gear later in the game.
@@ -26,13 +28,13 @@ license = "https://github.com/team-abnormals/allurement/blob/main/LICENSE.txt"
 [[dependencies.allurement]]
     modId = "forge"
     mandatory = true
-    versionRange = "[36.1.0,)"
+    versionRange = "[36.2.0,)"
     ordering = "NONE"
     side = "BOTH"
 
 [[dependencies.allurement]]
     modId = "abnormals_core"
     mandatory = true
-    versionRange = "[3.1.1,)"
+    versionRange = "[3.2.0,)"
     ordering = "AFTER"
     side = "BOTH"

@@ -16,15 +16,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ExperienceOrbEntityMixin {
 
 	@Shadow
-	public int xpValue;
+	public int value;
 
-	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;onItemPickup(Lnet/minecraft/entity/Entity;I)V", shift = At.Shift.AFTER), method = "onCollideWithPlayer", cancellable = true)
+	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;take(Lnet/minecraft/entity/Entity;I)V", shift = At.Shift.AFTER), method = "playerTouch", cancellable = true)
 	private void onCollideWithPlayer(PlayerEntity player, CallbackInfo ci) {
 		int count = AllurementUtil.getTotalEnchantmentLevel(AllurementEnchantments.ALLEVIATING.get(), player, EquipmentSlotType.Group.ARMOR);
 		if (count > 0) {
 			float factor = AllurementConfig.COMMON.alleviatingHealingFactor.get() * count;
-			float i = Math.min(this.xpValue * factor, player.getMaxHealth() - player.getHealth());
-			this.xpValue -= Math.round(i / factor);
+			float i = Math.min(this.value * factor, player.getMaxHealth() - player.getHealth());
+			this.value -= Math.round(i / factor);
 			player.heal(i);
 		}
 	}

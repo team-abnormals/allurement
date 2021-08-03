@@ -14,11 +14,11 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(CrossbowItem.class)
 public abstract class CrossbowItemMixin {
 
-	@ModifyVariable(method = "createArrow", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/item/ArrowItem;createArrow(Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/LivingEntity;)Lnet/minecraft/entity/projectile/AbstractArrowEntity;"))
-	private static AbstractArrowEntity createArrow(AbstractArrowEntity arrow, World worldIn, LivingEntity shooter, ItemStack crossbow, ItemStack ammo) {
-		int level = EnchantmentHelper.getEnchantmentLevel(AllurementEnchantments.REELING.get(), crossbow);
+	@ModifyVariable(method = "getArrow", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/item/ArrowItem;createArrow(Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/LivingEntity;)Lnet/minecraft/entity/projectile/AbstractArrowEntity;"))
+	private static AbstractArrowEntity getArrow(AbstractArrowEntity arrow, World worldIn, LivingEntity shooter, ItemStack crossbow, ItemStack ammo) {
+		int level = EnchantmentHelper.getItemEnchantmentLevel(AllurementEnchantments.REELING.get(), crossbow);
 		if (level > 0) {
-			arrow.setKnockbackStrength(-level);
+			arrow.setKnockback(-level);
 		}
 		return arrow;
 	}

@@ -14,13 +14,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Enchantment.class)
 public class EnchantmentMixin {
 
-	@Inject(method = "canApply", at = @At("RETURN"), cancellable = true)
+	@Inject(method = "canEnchant", at = @At("RETURN"), cancellable = true)
 	private void canApply(ItemStack stack, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
 		Enchantment enchantment = (Enchantment) (Object) this;
 		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && stack.getItem() instanceof HorseArmorItem && enchantment.isIn(AllurementTags.Enchantments.UNUSABLE_ON_HORSE_ARMOR))
 			callbackInfoReturnable.setReturnValue(false);
 
-		if (AllurementConfig.COMMON.disableProtection.get() && enchantment == Enchantments.PROTECTION)
+		if (AllurementConfig.COMMON.disableProtection.get() && enchantment == Enchantments.ALL_DAMAGE_PROTECTION)
 			callbackInfoReturnable.setReturnValue(false);
 
 	}
@@ -31,7 +31,7 @@ public class EnchantmentMixin {
 		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && stack.getItem() instanceof HorseArmorItem && enchantment.isIn(AllurementTags.Enchantments.UNUSABLE_ON_HORSE_ARMOR))
 			callbackInfoReturnable.setReturnValue(false);
 
-		if (AllurementConfig.COMMON.disableProtection.get() && enchantment == Enchantments.PROTECTION)
+		if (AllurementConfig.COMMON.disableProtection.get() && enchantment == Enchantments.ALL_DAMAGE_PROTECTION)
 			callbackInfoReturnable.setReturnValue(false);
 	}
 }

@@ -30,13 +30,13 @@ public abstract class ArrowRendererMixin<T extends AbstractArrowEntity> extends 
 	private IVertexBuilder render(IVertexBuilder builderIn, T entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
 		IDataManager manager = ((IDataManager) entityIn);
 		if (manager.getValue(Allurement.INFINITY_ARROW)) {
-			RenderType renderType = RenderType.getEntityCutout(AllurementConfig.CLIENT.infinityArrowTexture.get() ? INFINITY_ARROW_TEXTURE : ARROW_TEXTURE);
+			RenderType renderType = RenderType.entityCutout(AllurementConfig.CLIENT.infinityArrowTexture.get() ? INFINITY_ARROW_TEXTURE : ARROW_TEXTURE);
 			if (AllurementConfig.CLIENT.infinityArrowGlint.get()) {
-				return ItemRenderer.getEntityGlintVertexBuilder(bufferIn, renderType, false, true);
+				return ItemRenderer.getFoilBufferDirect(bufferIn, renderType, false, true);
 			} else {
 				return bufferIn.getBuffer(renderType);
 			}
 		}
-		return bufferIn.getBuffer(RenderType.getEntityCutout(this.getEntityTexture(entityIn)));
+		return bufferIn.getBuffer(RenderType.entityCutout(this.getTextureLocation(entityIn)));
 	}
 }

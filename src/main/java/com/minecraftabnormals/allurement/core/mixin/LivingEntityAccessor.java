@@ -6,6 +6,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(LivingEntity.class)
 public interface LivingEntityAccessor {
-	@Invoker("func_230296_cM_")
+	@Invoker("onSoulSpeedBlock")
 	boolean isSoulSpeedBlock();
 }

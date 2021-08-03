@@ -12,9 +12,9 @@ import java.util.function.Consumer;
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin<T extends LivingEntity> {
 
-	@Redirect(method = "func_233642_cO_()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;damageItem(ILnet/minecraft/entity/LivingEntity;Ljava/util/function/Consumer;)V"))
+	@Redirect(method = "tryAddSoulSpeed()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;hurtAndBreak(ILnet/minecraft/entity/LivingEntity;Ljava/util/function/Consumer;)V"))
 	private void damageItem(ItemStack itemStack, int amount, T entityIn, Consumer<T> onBroken) {
 		if (!AllurementConfig.COMMON.soulSpeedHurtsMore.get())
-			itemStack.damageItem(amount, entityIn, onBroken);
+			itemStack.hurtAndBreak(amount, entityIn, onBroken);
 	}
 }

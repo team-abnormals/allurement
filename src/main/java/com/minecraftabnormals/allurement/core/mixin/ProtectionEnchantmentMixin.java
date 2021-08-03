@@ -15,30 +15,30 @@ public abstract class ProtectionEnchantmentMixin extends Enchantment {
 
 	@Shadow
 	@Final
-	public Type protectionType;
+	public Type type;
 
 	protected ProtectionEnchantmentMixin(Rarity rarityIn, EnchantmentType typeIn, EquipmentSlotType[] slots) {
 		super(rarityIn, typeIn, slots);
 	}
 
 	@Override
-	public boolean isTreasureEnchantment() {
-		if (this.protectionType == Type.ALL && AllurementConfig.COMMON.disableProtection.get())
+	public boolean isTreasureOnly() {
+		if (this.type == Type.ALL && AllurementConfig.COMMON.disableProtection.get())
 			return true;
-		return super.isTreasureEnchantment();
+		return super.isTreasureOnly();
 	}
 
 	@Override
-	public boolean canVillagerTrade() {
-		if (this.protectionType == Type.ALL && AllurementConfig.COMMON.disableProtection.get())
+	public boolean isTradeable() {
+		if (this.type == Type.ALL && AllurementConfig.COMMON.disableProtection.get())
 			return false;
-		return super.canVillagerTrade();
+		return super.isTradeable();
 	}
 
 	@Override
-	public boolean canGenerateInLoot() {
-		if (this.protectionType == Type.ALL && AllurementConfig.COMMON.disableProtection.get())
+	public boolean isDiscoverable() {
+		if (this.type == Type.ALL && AllurementConfig.COMMON.disableProtection.get())
 			return false;
-		return super.canGenerateInLoot();
+		return super.isDiscoverable();
 	}
 }

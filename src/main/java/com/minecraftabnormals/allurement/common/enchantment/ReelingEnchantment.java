@@ -11,13 +11,13 @@ public class ReelingEnchantment extends Enchantment {
 	}
 
 	@Override
-	public int getMinEnchantability(int enchantmentLevel) {
+	public int getMinCost(int enchantmentLevel) {
 		return 12 + (enchantmentLevel - 1) * 20;
 	}
 
 	@Override
-	public int getMaxEnchantability(int enchantmentLevel) {
-		return this.getMinEnchantability(enchantmentLevel) + 25;
+	public int getMaxCost(int enchantmentLevel) {
+		return this.getMinCost(enchantmentLevel) + 25;
 	}
 
 	@Override
@@ -26,12 +26,12 @@ public class ReelingEnchantment extends Enchantment {
 	}
 
 	@Override
-	public boolean canVillagerTrade() {
+	public boolean isTradeable() {
 		return AllurementConfig.COMMON.enableReeling.get();
 	}
 
 	@Override
-	public boolean canGenerateInLoot() {
+	public boolean isDiscoverable() {
 		return AllurementConfig.COMMON.enableReeling.get();
 	}
 }

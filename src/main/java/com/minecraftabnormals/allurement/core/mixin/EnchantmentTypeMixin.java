@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 })
 public class EnchantmentTypeMixin {
 
-	@Inject(method = "canEnchantItem(Lnet/minecraft/item/Item;)Z", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "canEnchant(Lnet/minecraft/item/Item;)Z", at = @At("HEAD"), cancellable = true)
 	private void canEnchantItem(Item item, CallbackInfoReturnable<Boolean> cir) {
 		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && item instanceof HorseArmorItem) {
 			cir.setReturnValue(true);

@@ -35,21 +35,21 @@ public class AllurementEvents {
 	@SubscribeEvent
 	public static void onLivingFall(LivingFallEvent event) {
 		LivingEntity entity = event.getEntityLiving();
-		World world = entity.getEntityWorld();
-		int level = EnchantmentHelper.getEnchantmentLevel(AllurementEnchantments.SHOCKWAVE.get(), entity.getItemStackFromSlot(EquipmentSlotType.FEET));
+		World world = entity.getCommandSenderWorld();
+		int level = EnchantmentHelper.getItemEnchantmentLevel(AllurementEnchantments.SHOCKWAVE.get(), entity.getItemBySlot(EquipmentSlotType.FEET));
 
-		EffectInstance effectinstance = entity.getActivePotionEffect(Effects.JUMP_BOOST);
+		EffectInstance effectinstance = entity.getEffect(Effects.JUMP);
 		float f = effectinstance == null ? 0.0F : (float) (effectinstance.getAmplifier() + 1);
 		int damage = MathHelper.ceil((event.getDistance() - 3.0F - f) * event.getDamageMultiplier());
 
 		if (level > 0 && damage > 0) {
-			for (LivingEntity target : world.getEntitiesWithinAABB(LivingEntity.class, entity.getBoundingBox().grow(level, 0.0D, level))) {
+			for (LivingEntity target : world.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(level, 0.0D, level))) {
 				if (entity != target)
-					target.attackEntityFrom(AllurementDamageSources.causeShockwaveDamage(entity), damage);
+					target.hurt(AllurementDamageSources.causeShockwaveDamage(entity), damage);
 			}
 
 			if (world instanceof ServerWorld) {
-				((ServerWorld) world).spawnParticle(ParticleTypes.CLOUD, entity.getPosX(), entity.getPosY(), entity.getPosZ(), 200, level, 0.5, level, 0);
+				((ServerWorld) world).sendParticles(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(), 200, level, 0.5, level, 0);
 			}
 		}
 	}
@@ -57,7 +57,7 @@ public class AllurementEvents {
 	@SubscribeEvent
 	public static void onLivingHurt(LivingHurtEvent event) {
 		LivingEntity entity = event.getEntityLiving();
-		Entity source = event.getSource().getTrueSource();
+		Entity source = event.getSource().getEntity();
 		IDataManager manager = (IDataManager) entity;
 
 		if (source instanceof LivingEntity) {
@@ -67,7 +67,7 @@ public class AllurementEvents {
 			}
 
 			LivingEntity attacker = (LivingEntity) source;
-			Entry<EquipmentSlotType, ItemStack> entry = EnchantmentHelper.getRandomItemWithEnchantment(AllurementEnchantments.VENGEANCE.get(), attacker);
+			Entry<EquipmentSlotType, ItemStack> entry = EnchantmentHelper.getRandomItemWith(AllurementEnchantments.VENGEANCE.get(), attacker);
 			if (entry != null) {
 				IDataManager attackManager = (IDataManager) attacker;
 				float absorbedDamage = attackManager.getValue(Allurement.ABSORBED_DAMAGE);
@@ -75,15 +75,15 @@ public class AllurementEvents {
 				if (absorbedDamage > 0.0F) {
 					event.setAmount(event.getAmount() + absorbedDamage);
 					attackManager.setValue(Allurement.ABSORBED_DAMAGE, 0.0F);
-					entry.getValue().damageItem(2, attacker, (livingEntity) -> livingEntity.sendBreakAnimation(entry.getKey()));
+					entry.getValue().hurtAndBreak(2, attacker, (livingEntity) -> livingEntity.broadcastBreakEvent(entry.getKey()));
 				}
 			}
 
-			ItemStack weapon = attacker.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
-			int missileLevel = EnchantmentHelper.getEnchantmentLevel(AllurementEnchantments.LAUNCH.get(), weapon);
+			ItemStack weapon = attacker.getItemBySlot(EquipmentSlotType.MAINHAND);
+			int missileLevel = EnchantmentHelper.getItemEnchantmentLevel(AllurementEnchantments.LAUNCH.get(), weapon);
 			if (missileLevel > 0) {
 				entity.setOnGround(false);
-				entity.addVelocity(0, AllurementConfig.COMMON.launchVerticalFactor.get() * (missileLevel + 1) * (1.0D - entity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE)), 0);
+				entity.push(0, AllurementConfig.COMMON.launchVerticalFactor.get() * (missileLevel + 1) * (1.0D - entity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE)), 0);
 			}
 		}
 
@@ -97,13 +97,13 @@ public class AllurementEvents {
 	@SubscribeEvent
 	public static void onLivingUpdate(LivingUpdateEvent event) {
 		LivingEntity entity = event.getEntityLiving();
-		World world = entity.getEntityWorld();
+		World world = entity.getCommandSenderWorld();
 
 		for (EquipmentSlotType slot : EquipmentSlotType.values()) {
-			ItemStack stack = entity.getItemStackFromSlot(slot);
-			int level = EnchantmentHelper.getEnchantmentLevel(AllurementEnchantments.REFORMING.get(), stack);
+			ItemStack stack = entity.getItemBySlot(slot);
+			int level = EnchantmentHelper.getItemEnchantmentLevel(AllurementEnchantments.REFORMING.get(), stack);
 			if (!stack.isEmpty() && stack.isDamaged() && level > 0 && world.getGameTime() % AllurementConfig.COMMON.reformingTickRate.get() == 0) {
-				stack.setDamage(stack.getDamage() - 1);
+				stack.setDamageValue(stack.getDamageValue() - 1);
 			}
 		}
 	}
@@ -112,9 +112,9 @@ public class AllurementEvents {
 	public static void onArrowNock(ArrowNockEvent event) {
 		PlayerEntity player = event.getPlayer();
 		ItemStack bow = event.getBow();
-		if (!AllurementConfig.COMMON.infinityRequiresArrows.get() && EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, bow) > 0 && player.findAmmo(bow).isEmpty()) {
-			player.setActiveHand(event.getHand());
-			event.setAction(ActionResult.resultConsume(bow));
+		if (!AllurementConfig.COMMON.infinityRequiresArrows.get() && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow) > 0 && player.getProjectile(bow).isEmpty()) {
+			player.startUsingItem(event.getHand());
+			event.setAction(ActionResult.consume(bow));
 		}
 	}
 }

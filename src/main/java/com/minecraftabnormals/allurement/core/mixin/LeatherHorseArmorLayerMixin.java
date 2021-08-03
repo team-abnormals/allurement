@@ -19,9 +19,9 @@ public class LeatherHorseArmorLayerMixin {
 
 	@ModifyVariable(method = "render", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/client/renderer/IRenderTypeBuffer;getBuffer(Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/IVertexBuilder;", shift = At.Shift.AFTER))
 	private IVertexBuilder render(IVertexBuilder builderIn, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn, HorseEntity horseEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-		ItemStack stack = horseEntity.func_213803_dV();
+		ItemStack stack = horseEntity.getArmor();
 		AllurementUtil.setColorRuneTarget(stack);
 		HorseArmorItem horseArmorItem = (HorseArmorItem) stack.getItem();
-		return ItemRenderer.getEntityGlintVertexBuilder(bufferIn, RenderType.getEntityCutoutNoCull(horseArmorItem.getArmorTexture()), false, stack.hasEffect());
+		return ItemRenderer.getFoilBufferDirect(bufferIn, RenderType.entityCutoutNoCull(horseArmorItem.getTexture()), false, stack.hasFoil());
 	}
 }

@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Item.class)
 public abstract class ItemMixin extends ForgeRegistryEntry<Item> {
 
-	@Inject(at = @At("HEAD"), method = "getItemEnchantability", cancellable = true)
+	@Inject(at = @At("HEAD"), method = "getEnchantmentValue", cancellable = true)
 	private void getItemEnchantability(CallbackInfoReturnable<Integer> cir) {
 		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && (Object) this instanceof HorseArmorItem) {
 			String name = this.getRegistryName().toString();

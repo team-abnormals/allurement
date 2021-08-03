@@ -14,12 +14,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Slot.class)
 public class SlotMixin {
 
-	@Inject(method = "canTakeStack", at = @At("RETURN"), cancellable = true)
+	@Inject(method = "mayPickup", at = @At("RETURN"), cancellable = true)
 	private void canTakeStack(PlayerEntity playerIn, CallbackInfoReturnable<Boolean> cir) {
 		Slot slot = (Slot) (Object) this;
-		ItemStack stack = slot.getStack();
+		ItemStack stack = slot.getItem();
 		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && stack.getItem() instanceof HorseArmorItem) {
-			if (slot.slotNumber == 1 && slot.xPos == 8 && slot.yPos == 36 && slot.isItemValid(stack) && slot.getSlotStackLimit() == 1) {
+			if (slot.index == 1 && slot.x == 8 && slot.y == 36 && slot.mayPlace(stack) && slot.getMaxStackSize() == 1) {
 				if (!playerIn.isCreative() && EnchantmentHelper.hasBindingCurse(stack))
 					cir.setReturnValue(false);
 			}
