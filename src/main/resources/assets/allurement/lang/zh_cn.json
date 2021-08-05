@@ -19,6 +19,6 @@
     "enchantment.allurement.vengeance.desc": "存储遭受到的部分伤害并将叠加到下一次攻击中",
 
     "death.attack.allurement.shockwave": "%1$s 死于冲击波。",
-    "death.attack.allurement.shockwave": "%1$s 死于 %1$s 的冲击波。",
+    "death.attack.allurement.shockwave": "%1$s 死于 %2$s 的冲击波。",
     "death.attack.allurement.shockwave.player": "%1$s 被 %2$s 使用 %3$s 冲击而死。"
 }
