@@ -29,6 +29,7 @@ public class Allurement {
 
 	public Allurement() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+		ModLoadingContext context = ModLoadingContext.get();
 
 		REGISTRY_HELPER.register(bus);
 		AllurementEnchantments.ENCHANTMENTS.register(bus);
@@ -40,8 +41,8 @@ public class Allurement {
 		TrackedDataManager.INSTANCE.registerData(new ResourceLocation(MOD_ID, "shot_infinity_arrow"), INFINITY_ARROW);
 		TrackedDataManager.INSTANCE.registerData(new ResourceLocation(MOD_ID, "absorbed_damage"), ABSORBED_DAMAGE);
 
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AllurementConfig.COMMON_SPEC);
-		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, AllurementConfig.CLIENT_SPEC);
+		context.registerConfig(ModConfig.Type.COMMON, AllurementConfig.COMMON_SPEC);
+		context.registerConfig(ModConfig.Type.CLIENT, AllurementConfig.CLIENT_SPEC);
 	}
 
 	private void dataSetup(GatherDataEvent event) {

@@ -48,7 +48,7 @@ public class HorseArmorLootModifier extends LootModifier {
 
 		@Override
 		public JsonObject write(HorseArmorLootModifier instance) {
-			return new JsonObject();
+			return makeConditions(instance.conditions);
 		}
 	}
 }
