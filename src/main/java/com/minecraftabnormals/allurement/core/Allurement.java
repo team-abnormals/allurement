@@ -5,6 +5,7 @@ import com.minecraftabnormals.abnormals_core.common.world.storage.tracking.Track
 import com.minecraftabnormals.abnormals_core.common.world.storage.tracking.TrackedDataManager;
 import com.minecraftabnormals.abnormals_core.core.util.registry.RegistryHelper;
 import com.minecraftabnormals.allurement.core.data.EnchantmentTagGenerator;
+import com.minecraftabnormals.allurement.core.data.LanguageGenerator;
 import com.minecraftabnormals.allurement.core.data.LootModifierGenerator;
 import com.minecraftabnormals.allurement.core.registry.AllurementEnchantments;
 import com.minecraftabnormals.allurement.core.registry.AllurementLootModifiers;
@@ -52,6 +53,10 @@ public class Allurement {
 		if (event.includeServer()) {
 			dataGenerator.addProvider(new EnchantmentTagGenerator(dataGenerator, existingFileHelper));
 			dataGenerator.addProvider(new LootModifierGenerator(dataGenerator));
+		}
+
+		if (event.includeClient()) {
+			dataGenerator.addProvider(new LanguageGenerator(dataGenerator));
 		}
 	}
 }
