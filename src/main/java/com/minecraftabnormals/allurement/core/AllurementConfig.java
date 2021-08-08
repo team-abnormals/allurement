@@ -24,6 +24,8 @@ public class AllurementConfig {
 
 		public final ConfigValue<Boolean> infinityRequiresArrows;
 
+		public final ConfigValue<Boolean> baneOfArthropodsBreaksCobwebsFaster;
+
 		public final ConfigValue<Boolean> disableProtection;
 
 		public final ConfigValue<Boolean> enableAlleviating;
@@ -100,6 +102,10 @@ public class AllurementConfig {
 
 			builder.push("infinity");
 			infinityRequiresArrows = builder.comment("If Infinity requires an arrow in the player's inventory in order to shoot").define("Infinity requires arrows", false);
+			builder.pop();
+
+			builder.push("bane_of_arthropods");
+			baneOfArthropodsBreaksCobwebsFaster = builder.comment("Bane of Arthropods increases the mining speed of Cobwebs").define("Bane of Arthropods mines cobwebs faster", true);
 			builder.pop();
 
 			builder.push("protection");

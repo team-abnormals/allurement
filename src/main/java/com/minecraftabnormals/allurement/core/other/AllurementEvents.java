@@ -5,6 +5,7 @@ import com.minecraftabnormals.allurement.core.Allurement;
 import com.minecraftabnormals.allurement.core.AllurementConfig;
 import com.minecraftabnormals.allurement.core.mixin.LivingEntityAccessor;
 import com.minecraftabnormals.allurement.core.registry.AllurementEnchantments;
+import net.minecraft.block.WebBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
@@ -24,6 +25,7 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -52,6 +54,13 @@ public class AllurementEvents {
 				((ServerWorld) world).sendParticles(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(), 200, level, 0.5, level, 0);
 			}
 		}
+	}
+
+	@SubscribeEvent
+	public static void onPlayerBreak(PlayerEvent.BreakSpeed event) {
+		int baneOfArthropodsLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BANE_OF_ARTHROPODS, event.getEntityLiving().getMainHandItem());
+		if (AllurementConfig.COMMON.baneOfArthropodsBreaksCobwebsFaster.get() && event.getState().getBlock() instanceof WebBlock && baneOfArthropodsLevel > 0)
+			event.setNewSpeed(event.getOriginalSpeed() + (1.5F * baneOfArthropodsLevel * baneOfArthropodsLevel));
 	}
 
 	@SubscribeEvent
