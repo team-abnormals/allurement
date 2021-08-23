@@ -5,6 +5,9 @@ import com.minecraftabnormals.allurement.core.Allurement;
 import com.minecraftabnormals.allurement.core.AllurementConfig;
 import com.minecraftabnormals.allurement.core.mixin.LivingEntityAccessor;
 import com.minecraftabnormals.allurement.core.registry.AllurementEnchantments;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.FarmlandBlock;
 import net.minecraft.block.WebBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -18,18 +21,22 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.world.BlockEvent.FarmlandTrampleEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.Map.Entry;
+import java.util.stream.Stream;
 
 @Mod.EventBusSubscriber(modid = Allurement.MOD_ID)
 public class AllurementEvents {
@@ -50,6 +57,18 @@ public class AllurementEvents {
 					target.hurt(AllurementDamageSources.causeShockwaveDamage(entity), damage);
 			}
 
+			if (AllurementConfig.COMMON.shockwaveTramplesFarmland.get()) {
+				Stream<BlockPos> affectedBlocks = BlockPos.betweenClosedStream(entity.getBoundingBox().inflate(level, 0.0D, level).move(0, -1.0F, 0));
+				affectedBlocks.forEach(pos -> {
+					BlockState state = world.getBlockState(pos);
+					if (state.getBlock() instanceof FarmlandBlock) {
+						if (!world.isClientSide && ForgeHooks.onFarmlandTrample(world, pos, Blocks.DIRT.defaultBlockState(), event.getDistance(), entity)) {
+							FarmlandBlock.turnToDirt(state, world, pos);
+						}
+					}
+				});
+			}
+
 			if (world instanceof ServerWorld) {
 				((ServerWorld) world).sendParticles(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(), 200, level, 0.5, level, 0);
 			}
@@ -61,6 +80,14 @@ public class AllurementEvents {
 		int baneOfArthropodsLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BANE_OF_ARTHROPODS, event.getEntityLiving().getMainHandItem());
 		if (AllurementConfig.COMMON.baneOfArthropodsBreaksCobwebsFaster.get() && event.getState().getBlock() instanceof WebBlock && baneOfArthropodsLevel > 0)
 			event.setNewSpeed(event.getOriginalSpeed() + (1.5F * baneOfArthropodsLevel * baneOfArthropodsLevel));
+	}
+
+	@SubscribeEvent
+	public static void onFarmlandTrample(FarmlandTrampleEvent event) {
+		if (event.getEntity() instanceof LivingEntity && AllurementConfig.COMMON.featherFallingPreventsTrampling.get()) {
+			if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FALL_PROTECTION, ((LivingEntity) event.getEntity()).getItemBySlot(EquipmentSlotType.FEET)) > 0)
+				event.setCanceled(true);
+		}
 	}
 
 	@SubscribeEvent

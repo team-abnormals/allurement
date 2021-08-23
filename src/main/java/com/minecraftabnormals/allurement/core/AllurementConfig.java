@@ -17,16 +17,18 @@ public class AllurementConfig {
 		public final ConfigValue<Boolean> enchantedHorseArmorGenerates;
 		public final ConfigValue<List<String>> unenchantedHorseArmorLootTables;
 
+		public final ConfigValue<Boolean> baneOfArthropodsBreaksCobwebsFaster;
+
+		public final ConfigValue<Boolean> featherFallingPreventsTrampling;
+
+		public final ConfigValue<Boolean> infinityRequiresArrows;
+
+		public final ConfigValue<Boolean> disableProtection;
+
 		public final ConfigValue<Boolean> riptideWorksInCauldrons;
 
 		public final ConfigValue<Boolean> soulSpeedHurtsMore;
 		public final ConfigValue<Float> soulSpeedDamageFactor;
-
-		public final ConfigValue<Boolean> infinityRequiresArrows;
-
-		public final ConfigValue<Boolean> baneOfArthropodsBreaksCobwebsFaster;
-
-		public final ConfigValue<Boolean> disableProtection;
 
 		public final ConfigValue<Boolean> enableAlleviating;
 		public final ConfigValue<Float> alleviatingHealingFactor;
@@ -42,6 +44,7 @@ public class AllurementConfig {
 		public final ConfigValue<Integer> reformingTickRate;
 
 		public final ConfigValue<Boolean> enableShockwave;
+		public final ConfigValue<Boolean> shockwaveTramplesFarmland;
 
 		public final ConfigValue<Boolean> enableVengeance;
 		public final ConfigValue<Float> vengeanceDamageFactor;
@@ -75,6 +78,7 @@ public class AllurementConfig {
 
 			builder.push("shockwave");
 			enableShockwave = builder.comment("Boots enchantment that creates a shockwave when taking fall damage").define("Enable Shockwave", true);
+			shockwaveTramplesFarmland = builder.comment("If Shockwave tramples farmland within the wave radius").define("Shockwave tramples farmland", true);
 			builder.pop();
 
 			builder.push("vengeance");
@@ -91,6 +95,22 @@ public class AllurementConfig {
 			unenchantedHorseArmorLootTables = builder.comment("Which loot tables horse armor can't appear enchanted in").define("Unenchanted loot tables", Lists.newArrayList("minecraft:chests/village/village_weaponsmith", "minecraft:chests/stronghold_corridor", "minecraft:chests/nether_bridge"));
 			builder.pop();
 
+			builder.push("bane_of_arthropods");
+			baneOfArthropodsBreaksCobwebsFaster = builder.comment("If Bane of Arthropods increases the mining speed of Cobwebs").define("Bane of Arthropods mines cobwebs faster", true);
+			builder.pop();
+
+			builder.push("feather_falling");
+			featherFallingPreventsTrampling = builder.comment("If having Feather Falling prevents farmland from being trampled").define("Feather Falling prevents trampling", true);
+			builder.pop();
+
+			builder.push("infinity");
+			infinityRequiresArrows = builder.comment("If Infinity requires an arrow in the player's inventory in order to shoot").define("Infinity requires arrows", false);
+			builder.pop();
+
+			builder.push("protection");
+			disableProtection = builder.comment("Remove the base Protection enchantment, requiring players to choose between the other types").define("Disable Protection", false);
+			builder.pop();
+
 			builder.push("riptide");
 			riptideWorksInCauldrons = builder.comment("Allow Riptide to function when in cauldrons").define("Riptide works in cauldrons", true);
 			builder.pop();
@@ -98,18 +118,6 @@ public class AllurementConfig {
 			builder.push("soul_speed");
 			soulSpeedHurtsMore = builder.comment("Instead of losing durability as you run, Soul Speed makes incoming damage increase when on Soul Speed blocks").define("Soul Speed change", true);
 			soulSpeedDamageFactor = builder.comment("How much damage is multiplied when hurt on Soul Speed blocks").define("Damage factor", 1.5F);
-			builder.pop();
-
-			builder.push("infinity");
-			infinityRequiresArrows = builder.comment("If Infinity requires an arrow in the player's inventory in order to shoot").define("Infinity requires arrows", false);
-			builder.pop();
-
-			builder.push("bane_of_arthropods");
-			baneOfArthropodsBreaksCobwebsFaster = builder.comment("Bane of Arthropods increases the mining speed of Cobwebs").define("Bane of Arthropods mines cobwebs faster", true);
-			builder.pop();
-
-			builder.push("protection");
-			disableProtection = builder.comment("Remove the base Protection enchantment, requiring players to choose between the other types").define("Disable Protection", false);
 			builder.pop();
 
 			builder.push("level_scaling");
