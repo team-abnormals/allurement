@@ -1,9 +1,11 @@
 package com.teamabnormals.allurement.core;
 
-
 import com.google.common.collect.Lists;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
+import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
+import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -13,67 +15,67 @@ import java.util.List;
 public class AllurementConfig {
 
 	public static class Common {
-		public final ConfigValue<Boolean> enchantableHorseArmor;
-		public final ConfigValue<Boolean> enchantedHorseArmorGenerates;
-		public final ConfigValue<List<String>> unenchantedHorseArmorLootTables;
+		public final BooleanValue enchantableHorseArmor;
+		public final BooleanValue enchantedHorseArmorGenerates;
+		public final ConfigValue<List<? extends String>> unenchantedHorseArmorLootTables;
 
-		public final ConfigValue<Boolean> baneOfArthropodsBreaksCobwebsFaster;
+		public final BooleanValue baneOfArthropodsBreaksCobwebsFaster;
 
-		public final ConfigValue<Boolean> featherFallingPreventsTrampling;
+		public final BooleanValue featherFallingPreventsTrampling;
 
-		public final ConfigValue<Boolean> infinityRequiresArrows;
+		public final BooleanValue infinityRequiresArrows;
 
-		public final ConfigValue<Boolean> disableProtection;
+		public final BooleanValue disableProtection;
 
-		public final ConfigValue<Boolean> riptideWorksInCauldrons;
+		public final BooleanValue riptideWorksInCauldrons;
 
-		public final ConfigValue<Boolean> soulSpeedHurtsMore;
-		public final ConfigValue<Float> soulSpeedDamageFactor;
+		public final BooleanValue soulSpeedHurtsMore;
+		public final DoubleValue soulSpeedDamageFactor;
 
-		public final ConfigValue<Boolean> enableAlleviating;
-		public final ConfigValue<Float> alleviatingHealingFactor;
+		public final BooleanValue enableAlleviating;
+		public final DoubleValue alleviatingHealingFactor;
 
-		public final ConfigValue<Boolean> enableLaunch;
-		public final ConfigValue<Double> launchVerticalFactor;
+		public final BooleanValue enableLaunch;
+		public final DoubleValue launchVerticalFactor;
 
-		public final ConfigValue<Boolean> enableReeling;
-		public final ConfigValue<Double> reelingHorizontalFactor;
-		public final ConfigValue<Double> reelingVerticalFactor;
+		public final BooleanValue enableReeling;
+		public final DoubleValue reelingHorizontalFactor;
+		public final DoubleValue reelingVerticalFactor;
 
-		public final ConfigValue<Boolean> enableReforming;
-		public final ConfigValue<Integer> reformingTickRate;
+		public final BooleanValue enableReforming;
+		public final IntValue reformingTickRate;
 
-		public final ConfigValue<Boolean> enableShockwave;
-		public final ConfigValue<Boolean> shockwaveTramplesFarmland;
+		public final BooleanValue enableShockwave;
+		public final BooleanValue shockwaveTramplesFarmland;
 
-		public final ConfigValue<Boolean> enableVengeance;
-		public final ConfigValue<Float> vengeanceDamageFactor;
+		public final BooleanValue enableVengeance;
+		public final DoubleValue vengeanceDamageFactor;
 
-		public final ConfigValue<Boolean> removeLevelScaling;
-		public final ConfigValue<Integer> experiencePerLevel;
+		public final BooleanValue removeLevelScaling;
+		public final IntValue experiencePerLevel;
 
 		Common(ForgeConfigSpec.Builder builder) {
 			builder.push("enchantments");
 
 			builder.push("alleviating");
 			enableAlleviating = builder.comment("Armor enchantment that heals the user when collecting experience").define("Enable Alleviating", true);
-			alleviatingHealingFactor = builder.comment("How much the experience value is multiplied by into health").define("Healing factor", 0.25F);
+			alleviatingHealingFactor = builder.comment("How much the experience value is multiplied by into health").defineInRange("Healing factor", 0.25D, 0, Double.MAX_VALUE);
 			builder.pop();
 
 			builder.push("missile");
 			enableLaunch = builder.comment("Weapon enchantment that launches enemies upwards rather than away").define("Enable Launch", true);
-			launchVerticalFactor = builder.comment("How much the target is affected on the vertical axis").define("Vertical factor", 0.35D);
+			launchVerticalFactor = builder.comment("How much the target is affected on the vertical axis").defineInRange("Vertical factor", 0.35D, 0, Double.MAX_VALUE);
 			builder.pop();
 
 			builder.push("reeling");
 			enableReeling = builder.comment("Crossbow enchantment that pulls targets towards the user").define("Enable Reeling", true);
-			reelingHorizontalFactor = builder.comment("How much the target is affected on the horizontal axis").define("Horizontal factor", 0.5D);
-			reelingVerticalFactor = builder.comment("How much the target is affected on the vertical axis").define("Vertical factor", 0.25D);
+			reelingHorizontalFactor = builder.comment("How much the target is affected on the horizontal axis").defineInRange("Horizontal factor", 0.5D, 0, Double.MAX_VALUE);
+			reelingVerticalFactor = builder.comment("How much the target is affected on the vertical axis").defineInRange("Vertical factor", 0.25D, 0, Double.MAX_VALUE);
 			builder.pop();
 
 			builder.push("reforming");
 			enableReforming = builder.comment("Gear enchantment that very slowly repairs items over time").define("Enable Reforming", true);
-			reformingTickRate = builder.comment("How many ticks it takes a reforming item to repair").define("Reforming tick rate", 600);
+			reformingTickRate = builder.comment("How many ticks it takes a reforming item to repair").defineInRange("Reforming tick rate", 600, 0, Integer.MAX_VALUE);
 			builder.pop();
 
 			builder.push("shockwave");
@@ -83,7 +85,7 @@ public class AllurementConfig {
 
 			builder.push("vengeance");
 			enableVengeance = builder.comment("Armor enchantment that stores incoming damage and applies it to user's next attack").define("Enable Vengeance", true);
-			vengeanceDamageFactor = builder.comment("How much the damage taken with vengeance is multiplied for attacks").define("Damage factor", 0.025F);
+			vengeanceDamageFactor = builder.comment("How much the damage taken with vengeance is multiplied for attacks").defineInRange("Damage factor", 0.025D, 0, Double.MAX_VALUE);
 			builder.pop();
 
 			builder.pop();
@@ -117,12 +119,12 @@ public class AllurementConfig {
 
 			builder.push("soul_speed");
 			soulSpeedHurtsMore = builder.comment("Instead of losing durability as you run, Soul Speed makes incoming damage increase when on Soul Speed blocks").define("Soul Speed change", true);
-			soulSpeedDamageFactor = builder.comment("How much damage is multiplied when hurt on Soul Speed blocks").define("Damage factor", 1.5F);
+			soulSpeedDamageFactor = builder.comment("How much damage is multiplied when hurt on Soul Speed blocks").defineInRange("Damage factor", 1.5D, 0, Double.MAX_VALUE);
 			builder.pop();
 
 			builder.push("level_scaling");
 			removeLevelScaling = builder.comment("Remove the amount of experience per level increasing (experimental)").define("Remove level scaling", false);
-			experiencePerLevel = builder.comment("The amount of experience per level, if level scaling is removed (experimental)").define("Experience per level", 50);
+			experiencePerLevel = builder.comment("The amount of experience per level, if level scaling is removed (experimental)").defineInRange("Experience per level", 50, 0, Integer.MAX_VALUE);
 			builder.pop();
 
 			builder.pop();
@@ -130,8 +132,8 @@ public class AllurementConfig {
 	}
 
 	public static class Client {
-		public final ConfigValue<Boolean> infinityArrowTexture;
-		public final ConfigValue<Boolean> infinityArrowGlint;
+		public final BooleanValue infinityArrowTexture;
+		public final BooleanValue infinityArrowGlint;
 
 		Client(ForgeConfigSpec.Builder builder) {
 			builder.push("tweaks");
