@@ -1,11 +1,11 @@
 package com.teamabnormals.allurement.core.mixin;
 
 import com.teamabnormals.allurement.core.AllurementConfig;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.ProtectionEnchantment;
 import net.minecraft.world.item.enchantment.ProtectionEnchantment.Type;
-import net.minecraft.world.entity.EquipmentSlot;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

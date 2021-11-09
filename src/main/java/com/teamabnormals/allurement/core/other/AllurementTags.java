@@ -1,9 +1,9 @@
 package com.teamabnormals.allurement.core.other;
 
 import com.teamabnormals.allurement.core.Allurement;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.tags.Tag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.Tag;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.ForgeTagHandler;
 import net.minecraftforge.registries.ForgeRegistries;
 

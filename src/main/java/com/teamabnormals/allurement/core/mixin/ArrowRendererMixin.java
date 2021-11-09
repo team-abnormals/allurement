@@ -1,9 +1,9 @@
 package com.teamabnormals.allurement.core.mixin;
 
-import com.teamabnormals.allurement.core.Allurement;
-import com.teamabnormals.allurement.core.AllurementConfig;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.teamabnormals.allurement.core.Allurement;
+import com.teamabnormals.allurement.core.AllurementConfig;
 import com.teamabnormals.blueprint.common.world.storage.tracking.IDataManager;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;

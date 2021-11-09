@@ -1,10 +1,10 @@
 package com.teamabnormals.allurement.common.enchantment;
 
 import com.teamabnormals.allurement.core.AllurementConfig;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.MendingEnchantment;
-import net.minecraft.world.entity.EquipmentSlot;
 
 public class AlleviatingEnchantment extends Enchantment {
 	public AlleviatingEnchantment(Enchantment.Rarity rarityIn, EquipmentSlot... slots) {

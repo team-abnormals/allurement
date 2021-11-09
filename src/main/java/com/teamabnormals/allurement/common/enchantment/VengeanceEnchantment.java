@@ -1,12 +1,12 @@
 package com.teamabnormals.allurement.common.enchantment;
 
 import com.teamabnormals.allurement.core.AllurementConfig;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.item.enchantment.ThornsEnchantment;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.ThornsEnchantment;
 
 public class VengeanceEnchantment extends Enchantment {
 

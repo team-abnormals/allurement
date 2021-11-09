@@ -3,8 +3,8 @@ package com.teamabnormals.allurement.core.data;
 import com.teamabnormals.allurement.core.Allurement;
 import com.teamabnormals.allurement.core.registry.AllurementEnchantments;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.data.LanguageProvider;
 import org.apache.commons.lang3.text.WordUtils;
 
