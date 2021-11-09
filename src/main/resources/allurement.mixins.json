@@ -1,29 +1,29 @@
 {
   "required": true,
-  "package": "com.minecraftabnormals.allurement.core.mixin",
+  "package": "com.teamabnormals.allurement.core.mixin",
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
   "refmap": "allurement.refmap.json",
   "mixins": [
-    "AbstractArrowEntityMixin",
-    "AbstractHorseEntityMixin",
+    "AbstractArrowMixin",
+    "AbstractHorseMixin",
     "BowItemMixin",
     "CrossbowItemMixin",
+    "EnchantmentCategoryMixin",
     "EnchantmentHelperMixin",
     "EnchantmentMixin",
-    "EnchantmentTypeMixin",
     "EntityMixin",
-    "ExperienceOrbEntityMixin",
+    "ExperienceOrbMixin",
     "ItemMixin",
     "LivingEntityAccessor",
     "LivingEntityMixin",
-    "PlayerEntityMixin",
+    "PlayerMixin",
     "ProtectionEnchantmentMixin",
     "SlotMixin"
   ],
   "client": [
     "ArrowRendererMixin",
-    "LeatherHorseArmorLayerMixin"
+    "HorseArmorLayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
