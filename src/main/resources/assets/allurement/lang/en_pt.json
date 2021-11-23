@@ -1,0 +1,40 @@
+{
+  "#all": "",
+
+
+  "enchantment.allurement.reforming": "Gettin' Better Slowly",
+  "enchantment.allurement.reforming.desc": "Yer gadget be gettin' better slowly",
+
+
+  "#swords": "",
+
+
+  "enchantment.allurement.launch": "Pull o' Heavens",
+  "enchantment.allurement.launch.desc": "Launch ye foe sky high",
+
+
+  "#crossbow": "",
+
+
+  "enchantment.allurement.reeling": "Hookin'",
+  "enchantment.allurement.reeling.desc": "Hook yer target towards ye when th' bolt hits",
+
+
+  "#armor_general": "",
+
+  "enchantment.allurement.alleviating": "Davy Jone's Healin'",
+  "enchantment.allurement.alleviating.desc": "Tharr coins o' experience now treat yer bad humors",
+
+  "enchantment.allurement.vengeance": "Arrrrrevenge",
+  "enchantment.allurement.vengeance.desc": "When ye ship takes a cannon, yer next cannon become stronger",
+
+
+  "#boots": "",
+
+  "enchantment.allurement.shockwave": "Cannonballlll",
+  "enchantment.allurement.shockwave.desc": "Hit all th' sailors near ye w' a big shockwave when ye fall",
+  "death.attack.allurement.shockwave": "%1$s got stomp'd",
+  "death.attack.allurement.shockwave.player": "%1$s was stomp'd by %2$s",
+  "death.attack.allurement.shockwave.player.item": "%1$s was stomp'd by %2$s usin' %3$s"
+
+}
