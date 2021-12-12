@@ -4,9 +4,7 @@ import com.teamabnormals.allurement.common.loot.HorseArmorLootModifier.HorseArmo
 import com.teamabnormals.allurement.core.Allurement;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fmllegacy.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.*;
 
 @Mod.EventBusSubscriber(modid = Allurement.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class AllurementLootModifiers {
