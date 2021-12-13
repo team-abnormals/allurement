@@ -1,0 +1,23 @@
+{
+    "enchantment.allurement.alleviating": "Alleujar",
+    "enchantment.allurement.alleviating.desc": "Cura al jugador al acumular experiencia",
+
+    "enchantment.allurement.launch": "Llanzar",
+    "enchantment.allurement.launch.desc": "Llença el objectiu cap amunt en comptes d'allunyarlo",
+
+    "enchantment.allurement.reeling": "Capturar",
+    "enchantment.allurement.reeling.desc": "Atreu el objectiu impactat per la fletxa cap al usuari",
+
+    "enchantment.allurement.reforming": "Reformar",
+    "enchantment.allurement.reforming.desc": "Repara la durabilidad del objecte molt lentament mentres esta equipat",
+
+    "enchantment.allurement.shockwave": "Ona expansiva",
+    "enchantment.allurement.shockwave.desc": "Crea una onda expansiva al rebre mal per caiguda que fa mal a les entitats properes",
+
+    "enchantment.allurement.vengeance": "Venjança",
+    "enchantment.allurement.vengeance.desc": "Acomula part del mal rebut i l'aplica en el teu próxim atac",
+
+    "death.attack.allurement.shockwave": "%1$s ha estat impactat",
+    "death.attack.allurement.shockwave.player": "%1$s ha estat impactat per %2$s",
+    "death.attack.allurement.shockwave.player.item": "%1$s ha estat impactat per %2$s utilitzant %3$s"
+}
