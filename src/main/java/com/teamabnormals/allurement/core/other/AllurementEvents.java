@@ -33,12 +33,12 @@ import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent.FarmlandTrampleEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import java.util.Map.Entry;
 import java.util.stream.Stream;
 
-@Mod.EventBusSubscriber(modid = Allurement.MOD_ID)
+@EventBusSubscriber(modid = Allurement.MOD_ID)
 public class AllurementEvents {
 
 	@SubscribeEvent
@@ -47,8 +47,8 @@ public class AllurementEvents {
 		Level world = entity.getCommandSenderWorld();
 		int level = EnchantmentHelper.getItemEnchantmentLevel(AllurementEnchantments.SHOCKWAVE.get(), entity.getItemBySlot(EquipmentSlot.FEET));
 
-		MobEffectInstance effectinstance = entity.getEffect(MobEffects.JUMP);
-		float f = effectinstance == null ? 0.0F : (float) (effectinstance.getAmplifier() + 1);
+		MobEffectInstance effectInstance = entity.getEffect(MobEffects.JUMP);
+		float f = effectInstance == null ? 0.0F : (float) (effectInstance.getAmplifier() + 1);
 		int damage = Mth.ceil((event.getDistance() - 3.0F - f) * event.getDamageMultiplier());
 
 		if (level > 0 && damage > 0) {
@@ -96,13 +96,12 @@ public class AllurementEvents {
 		Entity source = event.getSource().getEntity();
 		IDataManager manager = (IDataManager) entity;
 
-		if (source instanceof LivingEntity) {
+		if (source instanceof LivingEntity attacker) {
 			int count = AllurementUtil.getTotalEnchantmentLevel(AllurementEnchantments.VENGEANCE.get(), entity, EquipmentSlot.Type.ARMOR);
 			if (count > 0) {
 				manager.setValue(Allurement.ABSORBED_DAMAGE, event.getAmount() * count * AllurementConfig.COMMON.vengeanceDamageFactor.get().floatValue());
 			}
 
-			LivingEntity attacker = (LivingEntity) source;
 			Entry<EquipmentSlot, ItemStack> entry = EnchantmentHelper.getRandomItemWith(AllurementEnchantments.VENGEANCE.get(), attacker);
 			if (entry != null) {
 				IDataManager attackManager = (IDataManager) attacker;

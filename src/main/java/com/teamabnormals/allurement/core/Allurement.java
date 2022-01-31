@@ -31,11 +31,11 @@ public class Allurement {
 	public Allurement() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		ModLoadingContext context = ModLoadingContext.get();
+		MinecraftForge.EVENT_BUS.register(this);
 
 		REGISTRY_HELPER.register(bus);
 		AllurementEnchantments.ENCHANTMENTS.register(bus);
 		AllurementLootModifiers.LOOT_MODIFIERS.register(bus);
-		MinecraftForge.EVENT_BUS.register(this);
 
 		bus.addListener(this::dataSetup);
 
@@ -47,16 +47,16 @@ public class Allurement {
 	}
 
 	private void dataSetup(GatherDataEvent event) {
-		DataGenerator dataGenerator = event.getGenerator();
-		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+		DataGenerator generator = event.getGenerator();
+		ExistingFileHelper fileHelper = event.getExistingFileHelper();
 
 		if (event.includeServer()) {
-			dataGenerator.addProvider(new EnchantmentTagGenerator(dataGenerator, existingFileHelper));
-			dataGenerator.addProvider(new LootModifierGenerator(dataGenerator));
+			generator.addProvider(new EnchantmentTagGenerator(generator, fileHelper));
+			generator.addProvider(new LootModifierGenerator(generator));
 		}
 
 		if (event.includeClient()) {
-			dataGenerator.addProvider(new LanguageGenerator(dataGenerator));
+			generator.addProvider(new LanguageGenerator(generator));
 		}
 	}
 }

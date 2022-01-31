@@ -1,4 +1,4 @@
-package com.teamabnormals.allurement.core.mixin;
+package com.teamabnormals.allurement.core.mixin.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

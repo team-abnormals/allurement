@@ -18,7 +18,7 @@ public class ExperienceOrbMixin {
 	@Shadow
 	public int value;
 
-	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;take(Lnet/minecraft/world/entity/Entity;I)V", shift = At.Shift.AFTER), method = "playerTouch", cancellable = true)
+	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;take(Lnet/minecraft/world/entity/Entity;I)V", shift = At.Shift.AFTER), method = "playerTouch")
 	private void onCollideWithPlayer(Player player, CallbackInfo ci) {
 		int count = AllurementUtil.getTotalEnchantmentLevel(AllurementEnchantments.ALLEVIATING.get(), player, EquipmentSlot.Type.ARMOR);
 		if (count > 0) {

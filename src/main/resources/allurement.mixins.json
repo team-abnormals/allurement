@@ -22,8 +22,8 @@
     "SlotMixin"
   ],
   "client": [
-    "ArrowRendererMixin",
-    "HorseArmorLayerMixin"
+    "client.ArrowRendererMixin",
+    "client.HorseArmorLayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

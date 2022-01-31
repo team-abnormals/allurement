@@ -9,8 +9,9 @@ import net.minecraftforge.common.data.LanguageProvider;
 import org.apache.commons.lang3.text.WordUtils;
 
 public class LanguageGenerator extends LanguageProvider {
-	public LanguageGenerator(DataGenerator gen) {
-		super(gen, Allurement.MOD_ID, "en_us");
+
+	public LanguageGenerator(DataGenerator generator) {
+		super(generator, Allurement.MOD_ID, "en_us");
 	}
 
 	@Override

@@ -1,13 +1,20 @@
 package com.teamabnormals.allurement.core.registry;
 
-import com.teamabnormals.allurement.common.enchantment.*;
+import com.teamabnormals.allurement.common.enchantment.AlleviatingEnchantment;
+import com.teamabnormals.allurement.common.enchantment.LaunchEnchantment;
+import com.teamabnormals.allurement.common.enchantment.ReelingEnchantment;
+import com.teamabnormals.allurement.common.enchantment.ReformingEnchantment;
+import com.teamabnormals.allurement.common.enchantment.ShockwaveEnchantment;
+import com.teamabnormals.allurement.common.enchantment.VengeanceEnchantment;
 import com.teamabnormals.allurement.core.Allurement;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.*;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = Allurement.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Allurement.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class AllurementEnchantments {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, Allurement.MOD_ID);
 	private static final EquipmentSlot[] ARMOR_SLOTS = new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
