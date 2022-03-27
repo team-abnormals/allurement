@@ -21,20 +21,20 @@ license = "https://github.com/team-abnormals/allurement/blob/main/LICENSE.txt"
 [[dependencies.allurement]]
     modId = "minecraft"
     mandatory = true
-    versionRange = "[1.18.1,)"
+    versionRange = "[1.18.2,1.19)"
     ordering = "NONE"
     side = "BOTH"
 
 [[dependencies.allurement]]
     modId = "forge"
     mandatory = true
-    versionRange = "[39.0.0,)"
+    versionRange = "[40.0.18,)"
     ordering = "NONE"
     side = "BOTH"
 
 [[dependencies.allurement]]
     modId = "blueprint"
     mandatory = true
-    versionRange = "[5.0.0,)"
+    versionRange = "[5.2.3,)"
     ordering = "AFTER"
     side = "BOTH"
