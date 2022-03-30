@@ -1,7 +1,7 @@
 package com.teamabnormals.allurement.core.mixin;
 
 import com.teamabnormals.allurement.core.AllurementConfig;
-import com.teamabnormals.allurement.core.other.AllurementEnchantmentTags;
+import com.teamabnormals.allurement.core.other.tags.AllurementEnchantmentTags;
 import net.minecraft.world.item.HorseArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;

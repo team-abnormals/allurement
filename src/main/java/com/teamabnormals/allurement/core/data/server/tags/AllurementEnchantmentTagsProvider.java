@@ -1,19 +1,19 @@
-package com.teamabnormals.allurement.core.data;
+package com.teamabnormals.allurement.core.data.server.tags;
 
 import com.teamabnormals.allurement.core.Allurement;
-import com.teamabnormals.allurement.core.other.AllurementEnchantmentTags;
+import com.teamabnormals.allurement.core.other.tags.AllurementEnchantmentTags;
 import com.teamabnormals.allurement.core.registry.AllurementEnchantments;
+import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.common.data.ForgeRegistryTagsProvider;
-import net.minecraftforge.registries.ForgeRegistries;
 
-public class EnchantmentTagGenerator extends ForgeRegistryTagsProvider<Enchantment> {
+public class AllurementEnchantmentTagsProvider extends TagsProvider<Enchantment> {
 
-	public EnchantmentTagGenerator(DataGenerator generator, ExistingFileHelper fileHelper) {
-		super(generator, ForgeRegistries.ENCHANTMENTS, Allurement.MOD_ID, fileHelper);
+	public AllurementEnchantmentTagsProvider(DataGenerator generator, ExistingFileHelper fileHelper) {
+		super(generator, Registry.ENCHANTMENT, Allurement.MOD_ID, fileHelper);
 	}
 
 	@Override

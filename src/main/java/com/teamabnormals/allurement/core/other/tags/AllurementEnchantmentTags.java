@@ -1,4 +1,4 @@
-package com.teamabnormals.allurement.core.other;
+package com.teamabnormals.allurement.core.other.tags;
 
 import com.teamabnormals.allurement.core.Allurement;
 import com.teamabnormals.blueprint.core.util.TagUtil;

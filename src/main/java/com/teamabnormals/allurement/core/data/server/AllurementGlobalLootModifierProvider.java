@@ -1,4 +1,4 @@
-package com.teamabnormals.allurement.core.data;
+package com.teamabnormals.allurement.core.data.server;
 
 import com.teamabnormals.allurement.common.loot.HorseArmorLootModifier;
 import com.teamabnormals.allurement.core.Allurement;
@@ -8,9 +8,9 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.data.GlobalLootModifierProvider;
 
 
-public class LootModifierGenerator extends GlobalLootModifierProvider {
+public class AllurementGlobalLootModifierProvider extends GlobalLootModifierProvider {
 
-	public LootModifierGenerator(DataGenerator generator) {
+	public AllurementGlobalLootModifierProvider(DataGenerator generator) {
 		super(generator, Allurement.MOD_ID);
 	}
 
