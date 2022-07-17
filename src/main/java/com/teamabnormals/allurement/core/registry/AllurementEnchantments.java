@@ -1,11 +1,6 @@
 package com.teamabnormals.allurement.core.registry;
 
-import com.teamabnormals.allurement.common.enchantment.AlleviatingEnchantment;
-import com.teamabnormals.allurement.common.enchantment.LaunchEnchantment;
-import com.teamabnormals.allurement.common.enchantment.ReelingEnchantment;
-import com.teamabnormals.allurement.common.enchantment.ReformingEnchantment;
-import com.teamabnormals.allurement.common.enchantment.ShockwaveEnchantment;
-import com.teamabnormals.allurement.common.enchantment.VengeanceEnchantment;
+import com.teamabnormals.allurement.common.enchantment.*;
 import com.teamabnormals.allurement.core.Allurement;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;

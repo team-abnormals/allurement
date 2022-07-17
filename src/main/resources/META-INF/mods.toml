@@ -28,13 +28,13 @@ license = "https://github.com/team-abnormals/allurement/blob/main/LICENSE.txt"
 [[dependencies.allurement]]
     modId = "forge"
     mandatory = true
-    versionRange = "[40.0.18,)"
+    versionRange = "[40.1.0,)"
     ordering = "NONE"
     side = "BOTH"
 
 [[dependencies.allurement]]
     modId = "blueprint"
     mandatory = true
-    versionRange = "[5.3.0,)"
+    versionRange = "[5.4.0,)"
     ordering = "AFTER"
     side = "BOTH"

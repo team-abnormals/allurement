@@ -1,8 +1,8 @@
 package com.teamabnormals.allurement.core;
 
-import com.teamabnormals.allurement.core.data.server.tags.AllurementEnchantmentTagsProvider;
 import com.teamabnormals.allurement.core.data.client.AllurementLanguageProvider;
 import com.teamabnormals.allurement.core.data.server.AllurementGlobalLootModifierProvider;
+import com.teamabnormals.allurement.core.data.server.tags.AllurementEnchantmentTagsProvider;
 import com.teamabnormals.allurement.core.registry.AllurementEnchantments;
 import com.teamabnormals.allurement.core.registry.AllurementLootModifiers;
 import com.teamabnormals.blueprint.common.world.storage.tracking.DataProcessors;
