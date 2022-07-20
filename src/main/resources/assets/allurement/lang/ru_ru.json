@@ -1,0 +1,17 @@
+{
+  "death.attack.allurement.shockwave": "%1$s был раздавлен",
+  "death.attack.allurement.shockwave.player": "%1$s был раздавлен %2$s",
+  "death.attack.allurement.shockwave.player.item": "%1$s был раздавлен %2$s с помощью %3$s",
+  "enchantment.allurement.alleviating": "Восстановление",
+  "enchantment.allurement.alleviating.desc": "Исцеляет вас при сборе опыта",
+  "enchantment.allurement.launch": "Подбрасывание",
+  "enchantment.allurement.launch.desc": "Подбрасывает цель вверх",
+  "enchantment.allurement.reeling": "Притяжение",
+  "enchantment.allurement.reeling.desc": "Притягивает цель к стрелку",
+  "enchantment.allurement.reforming": "Реформирование",
+  "enchantment.allurement.reforming.desc": "Со временем используемый предмет восстанавливает прочность",
+  "enchantment.allurement.shockwave": "Землетрясение",
+  "enchantment.allurement.shockwave.desc": "Создает взрывную волну при падении с большой высоты",
+  "enchantment.allurement.vengeance": "Отмщение",
+  "enchantment.allurement.vengeance.desc": "Сохраняет полученный урон и усиливает им следующую атаку"
+}
