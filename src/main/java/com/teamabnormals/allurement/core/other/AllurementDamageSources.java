@@ -2,7 +2,6 @@ package com.teamabnormals.allurement.core.other;
 
 import com.teamabnormals.allurement.core.Allurement;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -38,7 +37,7 @@ public class AllurementDamageSources {
 		public Component getLocalizedDeathMessage(LivingEntity target) {
 			ItemStack stack = this.attacker instanceof LivingEntity ? ((LivingEntity) this.attacker).getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY;
 			String s = "death.attack." + this.msgId;
-			return !stack.isEmpty() && stack.hasCustomHoverName() ? new TranslatableComponent(s + ".player.item", target.getDisplayName(), this.attacker.getDisplayName(), stack.getDisplayName()) : new TranslatableComponent(s + ".player", target.getDisplayName(), this.attacker.getDisplayName());
+			return !stack.isEmpty() && stack.hasCustomHoverName() ? Component.translatable(s + ".player.item", target.getDisplayName(), this.attacker.getDisplayName(), stack.getDisplayName()) : Component.translatable(s + ".player", target.getDisplayName(), this.attacker.getDisplayName());
 		}
 
 		@Override

@@ -1,33 +1,35 @@
 package com.teamabnormals.allurement.common.loot;
 
-import com.google.gson.JsonObject;
+import com.google.common.base.Suppliers;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.teamabnormals.allurement.core.AllurementConfig;
-import net.minecraft.resources.ResourceLocation;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.HorseArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
+import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
-import java.util.List;
-import java.util.Random;
+import java.util.function.Supplier;
 
 public class HorseArmorLootModifier extends LootModifier {
+	public static final Supplier<Codec<HorseArmorLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, HorseArmorLootModifier::new)));
 
 	public HorseArmorLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 
-	@Nonnull
 	@Override
-	protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
+	protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
 		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && AllurementConfig.COMMON.enchantedHorseArmorGenerates.get()) {
 			if (!AllurementConfig.COMMON.unenchantedHorseArmorLootTables.get().contains(context.getQueriedLootTableId().toString())) {
-				Random random = context.getRandom();
+				RandomSource random = context.getRandom();
 				for (ItemStack stack : generatedLoot) {
 					if (stack.getItem() instanceof HorseArmorItem) {
 						EnchantmentHelper.enchantItem(random, stack, UniformGenerator.between(20.0F, 39.0F).getInt(context), true);
@@ -39,16 +41,8 @@ public class HorseArmorLootModifier extends LootModifier {
 		return generatedLoot;
 	}
 
-	public static class HorseArmorSerializer extends GlobalLootModifierSerializer<HorseArmorLootModifier> {
-
-		@Override
-		public HorseArmorLootModifier read(ResourceLocation location, JsonObject object, LootItemCondition[] conditions) {
-			return new HorseArmorLootModifier(conditions);
-		}
-
-		@Override
-		public JsonObject write(HorseArmorLootModifier instance) {
-			return makeConditions(instance.conditions);
-		}
+	@Override
+	public Codec<? extends IGlobalLootModifier> codec() {
+		return CODEC.get();
 	}
 }

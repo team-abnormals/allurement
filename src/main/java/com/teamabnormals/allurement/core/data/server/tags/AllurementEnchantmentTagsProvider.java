@@ -12,8 +12,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class AllurementEnchantmentTagsProvider extends TagsProvider<Enchantment> {
 
-	public AllurementEnchantmentTagsProvider(DataGenerator generator, ExistingFileHelper fileHelper) {
-		super(generator, Registry.ENCHANTMENT, Allurement.MOD_ID, fileHelper);
+	public AllurementEnchantmentTagsProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+		super(generator, Registry.ENCHANTMENT, Allurement.MOD_ID, existingFileHelper);
 	}
 
 	@Override

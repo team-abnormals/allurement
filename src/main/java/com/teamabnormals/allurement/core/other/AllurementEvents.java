@@ -26,12 +26,12 @@ import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.WebBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.world.BlockEvent.FarmlandTrampleEvent;
+import net.minecraftforge.event.level.BlockEvent.FarmlandTrampleEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -43,7 +43,7 @@ public class AllurementEvents {
 
 	@SubscribeEvent
 	public static void onLivingFall(LivingFallEvent event) {
-		LivingEntity entity = event.getEntityLiving();
+		LivingEntity entity = event.getEntity();
 		Level world = entity.getCommandSenderWorld();
 		int level = EnchantmentHelper.getItemEnchantmentLevel(AllurementEnchantments.SHOCKWAVE.get(), entity.getItemBySlot(EquipmentSlot.FEET));
 
@@ -77,7 +77,7 @@ public class AllurementEvents {
 
 	@SubscribeEvent
 	public static void onPlayerBreak(PlayerEvent.BreakSpeed event) {
-		int baneOfArthropodsLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BANE_OF_ARTHROPODS, event.getEntityLiving().getMainHandItem());
+		int baneOfArthropodsLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BANE_OF_ARTHROPODS, event.getEntity().getMainHandItem());
 		if (AllurementConfig.COMMON.baneOfArthropodsBreaksCobwebsFaster.get() && event.getState().getBlock() instanceof WebBlock && baneOfArthropodsLevel > 0)
 			event.setNewSpeed(event.getOriginalSpeed() + (1.5F * baneOfArthropodsLevel * baneOfArthropodsLevel));
 	}
@@ -92,7 +92,7 @@ public class AllurementEvents {
 
 	@SubscribeEvent
 	public static void onLivingHurt(LivingHurtEvent event) {
-		LivingEntity entity = event.getEntityLiving();
+		LivingEntity entity = event.getEntity();
 		Entity source = event.getSource().getEntity();
 		IDataManager manager = (IDataManager) entity;
 
@@ -122,7 +122,7 @@ public class AllurementEvents {
 			}
 		}
 
-		if (AllurementConfig.COMMON.soulSpeedHurtsMore.get() && event.getEntityLiving() != null) {
+		if (AllurementConfig.COMMON.soulSpeedHurtsMore.get() && event.getEntity() != null) {
 			if (EnchantmentHelper.hasSoulSpeed(entity) && ((LivingEntityAccessor) entity).isSoulSpeedBlock()) {
 				event.setAmount(event.getAmount() * AllurementConfig.COMMON.soulSpeedDamageFactor.get().floatValue());
 			}
@@ -130,8 +130,8 @@ public class AllurementEvents {
 	}
 
 	@SubscribeEvent
-	public static void onLivingUpdate(LivingUpdateEvent event) {
-		LivingEntity entity = event.getEntityLiving();
+	public static void onLivingUpdate(LivingTickEvent event) {
+		LivingEntity entity = event.getEntity();
 		Level world = entity.getCommandSenderWorld();
 
 		for (EquipmentSlot slot : EquipmentSlot.values()) {
@@ -145,7 +145,7 @@ public class AllurementEvents {
 
 	@SubscribeEvent
 	public static void onArrowNock(ArrowNockEvent event) {
-		Player player = event.getPlayer();
+		Player player = event.getEntity();
 		ItemStack bow = event.getBow();
 		if (!AllurementConfig.COMMON.infinityRequiresArrows.get() && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow) > 0 && player.getProjectile(bow).isEmpty()) {
 			player.startUsingItem(event.getHand());

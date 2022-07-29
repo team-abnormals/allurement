@@ -6,6 +6,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.text.WordUtils;
 
 public class AllurementLanguageProvider extends LanguageProvider {
@@ -29,8 +30,9 @@ public class AllurementLanguageProvider extends LanguageProvider {
 	}
 
 	private void addDesc(Enchantment enchantment, String description) {
-		if (enchantment.getRegistryName() != null) {
-			this.add(enchantment, format(enchantment.getRegistryName()));
+		ResourceLocation name = ForgeRegistries.ENCHANTMENTS.getKey(enchantment);
+		if (name != null) {
+			this.add(enchantment, format(name));
 			this.add(enchantment.getDescriptionId() + ".desc", description);
 		}
 	}
