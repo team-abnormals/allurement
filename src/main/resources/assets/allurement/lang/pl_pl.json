@@ -1,23 +1,17 @@
 {
-    "enchantment.allurement.alleviating": "Łagodzenie",
-    "enchantment.allurement.alleviating.desc": "Leczy gracza, podczas gdy ten zbiera punkty doświadczenia",
-    
-    "enchantment.allurement.missile": "Pocisk",
-    "enchantment.allurement.missile.desc": "Wyrzuca cel w górę, zamiast w dal",
-
-    "enchantment.allurement.shockwave": "Fala uderzeniowa",
-    "enchantment.allurement.shockwave.desc": "Tworzy falę uderzeniową, gdy gracz otrzymuje obrażenia od upadku, która rani pobliskich przeciwników",
-
-    "enchantment.allurement.reeling": "Nawijanie",
-    "enchantment.allurement.reeling.desc": "Przyciąga cel trafiony strzałą bliżej gracza",
-
-    "enchantment.allurement.reforming": "Reformowanie",
-    "enchantment.allurement.reforming.desc": "Z czasem naprawia dany przedmiot, podczas gdy ten jest w użytku",
-
-    "enchantment.allurement.vengeance": "Zemsta",
-    "enchantment.allurement.vengeance.desc": "Przechowuje część otrzymanych obrażeń i stosuje je w następnym ataku",
-
     "death.attack.allurement.shockwave": "Gracz %1$s został zdeptany",
     "death.attack.allurement.shockwave.player": "Gracz %1$s został zdeptany przez %2$s",
-    "death.attack.allurement.shockwave.player.item": "Gracz %1$s został zdeptany przez %2$s za pomocą: %3$s"
+    "death.attack.allurement.shockwave.player.item": "Gracz %1$s został zdeptany przez %2$s za pomocą: %3$s",
+    "enchantment.allurement.alleviating": "Łagodzenie",
+    "enchantment.allurement.alleviating.desc": "Leczy gracza, podczas gdy ten zbiera punkty doświadczenia",
+    "enchantment.allurement.launch": "Wyrzut",
+    "enchantment.allurement.launch.desc": "Wyrzuca cel w górę, zamiast w dal",
+    "enchantment.allurement.reeling": "Nawijanie",
+    "enchantment.allurement.reeling.desc": "Przyciąga cel trafiony strzałą bliżej gracza",
+    "enchantment.allurement.reforming": "Reformowanie",
+    "enchantment.allurement.reforming.desc": "Z czasem naprawia dany przedmiot, podczas gdy ten jest w użytku",
+    "enchantment.allurement.shockwave": "Fala uderzeniowa",
+    "enchantment.allurement.shockwave.desc": "Tworzy falę uderzeniową, gdy gracz otrzymuje obrażenia od upadku, która rani pobliskich przeciwników",
+    "enchantment.allurement.vengeance": "Zemsta",
+    "enchantment.allurement.vengeance.desc": "Przechowuje część otrzymanych obrażeń i stosuje je w następnym ataku"
 }
