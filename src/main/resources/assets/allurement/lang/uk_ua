@@ -1,0 +1,17 @@
+{
+  "death.attack.allurement.shockwave": "%1$s був затоптаний",
+  "death.attack.allurement.shockwave.player": "%1$s був затоптаний %2$s",
+  "death.attack.allurement.shockwave.player.item": "%1$s був затоптаний %2$s використовуючи %3$s",
+  "enchantment.allurement.alleviating": "Полегшення",
+  "enchantment.allurement.alleviating.desc": "Лікує гравця після накопичення досвіду",
+  "enchantment.allurement.launch": "Запуск",
+  "enchantment.allurement.launch.desc": "Запускає ціль угору, а не вбік",
+  "enchantment.allurement.reeling": "Намотування",
+  "enchantment.allurement.reeling.desc": "Підтягує цілі до користувача після удару стріли",
+  "enchantment.allurement.reforming": "Реформування",
+  "enchantment.allurement.reforming.desc": "Дуже повільно відновлює довговічність елементів під час використання",
+  "enchantment.allurement.shockwave": "Ударна хвиля",
+  "enchantment.allurement.shockwave.desc": "Створює ударну хвилю під час падіння, що завдає шкоди сусіднім об’єктам",
+  "enchantment.allurement.vengeance": "Помста",
+  "enchantment.allurement.vengeance.desc": "Зберігає деякий вхідний урон та застосовує її до наступної атаки"
+}
