@@ -1,0 +1,17 @@
+{
+  "death.attack.allurement.shockwave": "%1$s был растоптан",
+  "death.attack.allurement.shockwave.player": "%1$s был растоптан %2$s",
+  "death.attack.allurement.shockwave.player.item": "%1$s был растоптан %2$s используя %3$s",
+  "enchantment.allurement.alleviating": "Облегчение",
+  "enchantment.allurement.alleviating.desc": "Исцеляет игрока при подборе опыта",
+  "enchantment.allurement.launch": "Запуск",
+  "enchantment.allurement.launch.desc": "Отбрасывает цель вверх, а не в сторону",
+  "enchantment.allurement.reeling": "Наматывание",
+  "enchantment.allurement.reeling.desc": "Притягивает цель к себе при попадании стрелы",
+  "enchantment.allurement.reforming": "Преобразование",
+  "enchantment.allurement.reforming.desc": "Очень медленно восстанавливает прочность предмета с течением времени при использовании",
+  "enchantment.allurement.shockwave": "Ударная волна",
+  "enchantment.allurement.shockwave.desc": "При получении урона от падения создает ударную волну, которая наносит урон ближайшим существам",
+  "enchantment.allurement.vengeance": "Мщение",
+  "enchantment.allurement.vengeance.desc": "Сохраняет входящий урон и применяет его к вашей следующей атаке"
+}
