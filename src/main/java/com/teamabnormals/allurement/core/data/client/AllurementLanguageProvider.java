@@ -22,6 +22,7 @@ public class AllurementLanguageProvider extends LanguageProvider {
 		this.addDesc(AllurementEnchantments.REFORMING.get(), "Repairs the durability of items very slowly over time when in use");
 		this.addDesc(AllurementEnchantments.SHOCKWAVE.get(), "Creates a shockwave when taking fall damage that damages nearby entities");
 		this.addDesc(AllurementEnchantments.VENGEANCE.get(), "Stores some incoming damage and applies it to the user's next attack");
+		this.addDesc(AllurementEnchantments.SPREAD_OF_AILMENTS.get(), "Applies the user's active effects to their arrows");
 
 		this.addCurse(AllurementEnchantments.ASCENSION_CURSE.get(), "Causes the cursed item to float upwards when dropped");
 		this.addCurse(AllurementEnchantments.FLEETING_CURSE.get(), "Causes nearby entities to repel the cursed item when dropped");

@@ -51,6 +51,8 @@ public class AllurementConfig {
 		public final BooleanValue enableVengeance;
 		public final DoubleValue vengeanceDamageFactor;
 
+		public final BooleanValue enableSpreadOfAilments;
+
 		public final BooleanValue enableAscensionCurse;
 		public final BooleanValue enableFleetingCurse;
 

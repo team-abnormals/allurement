@@ -19,6 +19,7 @@ public class AllurementEnchantments {
 	public static final RegistryObject<Enchantment> REELING = ENCHANTMENTS.register("reeling", () -> new ReelingEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND));
 	public static final RegistryObject<Enchantment> REFORMING = ENCHANTMENTS.register("reforming", () -> new ReformingEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.values()));
 	public static final RegistryObject<Enchantment> SHOCKWAVE = ENCHANTMENTS.register("shockwave", () -> new ShockwaveEnchantment(Enchantment.Rarity.UNCOMMON, ARMOR_SLOTS));
+	public static final RegistryObject<Enchantment> SPREAD_OF_AILMENTS = ENCHANTMENTS.register("spread_of_ailments", () -> new SpreadOfAilmentsEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND));
 	public static final RegistryObject<Enchantment> VENGEANCE = ENCHANTMENTS.register("vengeance", () -> new VengeanceEnchantment(Enchantment.Rarity.VERY_RARE, ARMOR_SLOTS));
 
 	public static final RegistryObject<Enchantment> ASCENSION_CURSE = ENCHANTMENTS.register("ascension_curse", () -> new AscensionCurseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.values()));

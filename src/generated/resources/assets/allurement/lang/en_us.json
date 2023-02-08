@@ -16,6 +16,8 @@
   "enchantment.allurement.reforming.desc": "Repairs the durability of items very slowly over time when in use",
   "enchantment.allurement.shockwave": "Shockwave",
   "enchantment.allurement.shockwave.desc": "Creates a shockwave when taking fall damage that damages nearby entities",
+  "enchantment.allurement.spread_of_ailments": "Spread of Ailments",
+  "enchantment.allurement.spread_of_ailments.desc": "Applies the user's active effects to their arrows",
   "enchantment.allurement.vengeance": "Vengeance",
   "enchantment.allurement.vengeance.desc": "Stores some incoming damage and applies it to the user's next attack"
 }
