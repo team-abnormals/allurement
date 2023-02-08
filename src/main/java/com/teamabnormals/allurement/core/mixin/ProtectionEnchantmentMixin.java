@@ -22,13 +22,6 @@ public abstract class ProtectionEnchantmentMixin extends Enchantment {
 	}
 
 	@Override
-	public boolean isTreasureOnly() {
-		if (this.type == Type.ALL && AllurementConfig.COMMON.disableProtection.get())
-			return true;
-		return super.isTreasureOnly();
-	}
-
-	@Override
 	public boolean isTradeable() {
 		if (this.type == Type.ALL && AllurementConfig.COMMON.disableProtection.get())
 			return false;

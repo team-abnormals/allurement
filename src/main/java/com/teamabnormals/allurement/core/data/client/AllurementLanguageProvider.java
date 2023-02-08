@@ -3,7 +3,6 @@ package com.teamabnormals.allurement.core.data.client;
 import com.teamabnormals.allurement.core.Allurement;
 import com.teamabnormals.allurement.core.registry.AllurementEnchantments;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -17,12 +16,12 @@ public class AllurementLanguageProvider extends LanguageProvider {
 
 	@Override
 	protected void addTranslations() {
-		this.addDesc(AllurementEnchantments.ALLEVIATING.get(), "Heals the player upon collection of experience");
+		this.addDesc(AllurementEnchantments.ALLEVIATING.get(), "Heals the user upon collection of experience");
 		this.addDesc(AllurementEnchantments.LAUNCH.get(), "Launches the target upwards instead of away");
 		this.addDesc(AllurementEnchantments.REELING.get(), "Pulls targets towards the user upon arrow impact");
-		this.addDesc(AllurementEnchantments.REFORMING.get(), "Repairs the durability items very slowly over time when in use");
+		this.addDesc(AllurementEnchantments.REFORMING.get(), "Repairs the durability of items very slowly over time when in use");
 		this.addDesc(AllurementEnchantments.SHOCKWAVE.get(), "Creates a shockwave when taking fall damage that damages nearby entities");
-		this.addDesc(AllurementEnchantments.VENGEANCE.get(), "Stores some incoming damage and applies it to your next attack");
+		this.addDesc(AllurementEnchantments.VENGEANCE.get(), "Stores some incoming damage and applies it to the user's next attack");
 
 		this.addCurse(AllurementEnchantments.ASCENSION_CURSE.get(), "Causes the cursed item to float upwards when dropped");
 		this.addCurse(AllurementEnchantments.FLEETING_CURSE.get(), "Causes nearby entities to repel the cursed item when dropped");

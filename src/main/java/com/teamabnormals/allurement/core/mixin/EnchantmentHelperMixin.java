@@ -20,7 +20,7 @@ public class EnchantmentHelperMixin {
 		if (AllurementConfig.COMMON.enchantableHorseArmor.get() && entityIn instanceof Horse) {
 			ItemStack stack = ((Horse) entityIn).getArmor();
 			if (stack.getItem() instanceof HorseArmorItem) {
-				cir.setReturnValue(EnchantmentHelper.getItemEnchantmentLevel(enchantmentIn, stack));
+				cir.setReturnValue(EnchantmentHelper.getTagEnchantmentLevel(enchantmentIn, stack));
 			}
 		}
 	}

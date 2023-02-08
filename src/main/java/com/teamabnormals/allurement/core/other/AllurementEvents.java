@@ -15,7 +15,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -45,7 +44,7 @@ public class AllurementEvents {
 	public static void onLivingFall(LivingFallEvent event) {
 		LivingEntity entity = event.getEntity();
 		Level world = entity.getCommandSenderWorld();
-		int level = EnchantmentHelper.getItemEnchantmentLevel(AllurementEnchantments.SHOCKWAVE.get(), entity.getItemBySlot(EquipmentSlot.FEET));
+		int level = EnchantmentHelper.getTagEnchantmentLevel(AllurementEnchantments.SHOCKWAVE.get(), entity.getItemBySlot(EquipmentSlot.FEET));
 
 		MobEffectInstance effectInstance = entity.getEffect(MobEffects.JUMP);
 		float f = effectInstance == null ? 0.0F : (float) (effectInstance.getAmplifier() + 1);
@@ -77,7 +76,7 @@ public class AllurementEvents {
 
 	@SubscribeEvent
 	public static void onPlayerBreak(PlayerEvent.BreakSpeed event) {
-		int baneOfArthropodsLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BANE_OF_ARTHROPODS, event.getEntity().getMainHandItem());
+		int baneOfArthropodsLevel = EnchantmentHelper.getTagEnchantmentLevel(Enchantments.BANE_OF_ARTHROPODS, event.getEntity().getMainHandItem());
 		if (AllurementConfig.COMMON.baneOfArthropodsBreaksCobwebsFaster.get() && event.getState().getBlock() instanceof WebBlock && baneOfArthropodsLevel > 0)
 			event.setNewSpeed(event.getOriginalSpeed() + (1.5F * baneOfArthropodsLevel * baneOfArthropodsLevel));
 	}
@@ -85,7 +84,7 @@ public class AllurementEvents {
 	@SubscribeEvent
 	public static void onFarmlandTrample(FarmlandTrampleEvent event) {
 		if (event.getEntity() instanceof LivingEntity && AllurementConfig.COMMON.featherFallingPreventsTrampling.get()) {
-			if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FALL_PROTECTION, ((LivingEntity) event.getEntity()).getItemBySlot(EquipmentSlot.FEET)) > 0)
+			if (EnchantmentHelper.getTagEnchantmentLevel(Enchantments.FALL_PROTECTION, ((LivingEntity) event.getEntity()).getItemBySlot(EquipmentSlot.FEET)) > 0)
 				event.setCanceled(true);
 		}
 	}
@@ -113,13 +112,6 @@ public class AllurementEvents {
 					entry.getValue().hurtAndBreak(2, attacker, (livingEntity) -> livingEntity.broadcastBreakEvent(entry.getKey()));
 				}
 			}
-
-			ItemStack weapon = attacker.getItemBySlot(EquipmentSlot.MAINHAND);
-			int missileLevel = EnchantmentHelper.getItemEnchantmentLevel(AllurementEnchantments.LAUNCH.get(), weapon);
-			if (missileLevel > 0) {
-				entity.setOnGround(false);
-				entity.push(0, AllurementConfig.COMMON.launchVerticalFactor.get() * (missileLevel + 1) * (1.0D - entity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE)), 0);
-			}
 		}
 
 		if (AllurementConfig.COMMON.soulSpeedHurtsMore.get() && event.getEntity() != null) {
@@ -136,7 +128,7 @@ public class AllurementEvents {
 
 		for (EquipmentSlot slot : EquipmentSlot.values()) {
 			ItemStack stack = entity.getItemBySlot(slot);
-			int level = EnchantmentHelper.getItemEnchantmentLevel(AllurementEnchantments.REFORMING.get(), stack);
+			int level = EnchantmentHelper.getTagEnchantmentLevel(AllurementEnchantments.REFORMING.get(), stack);
 			if (!stack.isEmpty() && stack.isDamaged() && level > 0 && world.getGameTime() % AllurementConfig.COMMON.reformingTickRate.get() == 0) {
 				stack.setDamageValue(stack.getDamageValue() - 1);
 			}
@@ -147,7 +139,7 @@ public class AllurementEvents {
 	public static void onArrowNock(ArrowNockEvent event) {
 		Player player = event.getEntity();
 		ItemStack bow = event.getBow();
-		if (!AllurementConfig.COMMON.infinityRequiresArrows.get() && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow) > 0 && player.getProjectile(bow).isEmpty()) {
+		if (!AllurementConfig.COMMON.infinityRequiresArrows.get() && EnchantmentHelper.getTagEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow) > 0 && player.getProjectile(bow).isEmpty()) {
 			player.startUsingItem(event.getHand());
 			event.setAction(InteractionResultHolder.consume(bow));
 		}

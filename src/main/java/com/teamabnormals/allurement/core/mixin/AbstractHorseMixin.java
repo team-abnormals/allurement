@@ -25,10 +25,10 @@ public abstract class AbstractHorseMixin extends Animal {
 		super(type, worldIn);
 	}
 
-	@Inject(method = "causeFallDamage", at = @At("RETURN"), cancellable = true)
+	@Inject(method = "causeFallDamage", at = @At("RETURN"))
 	private void causeFallDamage(float distance, float damageMultiplier, DamageSource source, CallbackInfoReturnable<Boolean> cir) {
 		if (cir.getReturnValue()) {
-			int level = EnchantmentHelper.getItemEnchantmentLevel(AllurementEnchantments.SHOCKWAVE.get(), this.getItemBySlot(EquipmentSlot.CHEST));
+			int level = EnchantmentHelper.getTagEnchantmentLevel(AllurementEnchantments.SHOCKWAVE.get(), this.getItemBySlot(EquipmentSlot.CHEST));
 			int damage = Mth.ceil((distance * 0.5F - 3.0F) * damageMultiplier);
 
 			if (level > 0 && damage > 0) {

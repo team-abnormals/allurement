@@ -6,6 +6,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class ReelingEnchantment extends Enchantment {
+
 	public ReelingEnchantment(Enchantment.Rarity rarityIn, EquipmentSlot... slots) {
 		super(rarityIn, EnchantmentCategory.CROSSBOW, slots);
 	}

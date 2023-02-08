@@ -1,7 +1,10 @@
 package com.teamabnormals.allurement.common.enchantment;
 
 import com.teamabnormals.allurement.core.AllurementConfig;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.KnockbackEnchantment;
@@ -39,5 +42,13 @@ public class LaunchEnchantment extends Enchantment {
 	@Override
 	public boolean isDiscoverable() {
 		return AllurementConfig.COMMON.enableReeling.get();
+	}
+
+	@Override
+	public void doPostAttack(LivingEntity attacker, Entity entity, int level) {
+		if (level > 0 && entity instanceof LivingEntity target) {
+			target.setOnGround(false);
+			target.push(0, AllurementConfig.COMMON.launchVerticalFactor.get() * level * (1.0D - target.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE)), 0);
+		}
 	}
 }

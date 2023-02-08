@@ -58,8 +58,8 @@ public class AllurementConfig {
 		public final IntValue experiencePerLevel;
 
 		Common(ForgeConfigSpec.Builder builder) {
-			builder.push("enchantments");
 
+			builder.push("enchantments");
 			builder.push("alleviating");
 			enableAlleviating = builder.comment("Armor enchantment that heals the user when collecting experience").define("Enable Alleviating", true);
 			alleviatingHealingFactor = builder.comment("How much the experience value is multiplied by into health").defineInRange("Healing factor", 0.25D, 0, Double.MAX_VALUE);
@@ -137,7 +137,6 @@ public class AllurementConfig {
 			removeLevelScaling = builder.comment("Remove the amount of experience per level increasing (experimental)").define("Remove level scaling", false);
 			experiencePerLevel = builder.comment("The amount of experience per level, if level scaling is removed (experimental)").defineInRange("Experience per level", 50, 0, Integer.MAX_VALUE);
 			builder.pop();
-
 			builder.pop();
 		}
 	}
