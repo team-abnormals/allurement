@@ -52,6 +52,7 @@ public class AllurementConfig {
 		public final DoubleValue vengeanceDamageFactor;
 
 		public final BooleanValue enableAscensionCurse;
+		public final BooleanValue enableFleetingCurse;
 
 		public final BooleanValue removeLevelScaling;
 		public final IntValue experiencePerLevel;
@@ -95,6 +96,9 @@ public class AllurementConfig {
 			enableAscensionCurse = builder.comment("Curse that causes the cursed item to float upwards when dropped").define("Enable Curse of Ascension", true);
 			builder.pop();
 
+			builder.push("fleeting_curse");
+			enableFleetingCurse = builder.comment("Curse that causes nearby entities to repel the cursed item").define("Enable Curse of Fleeting", true);
+			builder.pop();
 			builder.pop();
 
 			builder.push("tweaks");

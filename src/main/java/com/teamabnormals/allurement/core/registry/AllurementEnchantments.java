@@ -22,4 +22,5 @@ public class AllurementEnchantments {
 	public static final RegistryObject<Enchantment> VENGEANCE = ENCHANTMENTS.register("vengeance", () -> new VengeanceEnchantment(Enchantment.Rarity.VERY_RARE, ARMOR_SLOTS));
 
 	public static final RegistryObject<Enchantment> ASCENSION_CURSE = ENCHANTMENTS.register("ascension_curse", () -> new AscensionCurseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.values()));
+	public static final RegistryObject<Enchantment> FLEETING_CURSE = ENCHANTMENTS.register("fleeting_curse", () -> new FleetingCurseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.values()));
 }

@@ -18,5 +18,8 @@ public abstract class ItemEntityMixin {
 		if (EnchantmentHelper.getTagEnchantmentLevel(AllurementEnchantments.ASCENSION_CURSE.get(), item.getItem()) > 0) {
 			AllurementUtil.ascendItem(item);
 		}
+		if (EnchantmentHelper.getTagEnchantmentLevel(AllurementEnchantments.FLEETING_CURSE.get(), item.getItem()) > 0) {
+			AllurementUtil.repelItem(item);
+		}
 	}
 }

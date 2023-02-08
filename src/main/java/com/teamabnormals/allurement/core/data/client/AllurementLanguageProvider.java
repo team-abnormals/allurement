@@ -25,6 +25,7 @@ public class AllurementLanguageProvider extends LanguageProvider {
 		this.addDesc(AllurementEnchantments.VENGEANCE.get(), "Stores some incoming damage and applies it to your next attack");
 
 		this.addCurse(AllurementEnchantments.ASCENSION_CURSE.get(), "Causes the cursed item to float upwards when dropped");
+		this.addCurse(AllurementEnchantments.FLEETING_CURSE.get(), "Causes nearby entities to repel the cursed item when dropped");
 
 		this.addDamageSource("shockwave", "%1$s was stomped");
 		this.addDamageSource("shockwave.player", "%1$s was stomped by %2$s");
