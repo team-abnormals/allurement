@@ -2,6 +2,8 @@ package com.teamabnormals.allurement.common.enchantment;
 
 import com.teamabnormals.allurement.core.AllurementConfig;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.ProtectionEnchantment;
@@ -40,5 +42,13 @@ public class ShockwaveEnchantment extends Enchantment {
 	@Override
 	public boolean isDiscoverable() {
 		return AllurementConfig.COMMON.enableShockwave.get();
+	}
+
+	@Override
+	public boolean allowedInCreativeTab(Item book, CreativeModeTab tab) {
+		if (!AllurementConfig.COMMON.enableShockwave.get()) {
+			return false;
+		}
+		return super.allowedInCreativeTab(book, tab);
 	}
 }

@@ -125,7 +125,6 @@ public class AllurementEvents {
 	public static void onLivingUpdate(LivingTickEvent event) {
 		LivingEntity entity = event.getEntity();
 		Level world = entity.getCommandSenderWorld();
-
 		for (EquipmentSlot slot : EquipmentSlot.values()) {
 			ItemStack stack = entity.getItemBySlot(slot);
 			int level = EnchantmentHelper.getTagEnchantmentLevel(AllurementEnchantments.REFORMING.get(), stack);

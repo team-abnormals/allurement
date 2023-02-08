@@ -93,6 +93,11 @@ public class AllurementConfig {
 			vengeanceDamageFactor = builder.comment("How much the damage taken with vengeance is multiplied for attacks").defineInRange("Damage factor", 0.025D, 0, Double.MAX_VALUE);
 			builder.pop();
 
+			builder.push("spread_of_ailments");
+			enableSpreadOfAilments = builder.comment("Crossbow enchantment that applies the user's active effects to their arrows").define("Enable Spread of Ailments", true);
+			builder.pop();
+			builder.pop();
+
 			builder.push("curses");
 			builder.push("ascension_curse");
 			enableAscensionCurse = builder.comment("Curse that causes the cursed item to float upwards when dropped").define("Enable Curse of Ascension", true);

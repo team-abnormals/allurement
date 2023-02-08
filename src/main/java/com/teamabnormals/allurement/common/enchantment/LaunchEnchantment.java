@@ -5,6 +5,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.KnockbackEnchantment;
@@ -50,5 +52,13 @@ public class LaunchEnchantment extends Enchantment {
 			target.setOnGround(false);
 			target.push(0, AllurementConfig.COMMON.launchVerticalFactor.get() * level * (1.0D - target.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE)), 0);
 		}
+	}
+
+	@Override
+	public boolean allowedInCreativeTab(Item book, CreativeModeTab tab) {
+		if (!AllurementConfig.COMMON.enableLaunch.get()) {
+			return false;
+		}
+		return super.allowedInCreativeTab(book, tab);
 	}
 }
