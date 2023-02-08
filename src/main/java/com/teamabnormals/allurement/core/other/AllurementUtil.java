@@ -5,10 +5,12 @@ import com.teamabnormals.allurement.core.Allurement;
 import net.minecraft.Util;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import vazkii.quark.content.tools.module.ColorRunesModule;
 
 import java.util.Map;
@@ -33,6 +35,11 @@ public class AllurementUtil {
 			}
 		}
 		return count;
+	}
+
+	public static void ascendItem(ItemEntity entity) {
+		Vec3 motion = entity.getDeltaMovement();
+		entity.setDeltaMovement(motion.x, (0.25D - motion.y) * 0.3D, motion.z);
 	}
 
 	public static void setColorRuneTarget(ItemStack stack) {

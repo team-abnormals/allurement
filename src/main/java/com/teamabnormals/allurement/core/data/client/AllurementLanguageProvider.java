@@ -24,24 +24,30 @@ public class AllurementLanguageProvider extends LanguageProvider {
 		this.addDesc(AllurementEnchantments.SHOCKWAVE.get(), "Creates a shockwave when taking fall damage that damages nearby entities");
 		this.addDesc(AllurementEnchantments.VENGEANCE.get(), "Stores some incoming damage and applies it to your next attack");
 
+		this.addCurse(AllurementEnchantments.ASCENSION_CURSE.get(), "Causes the cursed item to float upwards when dropped");
+
 		this.addDamageSource("shockwave", "%1$s was stomped");
 		this.addDamageSource("shockwave.player", "%1$s was stomped by %2$s");
 		this.addDamageSource("shockwave.player.item", "%1$s was stomped by %2$s using %3$s");
 	}
 
 	private void addDesc(Enchantment enchantment, String description) {
-		ResourceLocation name = ForgeRegistries.ENCHANTMENTS.getKey(enchantment);
-		if (name != null) {
-			this.add(enchantment, format(name));
-			this.add(enchantment.getDescriptionId() + ".desc", description);
-		}
+		String name = ForgeRegistries.ENCHANTMENTS.getKey(enchantment).getPath();
+		this.add(enchantment, format(name));
+		this.add(enchantment.getDescriptionId() + ".desc", description);
+	}
+
+	private void addCurse(Enchantment enchantment, String description) {
+		String name = ForgeRegistries.ENCHANTMENTS.getKey(enchantment).getPath();
+		this.add(enchantment, "Curse of " + format(name.replace("_curse", "")));
+		this.add(enchantment.getDescriptionId() + ".desc", description);
 	}
 
 	private void addDamageSource(String suffix, String value) {
 		this.add("death.attack." + Allurement.MOD_ID + "." + suffix, value);
 	}
 
-	private String format(ResourceLocation registryName) {
-		return WordUtils.capitalizeFully(registryName.getPath().replace("_", " "));
+	private String format(String path) {
+		return WordUtils.capitalizeFully(path.replace("_", " ")).replace("Of ", "of ");
 	}
 }

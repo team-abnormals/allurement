@@ -51,6 +51,8 @@ public class AllurementConfig {
 		public final BooleanValue enableVengeance;
 		public final DoubleValue vengeanceDamageFactor;
 
+		public final BooleanValue enableAscensionCurse;
+
 		public final BooleanValue removeLevelScaling;
 		public final IntValue experiencePerLevel;
 
@@ -88,9 +90,14 @@ public class AllurementConfig {
 			vengeanceDamageFactor = builder.comment("How much the damage taken with vengeance is multiplied for attacks").defineInRange("Damage factor", 0.025D, 0, Double.MAX_VALUE);
 			builder.pop();
 
+			builder.push("curses");
+			builder.push("ascension_curse");
+			enableAscensionCurse = builder.comment("Curse that causes the cursed item to float upwards when dropped").define("Enable Curse of Ascension", true);
 			builder.pop();
-			builder.push("tweaks");
 
+			builder.pop();
+
+			builder.push("tweaks");
 			builder.push("horse_armor");
 			enchantableHorseArmor = builder.comment("Allow horse armor to be enchanted").define("Enchantable horse armor", true);
 			enchantedHorseArmorGenerates = builder.comment("If horse armor can appear enchanted when found in loot tables").define("Generates in loot tables", true);

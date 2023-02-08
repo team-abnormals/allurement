@@ -4,6 +4,8 @@
   "death.attack.allurement.shockwave.player.item": "%1$s was stomped by %2$s using %3$s",
   "enchantment.allurement.alleviating": "Alleviating",
   "enchantment.allurement.alleviating.desc": "Heals the player upon collection of experience",
+  "enchantment.allurement.ascension_curse": "Curse of Ascension",
+  "enchantment.allurement.ascension_curse.desc": "Causes the cursed item to float upwards when dropped",
   "enchantment.allurement.launch": "Launch",
   "enchantment.allurement.launch.desc": "Launches the target upwards instead of away",
   "enchantment.allurement.reeling": "Reeling",
