@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.teamabnormals.allurement.core.Allurement;
 import com.teamabnormals.allurement.core.AllurementConfig;
+import com.teamabnormals.allurement.core.other.AllurementTrackedData;
 import com.teamabnormals.blueprint.common.world.storage.tracking.IDataManager;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -29,7 +30,7 @@ public abstract class ArrowRendererMixin<T extends AbstractArrow> extends Entity
 	@ModifyVariable(method = "render(Lnet/minecraft/world/entity/projectile/AbstractArrow;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/client/renderer/MultiBufferSource;getBuffer(Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/VertexConsumer;", shift = At.Shift.AFTER))
 	private VertexConsumer render(VertexConsumer builderIn, T entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn) {
 		IDataManager manager = ((IDataManager) entityIn);
-		if (manager.getValue(Allurement.INFINITY_ARROW)) {
+		if (manager.getValue(AllurementTrackedData.INFINITY_ARROW)) {
 			RenderType renderType = RenderType.entityCutout(AllurementConfig.CLIENT.infinityArrowTexture.get() ? INFINITY_ARROW_TEXTURE : ARROW_TEXTURE);
 			if (AllurementConfig.CLIENT.infinityArrowGlint.get()) {
 				return ItemRenderer.getFoilBufferDirect(bufferIn, renderType, false, true);

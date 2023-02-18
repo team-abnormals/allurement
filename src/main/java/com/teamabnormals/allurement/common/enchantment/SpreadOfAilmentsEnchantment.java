@@ -14,7 +14,12 @@ public class SpreadOfAilmentsEnchantment extends Enchantment {
 	}
 
 	@Override
-	public int getMaxCost(int level) {
+	public int getMinCost(int level) {
+		return 12 + (level - 1) * 20;
+	}
+
+	@Override
+	public int getMaxCost(int p_45173_) {
 		return 50;
 	}
 

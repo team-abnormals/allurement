@@ -1,6 +1,7 @@
 package com.teamabnormals.allurement.core.mixin;
 
 import com.teamabnormals.allurement.core.Allurement;
+import com.teamabnormals.allurement.core.other.AllurementTrackedData;
 import com.teamabnormals.blueprint.common.world.storage.tracking.IDataManager;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -22,6 +23,6 @@ public class BowItemMixin {
 	private void releaseUsing(ItemStack stack, Level worldIn, LivingEntity entityLiving, int timeLeft, CallbackInfo ci, Player player, boolean creativeOrInfEnch, ItemStack ammo, int pullTime, float velocity, boolean creativeOrInfinite, ArrowItem arrow, AbstractArrow arrowEntity) {
 		IDataManager manager = (IDataManager) arrowEntity;
 		boolean infinite = arrow.isInfinite(ammo, stack, player);
-		manager.setValue(Allurement.INFINITY_ARROW, infinite);
+		manager.setValue(AllurementTrackedData.INFINITY_ARROW, infinite);
 	}
 }

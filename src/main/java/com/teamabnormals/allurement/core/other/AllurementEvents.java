@@ -98,17 +98,17 @@ public class AllurementEvents {
 		if (source instanceof LivingEntity attacker) {
 			int count = AllurementUtil.getTotalEnchantmentLevel(AllurementEnchantments.VENGEANCE.get(), entity, EquipmentSlot.Type.ARMOR);
 			if (count > 0) {
-				manager.setValue(Allurement.ABSORBED_DAMAGE, event.getAmount() * count * AllurementConfig.COMMON.vengeanceDamageFactor.get().floatValue());
+				manager.setValue(AllurementTrackedData.ABSORBED_DAMAGE, event.getAmount() * count * AllurementConfig.COMMON.vengeanceDamageFactor.get().floatValue());
 			}
 
 			Entry<EquipmentSlot, ItemStack> entry = EnchantmentHelper.getRandomItemWith(AllurementEnchantments.VENGEANCE.get(), attacker);
 			if (entry != null) {
 				IDataManager attackManager = (IDataManager) attacker;
-				float absorbedDamage = attackManager.getValue(Allurement.ABSORBED_DAMAGE);
+				float absorbedDamage = attackManager.getValue(AllurementTrackedData.ABSORBED_DAMAGE);
 
 				if (absorbedDamage > 0.0F) {
 					event.setAmount(event.getAmount() + absorbedDamage);
-					attackManager.setValue(Allurement.ABSORBED_DAMAGE, 0.0F);
+					attackManager.setValue(AllurementTrackedData.ABSORBED_DAMAGE, 0.0F);
 					entry.getValue().hurtAndBreak(2, attacker, (livingEntity) -> livingEntity.broadcastBreakEvent(entry.getKey()));
 				}
 			}

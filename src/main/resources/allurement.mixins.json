@@ -7,6 +7,7 @@
   "mixins": [
     "AbstractArrowMixin",
     "AbstractHorseMixin",
+    "ArrowMixin",
     "BowItemMixin",
     "CrossbowItemMixin",
     "EnchantmentCategoryMixin",
@@ -14,8 +15,8 @@
     "EnchantmentMixin",
     "EntityMixin",
     "ExperienceOrbMixin",
-    "ItemMixin",
     "ItemEntityMixin",
+    "ItemMixin",
     "LivingEntityAccessor",
     "LivingEntityMixin",
     "PlayerMixin",

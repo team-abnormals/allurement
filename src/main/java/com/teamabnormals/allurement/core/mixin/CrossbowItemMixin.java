@@ -1,22 +1,23 @@
 package com.teamabnormals.allurement.core.mixin;
 
+import com.teamabnormals.allurement.core.other.AllurementTrackedData;
+import com.teamabnormals.allurement.core.other.tags.AllurementMobEffectTags;
 import com.teamabnormals.allurement.core.registry.AllurementEnchantments;
+import com.teamabnormals.blueprint.common.world.storage.tracking.IDataManager;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import org.apache.commons.compress.utils.Lists;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
-
-import java.util.Collection;
 
 @Mixin(CrossbowItem.class)
 public abstract class CrossbowItemMixin {
@@ -29,14 +30,18 @@ public abstract class CrossbowItemMixin {
 		}
 
 		int ailmentsLevel = EnchantmentHelper.getTagEnchantmentLevel(AllurementEnchantments.SPREAD_OF_AILMENTS.get(), crossbow);
-		if (ailmentsLevel > 0 && abstractArrow instanceof Arrow arrow) {
-			Collection<MobEffectInstance> mobEffects = Lists.newArrayList();
+		if (ailmentsLevel > 0 && abstractArrow instanceof Arrow arrow && !worldIn.isClientSide()) {
+			IDataManager manager = (IDataManager) arrow;
+			ListTag listTag = new ListTag();
+
 			shooter.getActiveEffects().forEach(effect -> {
-				if (!effect.getEffect().isInstantenous() && effect.getDuration() > 100 && !effect.isAmbient()) {
-					mobEffects.add(new MobEffectInstance(effect.getEffect(), 140 * ailmentsLevel, effect.getAmplifier()));
+				if (!effect.getEffect().isInstantenous() && !effect.isAmbient() && !ForgeRegistries.MOB_EFFECTS.tags().getTag(AllurementMobEffectTags.SPREAD_OF_AILMENTS_CANNOT_INFLICT).contains(effect.getEffect())) {
+					MobEffectInstance effectInstance = new MobEffectInstance(effect.getEffect(), 140 * ailmentsLevel, effect.getAmplifier());
+					listTag.add(effectInstance.save(new CompoundTag()));
+					manager.setValue(AllurementTrackedData.ARROW_EFFECTS, listTag);
 				}
 			});
-			arrow.setEffectsFromItem(PotionUtils.setCustomEffects(new ItemStack(Items.TIPPED_ARROW), mobEffects));
+
 			return arrow;
 		}
 

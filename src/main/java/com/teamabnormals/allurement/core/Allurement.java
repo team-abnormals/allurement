@@ -3,14 +3,12 @@ package com.teamabnormals.allurement.core;
 import com.teamabnormals.allurement.core.data.client.AllurementLanguageProvider;
 import com.teamabnormals.allurement.core.data.server.modifiers.AllurementGlobalLootModifierProvider;
 import com.teamabnormals.allurement.core.data.server.tags.AllurementEnchantmentTagsProvider;
+import com.teamabnormals.allurement.core.data.server.tags.AllurementMobEffectTagsProvider;
+import com.teamabnormals.allurement.core.other.AllurementTrackedData;
 import com.teamabnormals.allurement.core.registry.AllurementEnchantments;
 import com.teamabnormals.allurement.core.registry.AllurementLootModifiers;
-import com.teamabnormals.blueprint.common.world.storage.tracking.DataProcessors;
-import com.teamabnormals.blueprint.common.world.storage.tracking.TrackedData;
-import com.teamabnormals.blueprint.common.world.storage.tracking.TrackedDataManager;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -25,9 +23,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class Allurement {
 	public static final String MOD_ID = "allurement";
 	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
-
-	public static final TrackedData<Boolean> INFINITY_ARROW = TrackedData.Builder.create(DataProcessors.BOOLEAN, () -> false).enableSaving().build();
-	public static final TrackedData<Float> ABSORBED_DAMAGE = TrackedData.Builder.create(DataProcessors.FLOAT, () -> 0.0F).enableSaving().build();
 
 	public Allurement() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -46,8 +41,7 @@ public class Allurement {
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {
-		TrackedDataManager.INSTANCE.registerData(new ResourceLocation(MOD_ID, "shot_infinity_arrow"), INFINITY_ARROW);
-		TrackedDataManager.INSTANCE.registerData(new ResourceLocation(MOD_ID, "absorbed_damage"), ABSORBED_DAMAGE);
+		AllurementTrackedData.registerTrackedData();
 	}
 
 	private void dataSetup(GatherDataEvent event) {
@@ -56,6 +50,7 @@ public class Allurement {
 
 		boolean includeServer = event.includeServer();
 		generator.addProvider(includeServer, new AllurementEnchantmentTagsProvider(generator, existingFileHelper));
+		generator.addProvider(includeServer, new AllurementMobEffectTagsProvider(generator, existingFileHelper));
 		generator.addProvider(includeServer, new AllurementGlobalLootModifierProvider(generator));
 
 		boolean includeClient = event.includeClient();
