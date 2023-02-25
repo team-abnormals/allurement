@@ -3,6 +3,7 @@ package com.teamabnormals.allurement.core.other;
 import com.teamabnormals.allurement.core.Allurement;
 import com.teamabnormals.allurement.core.AllurementConfig;
 import com.teamabnormals.allurement.core.mixin.LivingEntityAccessor;
+import com.teamabnormals.allurement.core.other.tags.AllurementBlockTags;
 import com.teamabnormals.allurement.core.registry.AllurementEnchantments;
 import com.teamabnormals.blueprint.common.world.storage.tracking.IDataManager;
 import net.minecraft.core.BlockPos;
@@ -22,7 +23,6 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FarmBlock;
-import net.minecraft.world.level.block.WebBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
@@ -77,8 +77,8 @@ public class AllurementEvents {
 	@SubscribeEvent
 	public static void onPlayerBreak(PlayerEvent.BreakSpeed event) {
 		int baneOfArthropodsLevel = EnchantmentHelper.getTagEnchantmentLevel(Enchantments.BANE_OF_ARTHROPODS, event.getEntity().getMainHandItem());
-		if (AllurementConfig.COMMON.baneOfArthropodsBreaksCobwebsFaster.get() && event.getState().getBlock() instanceof WebBlock && baneOfArthropodsLevel > 0)
-			event.setNewSpeed(event.getOriginalSpeed() + (1.5F * baneOfArthropodsLevel * baneOfArthropodsLevel));
+		if (AllurementConfig.COMMON.baneOfArthropodsBreaksCobwebsFaster.get() && event.getState().is(AllurementBlockTags.MINEABLE_WITH_BANE_OF_ARTHROPODS) && baneOfArthropodsLevel > 0)
+			event.setNewSpeed(event.getOriginalSpeed() + (5.0F * baneOfArthropodsLevel * baneOfArthropodsLevel));
 	}
 
 	@SubscribeEvent

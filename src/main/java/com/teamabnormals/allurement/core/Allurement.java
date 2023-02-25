@@ -2,6 +2,7 @@ package com.teamabnormals.allurement.core;
 
 import com.teamabnormals.allurement.core.data.client.AllurementLanguageProvider;
 import com.teamabnormals.allurement.core.data.server.modifiers.AllurementGlobalLootModifierProvider;
+import com.teamabnormals.allurement.core.data.server.tags.AllurementBlockTagsProvider;
 import com.teamabnormals.allurement.core.data.server.tags.AllurementEnchantmentTagsProvider;
 import com.teamabnormals.allurement.core.data.server.tags.AllurementMobEffectTagsProvider;
 import com.teamabnormals.allurement.core.other.AllurementTrackedData;
@@ -51,6 +52,7 @@ public class Allurement {
 		boolean includeServer = event.includeServer();
 		generator.addProvider(includeServer, new AllurementEnchantmentTagsProvider(generator, existingFileHelper));
 		generator.addProvider(includeServer, new AllurementMobEffectTagsProvider(generator, existingFileHelper));
+		generator.addProvider(includeServer, new AllurementBlockTagsProvider(generator, existingFileHelper));
 		generator.addProvider(includeServer, new AllurementGlobalLootModifierProvider(generator));
 
 		boolean includeClient = event.includeClient();
