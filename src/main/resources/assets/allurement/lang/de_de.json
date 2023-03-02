@@ -1,0 +1,23 @@
+{
+  "death.attack.allurement.shockwave": "%1$s wurde zerstampft",
+  "death.attack.allurement.shockwave.player": "%1$s wurde von %2$s zerstampft",
+  "death.attack.allurement.shockwave.player.item": "%1$s wurde von %2$s mit %3$s zerstampft",
+  "enchantment.allurement.alleviating": "Linderung",
+  "enchantment.allurement.alleviating.desc": "Heilt den Benutzer, wenn Erfahrungspunkte eingesammelt werden",
+  "enchantment.allurement.ascension_curse": "Fluch des Aufsteigens",
+  "enchantment.allurement.ascension_curse.desc": "Lässt den Gegenstand nach oben fallen, wenn er fallen gelassen wird",
+  "enchantment.allurement.fleeting_curse": "Fluch der Flüchtigkeit",
+  "enchantment.allurement.fleeting_curse.desc": "Entitäten in der Nähe des Gegenstandes stoßen ihn von sich ab, wenn er fallen gelassen wird",
+  "enchantment.allurement.launch": "Schleudern",
+  "enchantment.allurement.launch.desc": "Lässt den Gegner nach oben anstelle von nach hinten fliegen",
+  "enchantment.allurement.reeling": "Aufspulen",
+  "enchantment.allurement.reeling.desc": "Lässt Ziele auf den Abschießenden zufliegen",
+  "enchantment.allurement.reforming": "Reformieren",
+  "enchantment.allurement.reforming.desc": "Repariert die Haltbarkeit von Gegenständen sehr langsam passiv",
+  "enchantment.allurement.shockwave": "Schockwelle",
+  "enchantment.allurement.shockwave.desc": "Ezeugt beim Erleiden von Fallschaden eine Schockwelle, die Entitäten in der Nähre verletzt",
+  "enchantment.allurement.spread_of_ailments": "Verpestung",
+  "enchantment.allurement.spread_of_ailments.desc": "Fügt die Statuseffekte des Benutzers den Pfeilen hinzu",
+  "enchantment.allurement.vengeance": "Rache",
+  "enchantment.allurement.vengeance.desc": "Sammelt eine gewisse Menge von erlittenem Schaden, und gibt diesen beim nächsten Angriff drauf"
+}
