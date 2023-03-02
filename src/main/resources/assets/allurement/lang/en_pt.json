@@ -4,6 +4,8 @@
 
   "enchantment.allurement.reforming": "Gettin' Better Slowly",
   "enchantment.allurement.reforming.desc": "Yer gadget be gettin' better slowly",
+  
+  
 
 
   "#swords": "",
@@ -11,6 +13,14 @@
 
   "enchantment.allurement.launch": "Pull o' Heavens",
   "enchantment.allurement.launch.desc": "Launch ye foe sky high",
+  
+  
+  "enchantment.allurement.ascension_curse": "Evil witchery o' Ascension'",
+  "enchantment.allurement.ascension_curse.desc": "Yer cursed stuff ascend to tha heavens when dropped",
+  
+  
+  "enchantment.allurement.fleeting_curse": "Evil witchery o' cowardice",
+  "enchantment.allurement.fleeting_curse.desc": "Yer cursed stuff run away from all tha creatures n' beasts when dropped",
 
 
   "#crossbow": "",
@@ -18,6 +28,10 @@
 
   "enchantment.allurement.reeling": "Hookin'",
   "enchantment.allurement.reeling.desc": "Hook yer target towards ye when th' bolt hits",
+  
+  
+  "enchantment.allurement.spread_of_ailments": "Spread o' dutchman's curse",
+  "enchantment.allurement.spread_of_ailments.desc": "Curse sailors you shoot with all ye active ailments",
 
 
   "#armor_general": "",
