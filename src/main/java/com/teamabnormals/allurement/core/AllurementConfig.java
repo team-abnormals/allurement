@@ -56,6 +56,9 @@ public class AllurementConfig {
 		public final BooleanValue enableAscensionCurse;
 		public final BooleanValue enableFleetingCurse;
 
+		public final BooleanValue dropExperiencePercentage;
+		public final DoubleValue experiencePercentage;
+
 		public final BooleanValue removeLevelScaling;
 		public final IntValue experiencePerLevel;
 
@@ -140,9 +143,15 @@ public class AllurementConfig {
 			soulSpeedDamageFactor = builder.comment("How much damage is multiplied when hurt on Soul Speed blocks").defineInRange("Damage factor", 1.5D, 0, Double.MAX_VALUE);
 			builder.pop();
 
+			builder.push("experience");
+			builder.push("dropped_xp");
+			dropExperiencePercentage = builder.comment("If the player drops a flat percentage of their experience rather than capping at level 7").define("Drop experience percentage", false);
+			experiencePercentage = builder.comment("What percentage of the player's total experience is dropped").defineInRange("Experience percentage", 0.75F, 0, 1.0D);
+			builder.pop();
 			builder.push("level_scaling");
 			removeLevelScaling = builder.comment("Remove the amount of experience per level increasing (experimental)").define("Remove level scaling", false);
 			experiencePerLevel = builder.comment("The amount of experience per level, if level scaling is removed (experimental)").defineInRange("Experience per level", 50, 0, Integer.MAX_VALUE);
+			builder.pop();
 			builder.pop();
 			builder.pop();
 		}
