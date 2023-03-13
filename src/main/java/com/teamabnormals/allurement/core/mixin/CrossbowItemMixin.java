@@ -9,7 +9,6 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -30,8 +29,8 @@ public abstract class CrossbowItemMixin {
 		}
 
 		int ailmentsLevel = EnchantmentHelper.getTagEnchantmentLevel(AllurementEnchantments.SPREAD_OF_AILMENTS.get(), crossbow);
-		if (ailmentsLevel > 0 && abstractArrow instanceof Arrow arrow && !worldIn.isClientSide()) {
-			IDataManager manager = (IDataManager) arrow;
+		if (ailmentsLevel > 0 && !worldIn.isClientSide()) {
+			IDataManager manager = (IDataManager) abstractArrow;
 			ListTag listTag = new ListTag();
 
 			shooter.getActiveEffects().forEach(effect -> {
@@ -41,8 +40,6 @@ public abstract class CrossbowItemMixin {
 					manager.setValue(AllurementTrackedData.ARROW_EFFECTS, listTag);
 				}
 			});
-
-			return arrow;
 		}
 
 		return abstractArrow;
