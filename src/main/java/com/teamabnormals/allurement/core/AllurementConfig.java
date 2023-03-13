@@ -60,6 +60,7 @@ public class AllurementConfig {
 		public final DoubleValue experiencePercentage;
 
 		public final BooleanValue removeLevelScaling;
+		public final BooleanValue removeLevelScalingAfterCap;
 		public final IntValue experiencePerLevel;
 
 		Common(ForgeConfigSpec.Builder builder) {
@@ -151,6 +152,7 @@ public class AllurementConfig {
 			builder.push("level_scaling");
 			removeLevelScaling = builder.comment("Remove the amount of experience per level increasing (experimental)").define("Remove level scaling", false);
 			experiencePerLevel = builder.comment("The amount of experience per level, if level scaling is removed (experimental)").defineInRange("Experience per level", 50, 0, Integer.MAX_VALUE);
+			removeLevelScalingAfterCap = builder.comment("If the level scaling should only be modified after it reaches the 'Experience per level' value (experimental)").define("Remove level scaling after cap", true);
 			builder.pop();
 			builder.pop();
 			builder.pop();

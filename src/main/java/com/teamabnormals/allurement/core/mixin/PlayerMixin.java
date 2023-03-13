@@ -25,8 +25,14 @@ public abstract class PlayerMixin extends LivingEntity {
 
 	@Inject(at = @At("RETURN"), method = "getXpNeededForNextLevel", cancellable = true)
 	private void xpBarCap(CallbackInfoReturnable<Integer> cir) {
-		if (AllurementConfig.COMMON.removeLevelScaling.get())
-			cir.setReturnValue(AllurementConfig.COMMON.experiencePerLevel.get());
+		if (AllurementConfig.COMMON.removeLevelScaling.get()) {
+			int xpPerLevel = AllurementConfig.COMMON.experiencePerLevel.get();
+			if (AllurementConfig.COMMON.removeLevelScalingAfterCap.get()) {
+				cir.setReturnValue(Math.min(cir.getReturnValue(), xpPerLevel));
+			} else {
+				cir.setReturnValue(xpPerLevel);
+			}
+		}
 	}
 
 	@Inject(at = @At("RETURN"), method = "getExperienceReward", cancellable = true)
