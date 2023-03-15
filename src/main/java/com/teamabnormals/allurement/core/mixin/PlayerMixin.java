@@ -1,6 +1,7 @@
 package com.teamabnormals.allurement.core.mixin;
 
 import com.teamabnormals.allurement.core.AllurementConfig;
+import com.teamabnormals.allurement.core.other.AllurementUtil;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,7 +18,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class PlayerMixin extends LivingEntity {
 
 	@Shadow
-	public int totalExperience;
+	public int experienceLevel;
+
+	@Shadow
+	public float experienceProgress;
 
 	protected PlayerMixin(EntityType<? extends LivingEntity> type, Level level) {
 		super(type, level);
@@ -38,9 +42,14 @@ public abstract class PlayerMixin extends LivingEntity {
 	@Inject(at = @At("RETURN"), method = "getExperienceReward", cancellable = true)
 	private void getExperienceReward(CallbackInfoReturnable<Integer> cir) {
 		if (AllurementConfig.COMMON.dropExperiencePercentage.get() && !this.level.getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY) && !this.isSpectator()) {
-			float xp = (float) (this.totalExperience * AllurementConfig.COMMON.experiencePercentage.get());
-			int base = Mth.floor(xp);
-			float bonus = Mth.frac(xp);
+			float totalXp = this.experienceProgress * AllurementUtil.getXpNeededForNextLevel(this.experienceLevel);
+			for (int i = 0; i < this.experienceLevel; i++) {
+				totalXp += AllurementUtil.getXpNeededForNextLevel(i);
+			}
+
+			totalXp *= AllurementConfig.COMMON.experiencePercentage.get();
+			int base = Mth.floor(totalXp);
+			float bonus = Mth.frac(totalXp);
 			if (bonus != 0.0F && Math.random() < bonus) {
 				++base;
 			}

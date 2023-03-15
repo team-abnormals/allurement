@@ -2,6 +2,7 @@ package com.teamabnormals.allurement.core.other;
 
 import com.google.common.collect.Maps;
 import com.teamabnormals.allurement.core.Allurement;
+import com.teamabnormals.allurement.core.AllurementConfig;
 import net.minecraft.Util;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -36,6 +37,20 @@ public class AllurementUtil {
 			}
 		}
 		return count;
+	}
+
+	public static int getXpNeededForNextLevel(int experienceLevel) {
+		int original = experienceLevel >= 30 ? 112 + (experienceLevel - 30) * 9 : (experienceLevel >= 15 ? 37 + (experienceLevel - 15) * 5 : 7 + experienceLevel * 2);
+		if (AllurementConfig.COMMON.removeLevelScaling.get()) {
+			int xpPerLevel = AllurementConfig.COMMON.experiencePerLevel.get();
+			if (AllurementConfig.COMMON.removeLevelScalingAfterCap.get()) {
+				return Math.min(original, xpPerLevel);
+			} else {
+				return xpPerLevel;
+			}
+		}
+
+		return original;
 	}
 
 	public static void ascendItem(ItemEntity entity) {
