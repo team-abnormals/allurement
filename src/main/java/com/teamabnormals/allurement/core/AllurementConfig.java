@@ -71,7 +71,7 @@ public class AllurementConfig {
 			alleviatingHealingFactor = builder.comment("How much the experience value is multiplied by into health").defineInRange("Healing factor", 0.25D, 0, Double.MAX_VALUE);
 			builder.pop();
 
-			builder.push("missile");
+			builder.push("launch");
 			enableLaunch = builder.comment("Weapon enchantment that launches enemies upwards rather than away").define("Enable Launch", true);
 			launchVerticalFactor = builder.comment("How much the target is affected on the vertical axis").defineInRange("Vertical factor", 0.35D, 0, Double.MAX_VALUE);
 			builder.pop();
