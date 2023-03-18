@@ -18,7 +18,7 @@ public class AllurementEnchantmentTagsProvider extends TagsProvider<Enchantment>
 
 	@Override
 	protected void addTags() {
-		this.tag(AllurementEnchantmentTags.UNUSABLE_ON_HORSE_ARMOR).add(Enchantments.AQUA_AFFINITY, AllurementEnchantments.ALLEVIATING.get(), AllurementEnchantments.VENGEANCE.get());
+		this.tag(AllurementEnchantmentTags.UNUSABLE_ON_HORSE_ARMOR).add(Enchantments.AQUA_AFFINITY, Enchantments.SWIFT_SNEAK, AllurementEnchantments.ALLEVIATING.get(), AllurementEnchantments.VENGEANCE.get());
 	}
 
 	@Override
