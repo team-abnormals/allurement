@@ -18,6 +18,7 @@ public class AllurementLanguageProvider extends LanguageProvider {
 	protected void addTranslations() {
 		this.addDesc(AllurementEnchantments.ALLEVIATING.get(), "Heals the user upon collection of experience");
 		this.addDesc(AllurementEnchantments.LAUNCH.get(), "Launches the target upwards instead of away");
+		this.addDesc(AllurementEnchantments.OBEDIENCE.get(), "Prevents horses from roaming");
 		this.addDesc(AllurementEnchantments.REELING.get(), "Pulls targets towards the user upon arrow impact");
 		this.addDesc(AllurementEnchantments.REFORMING.get(), "Repairs the durability of items very slowly over time when in use");
 		this.addDesc(AllurementEnchantments.SHOCKWAVE.get(), "Creates a shockwave when taking fall damage that damages nearby entities");

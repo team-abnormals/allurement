@@ -1,22 +1,21 @@
 package com.teamabnormals.allurement.common.enchantment;
 
 import com.teamabnormals.allurement.core.AllurementConfig;
+import com.teamabnormals.allurement.core.registry.AllurementEnchantments;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.item.enchantment.MendingEnchantment;
 
-public class AlleviatingEnchantment extends Enchantment {
+public class ObedienceEnchantment extends Enchantment {
 
-	public AlleviatingEnchantment(Enchantment.Rarity rarityIn, EquipmentSlot... slots) {
-		super(rarityIn, EnchantmentCategory.ARMOR, slots);
+	public ObedienceEnchantment(Rarity rarityIn, EquipmentSlot... slots) {
+		super(rarityIn, AllurementEnchantments.HORSE_ARMOR, slots);
 	}
 
 	@Override
 	public int getMinCost(int enchantmentLevel) {
-		return enchantmentLevel * 25;
+		return 15;
 	}
 
 	@Override
@@ -30,28 +29,23 @@ public class AlleviatingEnchantment extends Enchantment {
 	}
 
 	@Override
-	public boolean checkCompatibility(Enchantment ench) {
-		return !(ench instanceof MendingEnchantment) && !(ench instanceof ReformingEnchantment) && super.checkCompatibility(ench);
-	}
-
-	@Override
 	public boolean isTreasureOnly() {
 		return true;
 	}
 
 	@Override
 	public boolean isTradeable() {
-		return AllurementConfig.COMMON.enableAlleviating.get();
+		return AllurementConfig.COMMON.enchantableHorseArmor.get() && AllurementConfig.COMMON.enableObedience.get();
 	}
 
 	@Override
 	public boolean isDiscoverable() {
-		return AllurementConfig.COMMON.enableAlleviating.get();
+		return AllurementConfig.COMMON.enchantableHorseArmor.get() && AllurementConfig.COMMON.enableObedience.get();
 	}
 
 	@Override
 	public boolean allowedInCreativeTab(Item book, CreativeModeTab tab) {
-		if (!AllurementConfig.COMMON.enableAlleviating.get()) {
+		if (!AllurementConfig.COMMON.enchantableHorseArmor.get() || !AllurementConfig.COMMON.enableObedience.get()) {
 			return false;
 		}
 		return super.allowedInCreativeTab(book, tab);

@@ -21,6 +21,7 @@
     "LivingEntityMixin",
     "PlayerMixin",
     "ProtectionEnchantmentMixin",
+    "RandomStrollGoalMixin",
     "SlotMixin"
   ],
   "client": [

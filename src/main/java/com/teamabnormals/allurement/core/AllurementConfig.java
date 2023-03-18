@@ -38,6 +38,8 @@ public class AllurementConfig {
 		public final BooleanValue enableLaunch;
 		public final DoubleValue launchVerticalFactor;
 
+		public final BooleanValue enableObedience;
+
 		public final BooleanValue enableReeling;
 		public final DoubleValue reelingHorizontalFactor;
 		public final DoubleValue reelingVerticalFactor;
@@ -74,6 +76,10 @@ public class AllurementConfig {
 			builder.push("launch");
 			enableLaunch = builder.comment("Weapon enchantment that launches enemies upwards rather than away").define("Enable Launch", true);
 			launchVerticalFactor = builder.comment("How much the target is affected on the vertical axis").defineInRange("Vertical factor", 0.35D, 0, Double.MAX_VALUE);
+			builder.pop();
+
+			builder.push("obedience");
+			enableObedience = builder.comment("Horse armor enchantment tha prevents the horse from roaming around").define("Enable Obedience", true);
 			builder.pop();
 
 			builder.push("reeling");
