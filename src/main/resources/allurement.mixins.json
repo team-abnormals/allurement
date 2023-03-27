@@ -7,6 +7,7 @@
   "mixins": [
     "AbstractArrowMixin",
     "AbstractHorseMixin",
+    "AnvilMenuMixin",
     "ArrowMixin",
     "BowItemMixin",
     "CrossbowItemMixin",
@@ -25,6 +26,7 @@
     "SlotMixin"
   ],
   "client": [
+    "AnvilScreenMixin",
     "client.ArrowRendererMixin",
     "client.HorseArmorLayerMixin"
   ],
