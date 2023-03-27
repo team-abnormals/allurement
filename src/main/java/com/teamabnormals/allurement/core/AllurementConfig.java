@@ -1,6 +1,7 @@
 package com.teamabnormals.allurement.core;
 
 import com.google.common.collect.Lists;
+import com.teamabnormals.blueprint.core.annotations.ConfigKey;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
@@ -15,6 +16,7 @@ import java.util.List;
 public class AllurementConfig {
 
 	public static class Common {
+		@ConfigKey("enchantable_horse_armor")
 		public final BooleanValue enchantableHorseArmor;
 		public final BooleanValue enchantedHorseArmorGenerates;
 		public final ConfigValue<List<? extends String>> unenchantedHorseArmorLootTables;
@@ -38,6 +40,7 @@ public class AllurementConfig {
 		public final BooleanValue enableLaunch;
 		public final DoubleValue launchVerticalFactor;
 
+		@ConfigKey("enable_obedience")
 		public final BooleanValue enableObedience;
 
 		public final BooleanValue enableReeling;

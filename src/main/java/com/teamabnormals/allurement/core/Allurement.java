@@ -2,11 +2,13 @@ package com.teamabnormals.allurement.core;
 
 import com.teamabnormals.allurement.core.data.client.AllurementLanguageProvider;
 import com.teamabnormals.allurement.core.data.server.modifiers.AllurementGlobalLootModifierProvider;
+import com.teamabnormals.allurement.core.data.server.modifiers.AllurementLootModifierProvider;
 import com.teamabnormals.allurement.core.data.server.tags.AllurementBlockTagsProvider;
 import com.teamabnormals.allurement.core.data.server.tags.AllurementEnchantmentTagsProvider;
 import com.teamabnormals.allurement.core.data.server.tags.AllurementMobEffectTagsProvider;
 import com.teamabnormals.allurement.core.other.AllurementTrackedData;
 import com.teamabnormals.allurement.core.registry.AllurementEnchantments;
+import com.teamabnormals.allurement.core.registry.AllurementLootConditions;
 import com.teamabnormals.allurement.core.registry.AllurementLootModifiers;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.data.DataGenerator;
@@ -32,6 +34,7 @@ public class Allurement {
 
 		REGISTRY_HELPER.register(bus);
 		AllurementEnchantments.ENCHANTMENTS.register(bus);
+		AllurementLootConditions.LOOT_CONDITION_TYPES.register(bus);
 		AllurementLootModifiers.GLOBAL_LOOT_MODIFIERS.register(bus);
 
 		bus.addListener(this::commonSetup);
@@ -47,13 +50,14 @@ public class Allurement {
 
 	private void dataSetup(GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
-		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+		ExistingFileHelper helper = event.getExistingFileHelper();
 
 		boolean includeServer = event.includeServer();
-		generator.addProvider(includeServer, new AllurementEnchantmentTagsProvider(generator, existingFileHelper));
-		generator.addProvider(includeServer, new AllurementMobEffectTagsProvider(generator, existingFileHelper));
-		generator.addProvider(includeServer, new AllurementBlockTagsProvider(generator, existingFileHelper));
+		generator.addProvider(includeServer, new AllurementEnchantmentTagsProvider(generator, helper));
+		generator.addProvider(includeServer, new AllurementMobEffectTagsProvider(generator, helper));
+		generator.addProvider(includeServer, new AllurementBlockTagsProvider(generator, helper));
 		generator.addProvider(includeServer, new AllurementGlobalLootModifierProvider(generator));
+		generator.addProvider(includeServer, new AllurementLootModifierProvider(generator));
 
 		boolean includeClient = event.includeClient();
 		generator.addProvider(includeClient, new AllurementLanguageProvider(generator));

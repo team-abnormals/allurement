@@ -35,12 +35,12 @@ public class ObedienceEnchantment extends Enchantment {
 
 	@Override
 	public boolean isTradeable() {
-		return AllurementConfig.COMMON.enchantableHorseArmor.get() && AllurementConfig.COMMON.enableObedience.get();
+		return false;
 	}
 
 	@Override
 	public boolean isDiscoverable() {
-		return AllurementConfig.COMMON.enchantableHorseArmor.get() && AllurementConfig.COMMON.enableObedience.get();
+		return false;
 	}
 
 	@Override

@@ -1,0 +1,48 @@
+{
+  "modifiers": [
+    {
+      "type": "entries",
+      "config": {
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "enchantments": [
+                  "allurement:obedience"
+                ],
+                "function": "minecraft:enchant_randomly"
+              }
+            ],
+            "name": "minecraft:book",
+            "weight": 2
+          }
+        ],
+        "index": 1,
+        "replace": false
+      }
+    }
+  ],
+  "priority": "normal",
+  "selector": {
+    "type": "names",
+    "conditions": [
+      {
+        "type": "forge:and",
+        "values": [
+          {
+            "type": "allurement:config",
+            "value": "enchantable_horse_armor"
+          },
+          {
+            "type": "allurement:config",
+            "value": "enable_obedience"
+          }
+        ]
+      }
+    ],
+    "config": [
+      "minecraft:chests/bastion_hoglin_stable"
+    ]
+  }
+}
