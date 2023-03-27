@@ -68,6 +68,7 @@ public class AllurementConfig {
 		public final BooleanValue removeLevelScalingAfterCap;
 		public final IntValue experiencePerLevel;
 
+		public final BooleanValue cheapItemRenaming;
 		public final BooleanValue removeTooExpensive;
 
 		Common(ForgeConfigSpec.Builder builder) {
@@ -166,6 +167,7 @@ public class AllurementConfig {
 			removeLevelScalingAfterCap = builder.comment("If the level scaling should only be modified after it reaches the 'Experience per level' value (experimental)").define("Remove level scaling after cap", true);
 			builder.pop();
 			builder.push("anvil");
+			cheapItemRenaming = builder.comment("If renaming items should always cost 1 experience").define("Cheap item renaming", false);
 			removeTooExpensive = builder.comment("Remove the cap of 40 on anvil repairing prices").define("Remove too expensive", false);
 			builder.pop();
 			builder.pop();
