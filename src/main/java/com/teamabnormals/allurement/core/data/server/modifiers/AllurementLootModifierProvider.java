@@ -38,7 +38,7 @@ public class AllurementLootModifierProvider extends LootModifierProvider {
 						))
 				)
 				.addModifier(new LootPoolEntriesModifier(false, 1, List.of(
-						LootItem.lootTableItem(Items.BOOK).setWeight(2).apply((new EnchantRandomlyFunction.Builder()).withEnchantment(AllurementEnchantments.OBEDIENCE.get())).build()
+						LootItem.lootTableItem(Items.BOOK).setWeight(3).apply((new EnchantRandomlyFunction.Builder()).withEnchantment(AllurementEnchantments.OBEDIENCE.get())).build()
 				)));
 	}
 
