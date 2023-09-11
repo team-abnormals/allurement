@@ -20,4 +20,13 @@
     "death.attack.allurement.shockwave": "%1$s fue aplastado",
     "death.attack.allurement.shockwave.player": "%1$s fue aplastado por %2$s",
     "death.attack.allurement.shockwave.player.item": "%1$s fue aplastado por %2$s con su %3$s"
+
+    "enchantment.allurement.fleeting_curse": "Maldición de fuga",
+    "enchantment.allurement.fleeting_curse.desc": "Hace que las entidades cercanas se alejen del objeto con la maldición cuando se tira",
+
+    "enchantment.allurement.spread_of_ailments": "Propagación de dolencias",
+    "enchantment.allurement.spread_of_ailments.desc": "Aplica los efectos activos en el usuario a sus flechas",
+
+    "enchantment.allurement.ascension_curse": "Maldición de ascenso",
+    "enchantment.allurement.ascension_curse.desc": "Hace que el objeto con la maldición flote hacia arriba cuando se tira"
 }
