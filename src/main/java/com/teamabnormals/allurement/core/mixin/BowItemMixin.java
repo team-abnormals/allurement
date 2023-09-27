@@ -1,6 +1,5 @@
 package com.teamabnormals.allurement.core.mixin;
 
-import com.teamabnormals.allurement.core.Allurement;
 import com.teamabnormals.allurement.core.other.AllurementTrackedData;
 import com.teamabnormals.blueprint.common.world.storage.tracking.IDataManager;
 import net.minecraft.world.entity.LivingEntity;
