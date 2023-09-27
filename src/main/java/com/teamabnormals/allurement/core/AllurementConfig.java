@@ -74,6 +74,8 @@ public class AllurementConfig {
 
 		public final BooleanValue cheapItemRenaming;
 		public final BooleanValue removeTooExpensive;
+		public final BooleanValue capAnvilCosts;
+		public final IntValue anvilCostCap;
 		public final BooleanValue anvilIngotRepairing;
 		public final IntValue ingotRepairChance;
 
@@ -182,6 +184,8 @@ public class AllurementConfig {
 			removeTooExpensive = builder.comment("Remove the cap of 40 on anvil repairing prices").define("Remove too expensive", true);
 			anvilIngotRepairing = builder.comment("If anvils can be repaired by right clicking with an iron ingot or using a dispenser").define("Anvil ingot repairing", true);
 			ingotRepairChance = builder.comment("The amount of tries it should take on average to repair an anvil with an ingot (1 in x chance)").defineInRange("Ingot repair chance", 5, 0, Integer.MAX_VALUE);
+			capAnvilCosts = builder.comment("If anvil transaction costs should be capped at a certain level").define("Cap anvil costs", false);
+			anvilCostCap = builder.comment("The max amount of levels an anvil transaction should be able to cost").defineInRange("Anvil cost cap", 50, 1, Integer.MAX_VALUE);
 			builder.pop();
 			builder.pop();
 			builder.pop();

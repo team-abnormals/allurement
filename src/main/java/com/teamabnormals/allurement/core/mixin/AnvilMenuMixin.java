@@ -28,6 +28,11 @@ public abstract class AnvilMenuMixin {
 
 	@Inject(method = "createResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/DataSlot;get()I", ordinal = 1), locals = LocalCapture.CAPTURE_FAILHARD)
 	private void createResult(CallbackInfo ci, ItemStack stack, int i, int j, int k) {
+		int anvilCostCap = AllurementConfig.COMMON.anvilCostCap.get();
+		if (AllurementConfig.COMMON.capAnvilCosts.get() && cost.get() > anvilCostCap) {
+			cost.set(anvilCostCap);
+		}
+
 		if (AllurementConfig.COMMON.cheapItemRenaming.get() && k == i && k > 0) {
 			cost.set(1);
 		}
