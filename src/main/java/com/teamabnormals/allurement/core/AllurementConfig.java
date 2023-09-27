@@ -70,6 +70,8 @@ public class AllurementConfig {
 
 		public final BooleanValue cheapItemRenaming;
 		public final BooleanValue removeTooExpensive;
+		public final BooleanValue anvilIngotRepairing;
+		public final IntValue ingotRepairChance;
 
 		Common(ForgeConfigSpec.Builder builder) {
 
@@ -167,8 +169,10 @@ public class AllurementConfig {
 			removeLevelScalingAfterCap = builder.comment("If the level scaling should only be modified after it reaches the 'Experience per level' value (experimental)").define("Remove level scaling after cap", true);
 			builder.pop();
 			builder.push("anvil");
-			cheapItemRenaming = builder.comment("If renaming items should always cost 1 experience").define("Cheap item renaming", false);
-			removeTooExpensive = builder.comment("Remove the cap of 40 on anvil repairing prices").define("Remove too expensive", false);
+			cheapItemRenaming = builder.comment("If renaming items should always cost 1 experience").define("Cheap item renaming", true);
+			removeTooExpensive = builder.comment("Remove the cap of 40 on anvil repairing prices").define("Remove too expensive", true);
+			anvilIngotRepairing = builder.comment("If anvils can be repaired by right clicking with an iron ingot or using a dispenser").define("Anvil ingot repairing", true);
+			ingotRepairChance = builder.comment("The amount of tries it should take on average to repair an anvil with an ingot (1 in x chance)").defineInRange("Ingot repair chance", 5, 0, Integer.MAX_VALUE);
 			builder.pop();
 			builder.pop();
 			builder.pop();

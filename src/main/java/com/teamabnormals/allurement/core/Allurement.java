@@ -1,5 +1,6 @@
 package com.teamabnormals.allurement.core;
 
+import com.teamabnormals.allurement.common.dispenser.IronIngotDispenseBehavior;
 import com.teamabnormals.allurement.core.data.client.AllurementLanguageProvider;
 import com.teamabnormals.allurement.core.data.server.modifiers.AllurementGlobalLootModifierProvider;
 import com.teamabnormals.allurement.core.data.server.modifiers.AllurementLootModifierProvider;
@@ -10,8 +11,13 @@ import com.teamabnormals.allurement.core.other.AllurementTrackedData;
 import com.teamabnormals.allurement.core.registry.AllurementEnchantments;
 import com.teamabnormals.allurement.core.registry.AllurementLootConditions;
 import com.teamabnormals.allurement.core.registry.AllurementLootModifiers;
+import com.teamabnormals.blueprint.core.util.BlockUtil;
+import com.teamabnormals.blueprint.core.util.DataUtil;
+import com.teamabnormals.blueprint.core.util.DataUtil.AlternativeDispenseBehavior;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -46,6 +52,9 @@ public class Allurement {
 
 	private void commonSetup(FMLCommonSetupEvent event) {
 		AllurementTrackedData.registerTrackedData();
+		event.enqueueWork(() -> {
+			DataUtil.registerAlternativeDispenseBehavior(new AlternativeDispenseBehavior(Allurement.MOD_ID, Items.IRON_INGOT, (source, stack) -> AllurementConfig.COMMON.anvilIngotRepairing.get() && IronIngotDispenseBehavior.canBeRepaired(source.getLevel().getBlockState(BlockUtil.offsetPos(source))), new IronIngotDispenseBehavior()));
+		});
 	}
 
 	private void dataSetup(GatherDataEvent event) {

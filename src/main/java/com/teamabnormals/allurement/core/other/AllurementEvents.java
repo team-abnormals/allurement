@@ -1,5 +1,6 @@
 package com.teamabnormals.allurement.core.other;
 
+import com.teamabnormals.allurement.common.dispenser.IronIngotDispenseBehavior;
 import com.teamabnormals.allurement.core.Allurement;
 import com.teamabnormals.allurement.core.AllurementConfig;
 import com.teamabnormals.allurement.core.mixin.LivingEntityAccessor;
@@ -10,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -18,6 +20,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -30,6 +33,7 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.event.level.BlockEvent.FarmlandTrampleEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -141,6 +145,30 @@ public class AllurementEvents {
 		if (!AllurementConfig.COMMON.infinityRequiresArrows.get() && EnchantmentHelper.getTagEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow) > 0 && player.getProjectile(bow).isEmpty()) {
 			player.startUsingItem(event.getHand());
 			event.setAction(InteractionResultHolder.consume(bow));
+		}
+	}
+
+	@SubscribeEvent
+	public static void onRightClickBlock(RightClickBlock event) {
+		Level level = event.getLevel();
+		BlockPos pos = event.getPos();
+		BlockState state = level.getBlockState(pos);
+		Player player = event.getEntity();
+		ItemStack stack = event.getItemStack();
+
+		if (AllurementConfig.COMMON.anvilIngotRepairing.get() && stack.is(Items.IRON_INGOT) && IronIngotDispenseBehavior.canBeRepaired(state) && player.isSecondaryUseActive()) {
+			if (state.is(Blocks.CHIPPED_ANVIL)) {
+				IronIngotDispenseBehavior.repairAnvil(Blocks.ANVIL, level, pos);
+			} else if (state.is(Blocks.DAMAGED_ANVIL)) {
+				IronIngotDispenseBehavior.repairAnvil(Blocks.CHIPPED_ANVIL, level, pos);
+			}
+
+			if (!player.getAbilities().instabuild) {
+				stack.shrink(1);
+			}
+
+			event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide()));
+			event.setCanceled(true);
 		}
 	}
 }
