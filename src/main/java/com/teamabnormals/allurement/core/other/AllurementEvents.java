@@ -18,6 +18,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -29,6 +30,7 @@ import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
+import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
@@ -134,6 +136,25 @@ public class AllurementEvents {
 			int level = EnchantmentHelper.getTagEnchantmentLevel(AllurementEnchantments.REFORMING.get(), stack);
 			if (!stack.isEmpty() && stack.isDamaged() && level > 0 && world.getGameTime() % AllurementConfig.COMMON.reformingTickRate.get() == 0) {
 				stack.setDamageValue(stack.getDamageValue() - 1);
+			}
+		}
+	}
+
+
+	@SubscribeEvent
+	public static void onExperienceDrop(LivingExperienceDropEvent event) {
+		if (event.getEntity() instanceof EnderDragon && AllurementConfig.COMMON.adjustEnderDragonExperienceDrop.get()) {
+			int amount = event.getOriginalExperience();
+			int shouldDrop = AllurementConfig.COMMON.enderDragonExperienceDrop.get();
+			int shouldDropRespawn = AllurementConfig.COMMON.respawnedEnderDragonExperienceDrop.get();
+			if (amount == 960) {
+				event.setDroppedExperience(Mth.floor((float) shouldDrop * 0.08F));
+			} else if (amount == 2400) {
+				event.setDroppedExperience(Mth.floor((float) shouldDrop * 0.2F));
+			} else if (amount == 40) {
+				event.setDroppedExperience(Mth.floor((float) shouldDropRespawn * 0.08F));
+			} else if (amount == 100) {
+				event.setDroppedExperience(Mth.floor((float) shouldDropRespawn * 0.2F));
 			}
 		}
 	}

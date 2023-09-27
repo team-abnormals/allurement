@@ -68,6 +68,10 @@ public class AllurementConfig {
 		public final BooleanValue removeLevelScalingAfterCap;
 		public final IntValue experiencePerLevel;
 
+		public final BooleanValue adjustEnderDragonExperienceDrop;
+		public final IntValue enderDragonExperienceDrop;
+		public final IntValue respawnedEnderDragonExperienceDrop;
+
 		public final BooleanValue cheapItemRenaming;
 		public final BooleanValue removeTooExpensive;
 		public final BooleanValue anvilIngotRepairing;
@@ -167,6 +171,11 @@ public class AllurementConfig {
 			removeLevelScaling = builder.comment("Remove the amount of experience per level increasing (experimental)").define("Remove level scaling", false);
 			experiencePerLevel = builder.comment("The amount of experience per level, if level scaling is removed (experimental)").defineInRange("Experience per level", 50, 0, Integer.MAX_VALUE);
 			removeLevelScalingAfterCap = builder.comment("If the level scaling should only be modified after it reaches the 'Experience per level' value (experimental)").define("Remove level scaling after cap", true);
+			builder.pop();
+			builder.push("ender_dragon");
+			adjustEnderDragonExperienceDrop = builder.comment("If Ender Dragon experience dropping should be adjusted (to account for level scaling)").define("Adjust Ender Dragon experience drop", false);
+			enderDragonExperienceDrop = builder.comment("The amount of experience (in points) that should be dropped by the Ender Dragon").defineInRange("Ender Dragon experience drop", 3000, 0, Integer.MAX_VALUE);
+			respawnedEnderDragonExperienceDrop = builder.comment("The amount of experience (in points) that should be dropped by a respawned Ender Dragon").defineInRange("Respawned Ender Dragon experience drop", 750, 0, Integer.MAX_VALUE);
 			builder.pop();
 			builder.push("anvil");
 			cheapItemRenaming = builder.comment("If renaming items should always cost 1 experience").define("Cheap item renaming", true);
