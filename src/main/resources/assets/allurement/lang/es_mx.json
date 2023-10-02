@@ -19,7 +19,7 @@
 
     "death.attack.allurement.shockwave": "%1$s fue aplastado",
     "death.attack.allurement.shockwave.player": "%1$s fue aplastado por %2$s",
-    "death.attack.allurement.shockwave.player.item": "%1$s fue aplastado por %2$s con su %3$s"
+    "death.attack.allurement.shockwave.player.item": "%1$s fue aplastado por %2$s con su %3$s",
 
     "enchantment.allurement.fleeting_curse": "Maldición de fuga",
     "enchantment.allurement.fleeting_curse.desc": "Hace que las entidades cercanas se alejen del objeto con la maldición cuando se tira",
