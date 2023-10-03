@@ -21,7 +21,7 @@ public abstract class AnvilMenuMixin {
 	@Final
 	private DataSlot cost;
 
-	@ModifyConstant(method = "createResult", constant = @Constant(intValue = 40))
+	@ModifyConstant(method = "createResult", require = 0, constant = @Constant(intValue = 40))
 	private int createResult(int value) {
 		return AllurementConfig.COMMON.removeTooExpensive.get() ? Integer.MAX_VALUE : value;
 	}

@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 @Mixin(AnvilScreen.class)
 public abstract class AnvilScreenMixin {
 
-	@ModifyConstant(method = "renderLabels", constant = @Constant(intValue = 40))
+	@ModifyConstant(method = "renderLabels", require = 0, constant = @Constant(intValue = 40))
 	private int renderLabels(int value) {
 		return AllurementConfig.COMMON.removeTooExpensive.get() ? Integer.MAX_VALUE : value;
 	}
