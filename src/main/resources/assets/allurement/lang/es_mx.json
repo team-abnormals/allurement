@@ -2,24 +2,34 @@
     "death.attack.allurement.shockwave": "%1$s fue aplastado",
     "death.attack.allurement.shockwave.player": "%1$s fue aplastado por %2$s",
     "death.attack.allurement.shockwave.player.item": "%1$s fue aplastado por %2$s con su %3$s",
+    
     "enchantment.allurement.alleviating": "Alivio",
     "enchantment.allurement.alleviating.desc": "Cura al jugador al acumular experiencia",
+    
     "enchantment.allurement.ascension_curse": "Maldición de ascenso",
     "enchantment.allurement.ascension_curse.desc": "Hace que el objeto con la maldición flote hacia arriba cuando se tira",
+    
     "enchantment.allurement.fleeting_curse": "Maldición de fuga",
     "enchantment.allurement.fleeting_curse.desc": "Hace que las entidades cercanas se alejen del objeto con la maldición cuando se tira",
+    
     "enchantment.allurement.launch": "Lanzamiento",
     "enchantment.allurement.launch.desc": "Lanza al objetivo hacia arriba en vez de alejarlo",
+    
     "enchantment.allurement.obedience": "Obediencia",
     "enchantment.allurement.obedience.desc": "Evita que los caballos deambulen",
+    
     "enchantment.allurement.reeling": "Captura",
     "enchantment.allurement.reeling.desc": "Atrae al objetivo impactado por la flecha hacia el usuario",
+    
     "enchantment.allurement.reforming": "Reformación",
     "enchantment.allurement.reforming.desc": "Repara la durabilidad del objeto muy lentamente mientras esté equipado",
+    
     "enchantment.allurement.shockwave": "Onda de choque",
     "enchantment.allurement.shockwave.desc": "Crea una onda de choque al recibir daño por caída que daña a las entidades cercanas",
+    
     "enchantment.allurement.spread_of_ailments": "Propagación de dolencias",
     "enchantment.allurement.spread_of_ailments.desc": "Aplica los efectos activos en el usuario a sus flechas",
+    
     "enchantment.allurement.vengeance": "Venganza",
     "enchantment.allurement.vengeance.desc": "Almacena parte del daño recibido y lo aplica a tu próximo ataque"
 }
