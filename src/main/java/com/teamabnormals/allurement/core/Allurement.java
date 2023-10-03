@@ -16,6 +16,7 @@ import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.blueprint.core.util.DataUtil.AlternativeDispenseBehavior;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -52,6 +53,7 @@ public class Allurement {
 	private void commonSetup(FMLCommonSetupEvent event) {
 		AllurementTrackedData.registerTrackedData();
 		event.enqueueWork(() -> {
+			CreativeModeTab.TAB_COMBAT.setEnchantmentCategories(DataUtil.concatArrays(CreativeModeTab.TAB_COMBAT.getEnchantmentCategories(), AllurementEnchantments.HORSE_ARMOR));
 			DataUtil.registerAlternativeDispenseBehavior(new AlternativeDispenseBehavior(Allurement.MOD_ID, Items.IRON_INGOT, (source, stack) -> AllurementConfig.COMMON.anvilIngotRepairing.get() && IronIngotDispenseBehavior.canBeRepaired(source.getLevel().getBlockState(BlockUtil.offsetPos(source))), new IronIngotDispenseBehavior()));
 		});
 	}
