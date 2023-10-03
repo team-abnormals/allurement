@@ -45,12 +45,12 @@ public class IronIngotDispenseBehavior extends OptionalDispenseItemBehavior {
 	}
 
 	public static void spawnParticles(SimpleParticleType particleType, RandomSource random, BlockPos pos) {
-		for (int i = 0; i < 16; ++i) {
+		for (int i = 0; i < 12; ++i) {
 			double d2 = random.nextGaussian() * 0.02D;
 			double d3 = random.nextGaussian() * 0.02D;
 			double d4 = random.nextGaussian() * 0.02D;
 			double d6 = (double) pos.getX() + random.nextDouble();
-			double d7 = (double) pos.getY() + random.nextDouble();
+			double d7 = (double) pos.getY() + 1.0D + random.nextDouble() * 0.1D;
 			double d8 = (double) pos.getZ() + random.nextDouble();
 			NetworkUtil.spawnParticle(particleType.writeToString(), d6, d7, d8, d2, d3, d4);
 		}
@@ -58,11 +58,13 @@ public class IronIngotDispenseBehavior extends OptionalDispenseItemBehavior {
 
 	public static void repairAnvil(Block result, Level level, BlockPos facingPos) {
 		RandomSource random = level.getRandom();
-		if (random.nextInt(AllurementConfig.COMMON.ingotRepairChance.get()) == 0) {
-			level.setBlock(facingPos, BlockUtil.transferAllBlockStates(level.getBlockState(facingPos), result.defaultBlockState()), 3);
-			spawnParticles(ParticleTypes.CLOUD, random, facingPos);
-		} else {
-			spawnParticles(ParticleTypes.SMOKE, random, facingPos);
+		if (!level.isClientSide()) {
+			if (random.nextInt(AllurementConfig.COMMON.ingotRepairChance.get()) == 0) {
+				level.setBlock(facingPos, BlockUtil.transferAllBlockStates(level.getBlockState(facingPos), result.defaultBlockState()), 3);
+				spawnParticles(ParticleTypes.FIREWORK, random, facingPos);
+			} else {
+				spawnParticles(ParticleTypes.SMOKE, random, facingPos);
+			}
 		}
 		playSound(SoundEvents.ANVIL_PLACE, level, facingPos);
 	}
