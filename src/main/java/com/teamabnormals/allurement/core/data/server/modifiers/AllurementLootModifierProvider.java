@@ -9,7 +9,8 @@ import com.teamabnormals.blueprint.common.loot.modification.modifiers.LootPoolEn
 import com.teamabnormals.blueprint.core.api.conditions.ConfigValueCondition;
 import com.teamabnormals.blueprint.core.util.modification.selection.ConditionedResourceSelector;
 import com.teamabnormals.blueprint.core.util.modification.selection.selectors.NamesResourceSelector;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
@@ -19,16 +20,17 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.crafting.conditions.AndCondition;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 
 public class AllurementLootModifierProvider extends LootModifierProvider {
 
-	public AllurementLootModifierProvider(DataGenerator dataGenerator) {
-		super(dataGenerator, Allurement.MOD_ID);
+	public AllurementLootModifierProvider(PackOutput output, CompletableFuture<Provider> provider) {
+		super(Allurement.MOD_ID, output, provider);
 	}
 
 	@Override
-	protected void registerEntries() {
+	protected void registerEntries(Provider provider) {
 		this.entry("bastion_hoglin_stable")
 				.selector(new ConditionedResourceSelector(
 						new NamesResourceSelector(BuiltInLootTables.BASTION_HOGLIN_STABLE),

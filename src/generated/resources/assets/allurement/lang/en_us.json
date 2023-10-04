@@ -1,7 +1,6 @@
 {
-  "death.attack.allurement.shockwave": "%1$s was stomped",
-  "death.attack.allurement.shockwave.player": "%1$s was stomped by %2$s",
-  "death.attack.allurement.shockwave.player.item": "%1$s was stomped by %2$s using %3$s",
+  "death.attack.allurement.shockwave": "%1$s was stomped by %2$s",
+  "death.attack.allurement.shockwave.item": "%1$s was stomped by %2$s using %3$s",
   "enchantment.allurement.alleviating": "Alleviating",
   "enchantment.allurement.alleviating.desc": "Heals the user upon collection of experience",
   "enchantment.allurement.ascension_curse": "Curse of Ascension",

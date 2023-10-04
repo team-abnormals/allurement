@@ -2,6 +2,7 @@ package com.teamabnormals.allurement.core;
 
 import com.teamabnormals.allurement.common.dispenser.IronIngotDispenseBehavior;
 import com.teamabnormals.allurement.core.data.client.AllurementLanguageProvider;
+import com.teamabnormals.allurement.core.data.server.AllurementDatapackBuiltinEntriesProvider;
 import com.teamabnormals.allurement.core.data.server.modifiers.AllurementGlobalLootModifierProvider;
 import com.teamabnormals.allurement.core.data.server.modifiers.AllurementLootModifierProvider;
 import com.teamabnormals.allurement.core.data.server.tags.AllurementBlockTagsProvider;
@@ -15,8 +16,9 @@ import com.teamabnormals.blueprint.core.util.BlockUtil;
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.blueprint.core.util.DataUtil.AlternativeDispenseBehavior;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
+import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -27,6 +29,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import java.util.concurrent.CompletableFuture;
 
 @Mod(Allurement.MOD_ID)
 public class Allurement {
@@ -53,23 +57,25 @@ public class Allurement {
 	private void commonSetup(FMLCommonSetupEvent event) {
 		AllurementTrackedData.registerTrackedData();
 		event.enqueueWork(() -> {
-			CreativeModeTab.TAB_COMBAT.setEnchantmentCategories(DataUtil.concatArrays(CreativeModeTab.TAB_COMBAT.getEnchantmentCategories(), AllurementEnchantments.HORSE_ARMOR));
 			DataUtil.registerAlternativeDispenseBehavior(new AlternativeDispenseBehavior(Allurement.MOD_ID, Items.IRON_INGOT, (source, stack) -> AllurementConfig.COMMON.anvilIngotRepairing.get() && IronIngotDispenseBehavior.canBeRepaired(source.getLevel().getBlockState(BlockUtil.offsetPos(source))), new IronIngotDispenseBehavior()));
 		});
 	}
 
 	private void dataSetup(GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
+		PackOutput output = generator.getPackOutput();
+		CompletableFuture<Provider> provider = event.getLookupProvider();
 		ExistingFileHelper helper = event.getExistingFileHelper();
 
 		boolean includeServer = event.includeServer();
-		generator.addProvider(includeServer, new AllurementEnchantmentTagsProvider(generator, helper));
-		generator.addProvider(includeServer, new AllurementMobEffectTagsProvider(generator, helper));
-		generator.addProvider(includeServer, new AllurementBlockTagsProvider(generator, helper));
-		generator.addProvider(includeServer, new AllurementGlobalLootModifierProvider(generator));
-		generator.addProvider(includeServer, new AllurementLootModifierProvider(generator));
+		generator.addProvider(includeServer, new AllurementEnchantmentTagsProvider(output, provider, helper));
+		generator.addProvider(includeServer, new AllurementMobEffectTagsProvider(output, provider, helper));
+		generator.addProvider(includeServer, new AllurementBlockTagsProvider(output, provider, helper));
+		generator.addProvider(includeServer, new AllurementGlobalLootModifierProvider(output));
+		generator.addProvider(includeServer, new AllurementLootModifierProvider(output, provider));
+		generator.addProvider(includeServer, new AllurementDatapackBuiltinEntriesProvider(output, provider));
 
 		boolean includeClient = event.includeClient();
-		generator.addProvider(includeClient, new AllurementLanguageProvider(generator));
+		generator.addProvider(includeClient, new AllurementLanguageProvider(output));
 	}
 }

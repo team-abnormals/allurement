@@ -61,6 +61,11 @@ public class AllurementConfig {
 		public final BooleanValue enableAscensionCurse;
 		public final BooleanValue enableFleetingCurse;
 
+		public final BooleanValue nonSolidBlocksTransmitEnchantingPower;
+		public final BooleanValue chiseledBookshelfEnchanting;
+		public final IntValue booksNeededPerLevel;
+		public final IntValue enchantedBooksNeededPerLevel;
+
 		public final BooleanValue dropExperiencePercentage;
 		public final DoubleValue experiencePercentage;
 
@@ -133,6 +138,13 @@ public class AllurementConfig {
 			builder.pop();
 
 			builder.push("tweaks");
+			builder.push("enchanting");
+			nonSolidBlocksTransmitEnchantingPower = builder.comment("Allow enchanting power from bookshelves to transmit through any non-solid block, not just replaceable ones").define("Non-solid blocks transmit enchanting power", true);
+			chiseledBookshelfEnchanting = builder.comment("Allow Chiseled Bookshelves to be usable to boost enchanting table power").define("Chiseled Bookshelf enchanting", true);
+			booksNeededPerLevel = builder.comment("How many regular books are needed to increase the enchantment power by 1").defineInRange("Books needed", 3, 1, 6);
+			enchantedBooksNeededPerLevel = builder.comment("How many enchanted are needed to increase the enchantment power by 1").defineInRange("Enchanted Books needed", 2, 1, 6);
+			builder.pop();
+
 			builder.push("horse_armor");
 			enchantableHorseArmor = builder.comment("Allow horse armor to be enchanted").define("Enchantable horse armor", true);
 			enchantedHorseArmorGenerates = builder.comment("If horse armor can appear enchanted when found in loot tables").define("Generates in loot tables", true);

@@ -2,7 +2,7 @@ package com.teamabnormals.allurement.core.data.client;
 
 import com.teamabnormals.allurement.core.Allurement;
 import com.teamabnormals.allurement.core.registry.AllurementEnchantments;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -10,8 +10,8 @@ import org.apache.commons.lang3.text.WordUtils;
 
 public class AllurementLanguageProvider extends LanguageProvider {
 
-	public AllurementLanguageProvider(DataGenerator generator) {
-		super(generator, Allurement.MOD_ID, "en_us");
+	public AllurementLanguageProvider(PackOutput output) {
+		super(output, Allurement.MOD_ID, "en_us");
 	}
 
 	@Override

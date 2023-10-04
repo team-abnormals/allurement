@@ -41,6 +41,10 @@ minecraft {
                 }
             }
         }
+        clientalt {
+            parent runs.client
+            args '--username', 'Dev####' //#s get replaced with random numbers when starting
+        }
         server {
             workingDirectory project.file("run")
             property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"

@@ -41,7 +41,7 @@ public abstract class PlayerMixin extends LivingEntity {
 
 	@Inject(at = @At("RETURN"), method = "getExperienceReward", cancellable = true)
 	private void getExperienceReward(CallbackInfoReturnable<Integer> cir) {
-		if (AllurementConfig.COMMON.dropExperiencePercentage.get() && !this.level.getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY) && !this.isSpectator()) {
+		if (AllurementConfig.COMMON.dropExperiencePercentage.get() && !this.level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY) && !this.isSpectator()) {
 			float totalXp = this.experienceProgress * AllurementUtil.getXpNeededForNextLevel(this.experienceLevel);
 			for (int i = 0; i < this.experienceLevel; i++) {
 				totalXp += AllurementUtil.getXpNeededForNextLevel(i);

@@ -16,7 +16,7 @@ public class EntityMixin {
 	@Inject(at = @At("RETURN"), method = "isInWaterOrRain", cancellable = true)
 	private void isWet(CallbackInfoReturnable<Boolean> cir) {
 		Entity entity = (Entity) ((Object) this);
-		BlockState state = entity.level.getBlockState(entity.blockPosition());
+		BlockState state = entity.level().getBlockState(entity.blockPosition());
 		if (state.is(Blocks.WATER_CAULDRON) && state.getValue(LayeredCauldronBlock.LEVEL) > 0 && AllurementConfig.COMMON.riptideWorksInCauldrons.get())
 			cir.setReturnValue(true);
 	}

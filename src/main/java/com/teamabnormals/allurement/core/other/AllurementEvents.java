@@ -59,7 +59,7 @@ public class AllurementEvents {
 		if (level > 0 && damage > 0) {
 			for (LivingEntity target : world.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(level, 0.0D, level))) {
 				if (entity != target)
-					target.hurt(AllurementDamageSources.causeShockwaveDamage(entity), damage);
+					target.hurt(AllurementDamageTypes.shockwave(world, entity, entity), damage);
 			}
 
 			if (AllurementConfig.COMMON.shockwaveTramplesFarmland.get()) {
@@ -68,7 +68,7 @@ public class AllurementEvents {
 					BlockState state = world.getBlockState(pos);
 					if (state.getBlock() instanceof FarmBlock) {
 						if (!world.isClientSide && ForgeHooks.onFarmlandTrample(world, pos, Blocks.DIRT.defaultBlockState(), event.getDistance(), entity)) {
-							FarmBlock.turnToDirt(state, world, pos);
+							FarmBlock.turnToDirt(entity, state, world, pos);
 						}
 					}
 				});

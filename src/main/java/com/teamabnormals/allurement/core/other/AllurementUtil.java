@@ -59,7 +59,7 @@ public class AllurementUtil {
 	}
 
 	public static void repelItem(ItemEntity entity) {
-		Level level = entity.getLevel();
+		Level level = entity.level();
 		Vec3 motion = entity.getDeltaMovement();
 
 		double distance = -1.0D;
@@ -75,7 +75,7 @@ public class AllurementUtil {
 		if (followingPlayer != null) {
 			Vec3 vec3 = new Vec3(entity.getX() - followingPlayer.getX(), entity.getY() - (followingPlayer.getY() + (double) followingPlayer.getEyeHeight() / 2.0D), entity.getZ() - followingPlayer.getZ());
 			Vec3 amount = vec3.normalize().multiply(0.1D, 0.0D, 0.1);
-			if (!entity.isOnGround()) {
+			if (!entity.onGround()) {
 				amount = amount.multiply(0.2D, 0.0D, 0.2D);
 			} else {
 				amount = amount.add(0.0D, 0.25D, 0.0D);
