@@ -28,7 +28,7 @@ license = "https://github.com/team-abnormals/allurement/blob/main/LICENSE.txt"
 [[dependencies.allurement]]
     modId = "forge"
     mandatory = true
-    versionRange = "[47.1.0,)"
+    versionRange = "[47.1.3,)"
     ordering = "NONE"
     side = "BOTH"
 

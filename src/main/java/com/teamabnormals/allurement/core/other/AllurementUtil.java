@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import vazkii.quark.content.tools.module.ColorRunesModule;
+import org.violetmoon.quark.content.tools.module.ColorRunesModule;
 
 import java.util.Map;
 
