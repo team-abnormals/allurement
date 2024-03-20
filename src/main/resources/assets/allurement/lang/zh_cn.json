@@ -1,24 +1,25 @@
 {
-
+    "death.attack.allurement.shockwave": "%1$s 死于冲击波",
+    "death.attack.allurement.shockwave.player": "%1$s 死于 %2$s 的冲击波",
+    "death.attack.allurement.shockwave.player.item": "%1$s 被 %2$s 使用 %3$s 冲击而死",
     "enchantment.allurement.alleviating": "经验愈合",
-    "enchantment.allurement.alleviating.desc": "在使用者获得经验时赋予治疗效果",
-
+    "enchantment.allurement.alleviating.desc": "收集经验后治愈玩家",
+    "enchantment.allurement.ascension_curse": "飘浮诅咒",
+    "enchantment.allurement.ascension_curse.desc": "使掉落物向上飘浮",
+    "enchantment.allurement.fleeting_curse": "相斥诅咒",
+    "enchantment.allurement.fleeting_curse.desc": "使掉落物不断逃离生物实体",
     "enchantment.allurement.launch": "投掷",
     "enchantment.allurement.launch.desc": "将目标向上击飞，而不是推开",
-
+    "enchantment.allurement.obedience": "服从",
+    "enchantment.allurement.obedience.desc": "防止马匹乱走",
     "enchantment.allurement.reeling": "牵引",
     "enchantment.allurement.reeling.desc": "击中目标时将其拉向使用者",
-
     "enchantment.allurement.reforming": "重塑",
     "enchantment.allurement.reforming.desc": "随时间非常缓慢地自我修复",
-
     "enchantment.allurement.shockwave": "冲击波",
     "enchantment.allurement.shockwave.desc": "落地时对周围的敌人造成伤害，大小取决于摔落的高度",
-
+    "enchantment.allurement.spread_of_ailments": "传染",
+    "enchantment.allurement.spread_of_ailments.desc": "将玩家的正面效果应用到他们的箭上",
     "enchantment.allurement.vengeance": "复仇",
-    "enchantment.allurement.vengeance.desc": "存储遭受到的部分伤害并将叠加到下一次攻击中",
-
-    "death.attack.allurement.shockwave": "%1$s 死于冲击波",
-    "death.attack.allurement.shockwave": "%1$s 死于 %2$s 的冲击波",
-    "death.attack.allurement.shockwave.player": "%1$s 被 %2$s 使用 %3$s 冲击而死"
+    "enchantment.allurement.vengeance.desc": "存储遭受到的部分伤害并将叠加到下一次攻击"
 }
