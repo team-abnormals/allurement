@@ -66,7 +66,7 @@ public class AllurementEvents {
 				Stream<BlockPos> affectedBlocks = BlockPos.betweenClosedStream(entity.getBoundingBox().inflate(level, 0.0D, level).move(0, -1.0F, 0));
 				affectedBlocks.forEach(pos -> {
 					BlockState state = world.getBlockState(pos);
-					if (state.getBlock() instanceof FarmBlock) {
+					if (state.is(AllurementBlockTags.TRAMPLED_BY_SHOCKWAVE)) {
 						if (!world.isClientSide && ForgeHooks.onFarmlandTrample(world, pos, Blocks.DIRT.defaultBlockState(), event.getDistance(), entity)) {
 							FarmBlock.turnToDirt(entity, state, world, pos);
 						}

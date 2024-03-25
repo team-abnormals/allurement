@@ -3,6 +3,10 @@
     "minecraft:cobweb",
     "minecraft:bee_nest",
     {
+      "id": "atmospheric:grimweb",
+      "required": false
+    },
+    {
       "id": "endergetic:eetle_egg",
       "required": false
     }
