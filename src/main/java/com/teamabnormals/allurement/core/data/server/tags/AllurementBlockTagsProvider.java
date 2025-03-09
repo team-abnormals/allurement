@@ -6,8 +6,8 @@ import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.data.BlockTagsProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -22,7 +22,7 @@ public class AllurementBlockTagsProvider extends BlockTagsProvider {
 		this.tag(AllurementBlockTags.TRAMPLED_BY_SHOCKWAVE).add(Blocks.FARMLAND);
 		this.tag(AllurementBlockTags.MINEABLE_WITH_BANE_OF_ARTHROPODS)
 				.add(Blocks.COBWEB, Blocks.BEE_NEST)
-				.addOptional(new ResourceLocation("atmospheric", "grimweb"))
-				.addOptional(new ResourceLocation("endergetic", "eetle_egg"));
+				.addOptional(ResourceLocation.fromNamespaceAndPath("atmospheric", "grimweb"))
+				.addOptional(ResourceLocation.fromNamespaceAndPath("endergetic", "eetle_egg"));
 	}
 }

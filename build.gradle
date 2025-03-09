@@ -1,76 +1,40 @@
-buildscript {
-    repositories {
-        maven { url = "https://files.minecraftforge.net/maven" }
-        maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
-    }
-    dependencies {
-        classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "5.1.+", changing: true
-        classpath group: "org.spongepowered", name: "mixingradle", version: "0.7-SNAPSHOT"
-    }
+plugins {
+    id "java-library"
+    id "idea"
+    id "maven-publish"
+    id "net.neoforged.gradle.userdev" version "7.0.182"
 }
 
-apply plugin: "net.minecraftforge.gradle"
-apply plugin: "eclipse"
-apply plugin: "maven-publish"
-apply plugin: "org.spongepowered.mixin"
-
-mixin {
-    add sourceSets.main, "${project.modId}.refmap.json"
-}
-
-version = "${project.minecraft}-${project.modVersion}"
+version = "${project.mcVersion}-${project.modVersion}"
 group = "com.teamabnormals"
-archivesBaseName = project.modId
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+base {
+    archivesName = project.modId
+}
 
-minecraft {
-    mappings channel: "official", version: project.minecraft
-    accessTransformer = file("src/main/resources/META-INF/accesstransformer.cfg")
-    runs {
-        client {
-            workingDirectory project.file("run")
-            property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
-            property "forge.logging.console.level", "debug"
-            property "mixin.env.remapRefMap", "true"
-            property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
-            arg "-mixin.config=" + project.modId + ".mixins.json"
-            mods {
-                allurement {
-                    source sourceSets.main
-                }
-            }
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+minecraft.accessTransformers.file rootProject.file("src/main/resources/META-INF/accesstransformer.cfg")
+
+runs {
+    configureEach {
+        systemProperty "forge.logging.markers", "REGISTRIES"
+        systemProperty "forge.logging.console.level", "debug"
+    }
+    client {
+        modSources {
+            add project.sourceSets.main
         }
-        clientalt {
-            parent runs.client
-            args '--username', 'Dev####' //#s get replaced with random numbers when starting
+    }
+    server {
+        modSources {
+            add project.sourceSets.main
         }
-        server {
-            workingDirectory project.file("run")
-            property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
-            property "forge.logging.console.level", "debug"
-            property "mixin.env.remapRefMap", "true"
-            property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
-            arg "-mixin.config=" + project.modId + ".mixins.json"
-            mods {
-                allurement {
-                    source sourceSets.main
-                }
-            }
+    }
+    data {
+        modSources {
+            add project.sourceSets.main
         }
-        data {
-            workingDirectory project.file("run")
-            property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
-            property "forge.logging.console.level", "debug"
-            property "mixin.env.remapRefMap", "true"
-            property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
-            args "--mod", project.modId, "--all", "--output", file("src/generated/resources/"), "--existing", file("src/main/resources")
-            mods {
-                allurement {
-                    source sourceSets.main
-                }
-            }
-        }
+        arguments.addAll "--mod", "allurement", "--all", "--output", file("src/generated/resources/").getAbsolutePath(), "--existing", file("src/main/resources/").getAbsolutePath(), "--existing-mod", "blueprint"
     }
 }
 
@@ -79,27 +43,27 @@ sourceSets.main.resources {
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${project.minecraft}-${project.forge}"
-    implementation fg.deobf("com.teamabnormals:blueprint:${project.minecraft}-${project.blueprint}")
+    implementation "net.neoforged:neoforge:${project.neoforge}"
+    implementation("com.teamabnormals:blueprint:${project.mcVersion}-${project.blueprint}")
 
-    compileOnly fg.deobf("curse.maven:quark-243121:${project.quark}")
-    compileOnly fg.deobf("curse.maven:zeta-968868:${project.zeta}")
-    compileOnly fg.deobf("mezz.jei:jei-${project.minecraft}-common-api:${project.jei}")
-    compileOnly fg.deobf("mezz.jei:jei-${project.minecraft}-forge-api:${project.jei}")
-    runtimeOnly fg.deobf("mezz.jei:jei-${project.minecraft}-forge:${project.jei}")
+    compileOnly("mezz.jei:jei-${project.mcVersion}-neoforge-api:${project.jei}")
+    runtimeOnly("mezz.jei:jei-${project.mcVersion}-neoforge:${project.jei}")
+}
 
-    annotationProcessor "org.spongepowered:mixin:0.8.5-SNAPSHOT:processor"
+subsystems {
+    parchment {
+        minecraftVersion = "${project.mcVersion}"
+        mappingsVersion = "${project.parchment}"
+    }
 }
 
 repositories {
-    maven { url "https://www.cursemaven.com" }
-    maven { url "https://maven.jaackson.me" }
-    maven { url "https://dvs1.progwml6.com/files/maven/" }
-    maven { url "https://modmaven.k-4u.nl" }
-    maven { url "https://repo.spongepowered.org/maven" }
+    maven { url "https://maven.teamabnormals.com/" }
+    maven { url = "https://maven.blamejared.com/" }
+    maven { url = "https://modmaven.dev" }
 }
 
-jar {
+tasks.named("jar", Jar).configure {
     manifest {
         attributes([
                 "Specification-Title"     : project.modName,
@@ -108,8 +72,14 @@ jar {
                 "Implementation-Title"    : project.modName,
                 "Implementation-Version"  : project.modVersion,
                 "Implementation-Vendor"   : "Team Abnormals",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs"            : project.modId + ".mixins.json"
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
+    }
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
     }
 }

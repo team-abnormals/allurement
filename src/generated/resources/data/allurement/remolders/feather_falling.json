@@ -1,0 +1,9 @@
+{
+  "molding": "json",
+  "remolder": {
+    "type": "add",
+    "target": "effects.allurement\\:prevents_farmland_trample",
+    "value": {}
+  },
+  "selector": "minecraft:enchantment/feather_falling"
+}

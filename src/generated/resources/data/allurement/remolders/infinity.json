@@ -1,0 +1,16 @@
+{
+  "molding": "json",
+  "remolder": [
+    {
+      "type": "add",
+      "target": "effects.allurement\\:render_infinity_arrow",
+      "value": {}
+    },
+    {
+      "type": "add",
+      "target": "effects.allurement\\:can_shoot_without_arrow",
+      "value": {}
+    }
+  ],
+  "selector": "minecraft:enchantment/infinity"
+}

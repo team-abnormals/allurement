@@ -1,0 +1,47 @@
+{
+  "anvil_cost": 2,
+  "description": {
+    "translate": "enchantment.allurement.shockwave"
+  },
+  "effects": {
+    "allurement:shockwave": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 1.0,
+            "per_level_above_first": 1.0
+          }
+        }
+      }
+    ],
+    "allurement:trample_farmland": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 1.0,
+            "per_level_above_first": 1.0
+          }
+        }
+      }
+    ]
+  },
+  "exclusive_set": "#allurement:exclusive_set/falling",
+  "max_cost": {
+    "base": 11,
+    "per_level_above_first": 6
+  },
+  "max_level": 4,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 6
+  },
+  "slots": [
+    "armor"
+  ],
+  "supported_items": "#minecraft:enchantable/foot_armor",
+  "weight": 5
+}

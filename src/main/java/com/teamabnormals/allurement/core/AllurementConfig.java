@@ -2,64 +2,29 @@ package com.teamabnormals.allurement.core;
 
 import com.google.common.collect.Lists;
 import com.teamabnormals.blueprint.core.annotations.ConfigKey;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
-import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
-import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
-import net.minecraftforge.common.ForgeConfigSpec.IntValue;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
+import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
+import net.neoforged.neoforge.common.ModConfigSpec.DoubleValue;
+import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
 
-@EventBusSubscriber(modid = Allurement.MOD_ID)
 public class AllurementConfig {
 
 	public static class Common {
-		@ConfigKey("enchantable_horse_armor")
-		public final BooleanValue enchantableHorseArmor;
-		public final BooleanValue enchantedHorseArmorGenerates;
-		public final ConfigValue<List<? extends String>> unenchantedHorseArmorLootTables;
+		@ConfigKey("enchantable_animal_armor")
+		public final BooleanValue enchantableAnimalArmor;
+		public final BooleanValue enchantedAnimalArmorGenerates;
+		public final ConfigValue<List<? extends String>> unenchantedAnimalArmorLootTables;
 
 		public final BooleanValue baneOfArthropodsBreaksCobwebsFaster;
-
 		public final BooleanValue featherFallingPreventsTrampling;
-
 		public final BooleanValue infinityRequiresArrows;
-
-		public final BooleanValue disableProtection;
-
 		public final BooleanValue riptideWorksInCauldrons;
-
+		@ConfigKey("soul_speed_hurts_more")
 		public final BooleanValue soulSpeedHurtsMore;
-		public final DoubleValue soulSpeedDamageFactor;
-
-		public final BooleanValue enableAlleviating;
-		public final DoubleValue alleviatingHealingFactor;
-
-		public final BooleanValue enableLaunch;
-		public final DoubleValue launchVerticalFactor;
-
-		@ConfigKey("enable_obedience")
-		public final BooleanValue enableObedience;
-
-		public final BooleanValue enableReeling;
-		public final DoubleValue reelingHorizontalFactor;
-		public final DoubleValue reelingVerticalFactor;
-
-		public final BooleanValue enableReforming;
-		public final IntValue reformingTickRate;
-
-		public final BooleanValue enableShockwave;
-		public final BooleanValue shockwaveTramplesFarmland;
-
-		public final BooleanValue enableVengeance;
-		public final DoubleValue vengeanceDamageFactor;
-
-		public final BooleanValue enableSpreadOfAilments;
-
-		public final BooleanValue enableAscensionCurse;
-		public final BooleanValue enableFleetingCurse;
 
 		public final BooleanValue nonSolidBlocksTransmitEnchantingPower;
 		public final BooleanValue chiseledBookshelfEnchanting;
@@ -84,59 +49,7 @@ public class AllurementConfig {
 		public final BooleanValue anvilIngotRepairing;
 		public final IntValue ingotRepairChance;
 
-		Common(ForgeConfigSpec.Builder builder) {
-
-			builder.push("enchantments");
-			builder.push("alleviating");
-			enableAlleviating = builder.comment("Armor enchantment that heals the user when collecting experience").define("Enable Alleviating", true);
-			alleviatingHealingFactor = builder.comment("How much the experience value is multiplied by into health").defineInRange("Healing factor", 0.25D, 0, Double.MAX_VALUE);
-			builder.pop();
-
-			builder.push("launch");
-			enableLaunch = builder.comment("Weapon enchantment that launches enemies upwards rather than away").define("Enable Launch", true);
-			launchVerticalFactor = builder.comment("How much the target is affected on the vertical axis").defineInRange("Vertical factor", 0.35D, 0, Double.MAX_VALUE);
-			builder.pop();
-
-			builder.push("obedience");
-			enableObedience = builder.comment("Horse armor enchantment tha prevents the horse from roaming around").define("Enable Obedience", true);
-			builder.pop();
-
-			builder.push("reeling");
-			enableReeling = builder.comment("Crossbow enchantment that pulls targets towards the user").define("Enable Reeling", true);
-			reelingHorizontalFactor = builder.comment("How much the target is affected on the horizontal axis").defineInRange("Horizontal factor", 0.5D, 0, Double.MAX_VALUE);
-			reelingVerticalFactor = builder.comment("How much the target is affected on the vertical axis").defineInRange("Vertical factor", 0.25D, 0, Double.MAX_VALUE);
-			builder.pop();
-
-			builder.push("reforming");
-			enableReforming = builder.comment("Gear enchantment that very slowly repairs items over time").define("Enable Reforming", true);
-			reformingTickRate = builder.comment("How many ticks it takes a reforming item to repair").defineInRange("Reforming tick rate", 600, 0, Integer.MAX_VALUE);
-			builder.pop();
-
-			builder.push("shockwave");
-			enableShockwave = builder.comment("Boots enchantment that creates a shockwave when taking fall damage").define("Enable Shockwave", true);
-			shockwaveTramplesFarmland = builder.comment("If Shockwave tramples farmland within the wave radius").define("Shockwave tramples farmland", true);
-			builder.pop();
-
-			builder.push("vengeance");
-			enableVengeance = builder.comment("Armor enchantment that stores incoming damage and applies it to user's next attack").define("Enable Vengeance", true);
-			vengeanceDamageFactor = builder.comment("How much the damage taken with vengeance is multiplied for attacks").defineInRange("Damage factor", 0.025D, 0, Double.MAX_VALUE);
-			builder.pop();
-
-			builder.push("spread_of_ailments");
-			enableSpreadOfAilments = builder.comment("Crossbow enchantment that applies the user's active effects to their arrows").define("Enable Spread of Ailments", true);
-			builder.pop();
-			builder.pop();
-
-			builder.push("curses");
-			builder.push("ascension_curse");
-			enableAscensionCurse = builder.comment("Curse that causes the cursed item to float upwards when dropped").define("Enable Curse of Ascension", true);
-			builder.pop();
-
-			builder.push("fleeting_curse");
-			enableFleetingCurse = builder.comment("Curse that causes nearby entities to repel the cursed item").define("Enable Curse of Fleeting", true);
-			builder.pop();
-			builder.pop();
-
+		Common(ModConfigSpec.Builder builder) {
 			builder.push("tweaks");
 			builder.push("enchanting");
 			nonSolidBlocksTransmitEnchantingPower = builder.comment("Allow enchanting power from bookshelves to transmit through any non-solid block, not just replaceable ones").define("Non-solid blocks transmit enchanting power", true);
@@ -145,10 +58,10 @@ public class AllurementConfig {
 			enchantedBooksNeededPerLevel = builder.comment("How many enchanted are needed to increase the enchantment power by 1").defineInRange("Enchanted Books needed", 2, 1, 6);
 			builder.pop();
 
-			builder.push("horse_armor");
-			enchantableHorseArmor = builder.comment("Allow horse armor to be enchanted").define("Enchantable horse armor", true);
-			enchantedHorseArmorGenerates = builder.comment("If horse armor can appear enchanted when found in loot tables").define("Generates in loot tables", true);
-			unenchantedHorseArmorLootTables = builder.comment("Which loot tables horse armor can't appear enchanted in").define("Unenchanted loot tables", Lists.newArrayList("minecraft:chests/village/village_weaponsmith", "minecraft:chests/stronghold_corridor", "minecraft:chests/nether_bridge"));
+			builder.push("animal_armor");
+			enchantableAnimalArmor = builder.comment("Allow animal armor to be enchanted").define("Enchantable animal armor", true);
+			enchantedAnimalArmorGenerates = builder.comment("If animal armor can appear enchanted when found in loot tables").define("Generates in loot tables", true);
+			unenchantedAnimalArmorLootTables = builder.comment("Which loot tables animal armor can't appear enchanted in").define("Unenchanted loot tables", Lists.newArrayList("minecraft:chests/village/village_weaponsmith", "minecraft:chests/stronghold_corridor", "minecraft:chests/nether_bridge"));
 			builder.pop();
 
 			builder.push("bane_of_arthropods");
@@ -163,17 +76,12 @@ public class AllurementConfig {
 			infinityRequiresArrows = builder.comment("If Infinity requires an arrow in the player's inventory in order to shoot").define("Infinity requires arrows", false);
 			builder.pop();
 
-			builder.push("protection");
-			disableProtection = builder.comment("Remove the base Protection enchantment, requiring players to choose between the other types").define("Disable Protection", false);
-			builder.pop();
-
 			builder.push("riptide");
 			riptideWorksInCauldrons = builder.comment("Allow Riptide to function when in cauldrons").define("Riptide works in cauldrons", true);
 			builder.pop();
 
 			builder.push("soul_speed");
 			soulSpeedHurtsMore = builder.comment("Instead of losing durability as you run, Soul Speed makes incoming damage increase when on Soul Speed blocks").define("Soul Speed change", true);
-			soulSpeedDamageFactor = builder.comment("How much damage is multiplied when hurt on Soul Speed blocks").defineInRange("Damage factor", 1.5D, 0, Double.MAX_VALUE);
 			builder.pop();
 
 			builder.push("experience");
@@ -208,7 +116,7 @@ public class AllurementConfig {
 		public final BooleanValue infinityArrowTexture;
 		public final BooleanValue infinityArrowGlint;
 
-		Client(ForgeConfigSpec.Builder builder) {
+		Client(ModConfigSpec.Builder builder) {
 			builder.push("tweaks");
 			builder.push("infinity");
 			infinityArrowTexture = builder.comment("Adds a special texture for arrows shot from infinity bows").define("Infinity arrow texture", true);
@@ -218,18 +126,18 @@ public class AllurementConfig {
 		}
 	}
 
-	public static final ForgeConfigSpec COMMON_SPEC;
+	public static final ModConfigSpec COMMON_SPEC;
 	public static final Common COMMON;
 
-	public static final ForgeConfigSpec CLIENT_SPEC;
+	public static final ModConfigSpec CLIENT_SPEC;
 	public static final Client CLIENT;
 
 	static {
-		final Pair<Common, ForgeConfigSpec> commonSpecPair = new ForgeConfigSpec.Builder().configure(Common::new);
+		final Pair<Common, ModConfigSpec> commonSpecPair = new ModConfigSpec.Builder().configure(Common::new);
 		COMMON_SPEC = commonSpecPair.getRight();
 		COMMON = commonSpecPair.getLeft();
 
-		final Pair<Client, ForgeConfigSpec> clientSpecPair = new ForgeConfigSpec.Builder().configure(Client::new);
+		final Pair<Client, ModConfigSpec> clientSpecPair = new ModConfigSpec.Builder().configure(Client::new);
 		CLIENT_SPEC = clientSpecPair.getRight();
 		CLIENT = clientSpecPair.getLeft();
 	}

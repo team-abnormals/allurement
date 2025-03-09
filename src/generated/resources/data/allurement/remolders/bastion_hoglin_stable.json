@@ -1,0 +1,30 @@
+{
+  "molding": "json",
+  "remolder": {
+    "type": "add",
+    "target": "pools[1].entries[]",
+    "value": {
+      "type": "minecraft:item",
+      "functions": [
+        {
+          "function": "minecraft:enchant_randomly",
+          "options": "allurement:obedience"
+        }
+      ],
+      "name": "minecraft:book",
+      "weight": 3
+    }
+  },
+  "selector": {
+    "type": "names",
+    "conditions": [
+      {
+        "type": "allurement:config",
+        "value": "enchantable_animal_armor"
+      }
+    ],
+    "config": [
+      "minecraft:loot_table/chests/bastion_hoglin_stable"
+    ]
+  }
+}

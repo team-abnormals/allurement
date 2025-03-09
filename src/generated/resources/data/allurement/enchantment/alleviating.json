@@ -1,0 +1,31 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "translate": "enchantment.allurement.alleviating"
+  },
+  "effects": {
+    "allurement:heal_with_xp": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": 0.25
+        }
+      }
+    ]
+  },
+  "exclusive_set": "#allurement:exclusive_set/mending",
+  "max_cost": {
+    "base": 75,
+    "per_level_above_first": 25
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 25,
+    "per_level_above_first": 25
+  },
+  "slots": [
+    "armor"
+  ],
+  "supported_items": "#minecraft:enchantable/armor",
+  "weight": 2
+}

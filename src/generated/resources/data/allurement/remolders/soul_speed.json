@@ -1,0 +1,56 @@
+{
+  "molding": "json",
+  "remolder": [
+    {
+      "type": "remove",
+      "target": "effects.minecraft\\:location_changed[2]"
+    },
+    {
+      "type": "add",
+      "target": "effects.allurement\\:increase_incoming_damage",
+      "value": [
+        {
+          "effect": {
+            "type": "minecraft:multiply",
+            "factor": {
+              "type": "minecraft:linear",
+              "base": 1.25,
+              "per_level_above_first": 0.25
+            }
+          },
+          "requirements": {
+            "condition": "minecraft:all_of",
+            "terms": [
+              {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "flags": {
+                    "is_on_ground": true
+                  },
+                  "movement_affected_by": {
+                    "block": {
+                      "blocks": "#minecraft:soul_speed_blocks"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "selector": {
+    "type": "names",
+    "conditions": [
+      {
+        "type": "allurement:config",
+        "value": "soul_speed_hurts_more"
+      }
+    ],
+    "config": [
+      "minecraft:enchantment/soul_speed"
+    ]
+  }
+}

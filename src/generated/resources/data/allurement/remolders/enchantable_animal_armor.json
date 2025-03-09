@@ -1,0 +1,17 @@
+{
+  "molding": "json",
+  "remolder": {
+    "type": "add",
+    "target": "slots[]",
+    "value": "body"
+  },
+  "selector": {
+    "type": "names",
+    "config": [
+      "minecraft:enchantment/soul_speed",
+      "minecraft:enchantment/frost_walker",
+      "minecraft:enchantment/respiration",
+      "minecraft:enchantment/depth_strider"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+package com.teamabnormals.allurement.core.mixin.client;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.teamabnormals.allurement.core.other.AllurementUtil;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.entity.layers.WolfArmorLayer;
+import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.item.AnimalArmorItem;
+import net.minecraft.world.item.ItemStack;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
+
+@Mixin(WolfArmorLayer.class)
+public class WolfArmorLayerMixin {
+
+	@ModifyVariable(method = "render", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/client/renderer/MultiBufferSource;getBuffer(Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/VertexConsumer;", shift = At.Shift.AFTER))
+	private VertexConsumer render(VertexConsumer builderIn, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, Wolf entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+		ItemStack stack = entity.getBodyArmorItem();
+		AllurementUtil.setColorRuneTarget(stack);
+		AnimalArmorItem armorItem = (AnimalArmorItem) stack.getItem();
+		return ItemRenderer.getFoilBufferDirect(bufferIn, RenderType.entityCutoutNoCull(armorItem.getTexture()), false, stack.hasFoil());
+	}
+}

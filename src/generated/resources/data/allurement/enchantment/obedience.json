@@ -1,0 +1,23 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "translate": "enchantment.allurement.obedience"
+  },
+  "effects": {
+    "allurement:prevent_animal_roaming": {}
+  },
+  "max_cost": {
+    "base": 65,
+    "per_level_above_first": 0
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 15,
+    "per_level_above_first": 0
+  },
+  "slots": [
+    "body"
+  ],
+  "supported_items": "#minecraft:enchantable/armor",
+  "weight": 2
+}

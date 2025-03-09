@@ -1,0 +1,36 @@
+{
+  "anvil_cost": 8,
+  "description": {
+    "translate": "enchantment.allurement.vengeance"
+  },
+  "effects": {
+    "allurement:store_incoming_damage": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 0.0375,
+            "per_level_above_first": 0.0375
+          }
+        }
+      }
+    ]
+  },
+  "exclusive_set": "#allurement:exclusive_set/thorns",
+  "max_cost": {
+    "base": 60,
+    "per_level_above_first": 20
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 20
+  },
+  "primary_items": "#minecraft:enchantable/chest_armor",
+  "slots": [
+    "any"
+  ],
+  "supported_items": "#minecraft:enchantable/armor",
+  "weight": 1
+}

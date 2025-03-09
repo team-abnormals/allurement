@@ -1,37 +1,30 @@
 {
   "required": true,
   "package": "com.teamabnormals.allurement.core.mixin",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "refmap": "allurement.refmap.json",
   "mixins": [
     "AbstractArrowMixin",
     "AbstractHorseMixin",
+    "AnimalArmorItemMixin",
     "AnvilMenuMixin",
-    "ArrowMixin",
-    "BowItemMixin",
     "ChiseledBookShelfBlockMixin",
-    "CrossbowItemMixin",
     "DamageSourceMixin",
-    "EnchantmentCategoryMixin",
-    "EnchantmentHelperMixin",
-    "EnchantmentMixin",
     "EnchantmentTableBlockMixin",
     "EntityMixin",
     "ExperienceOrbMixin",
     "ItemEntityMixin",
-    "ItemMixin",
-    "LivingEntityAccessor",
-    "LivingEntityMixin",
+    "ItemStackMixin",
     "PlayerMixin",
-    "ProtectionEnchantmentMixin",
-    "RandomStrollGoalMixin",
-    "SlotMixin"
+    "ProjectileWeaponItemMixin",
+    "RandomStrollGoalMixin"
   ],
   "client": [
-    "AnvilScreenMixin",
+    "client.AnvilScreenMixin",
     "client.ArrowRendererMixin",
-    "client.HorseArmorLayerMixin"
+    "client.HorseArmorLayerMixin",
+    "client.WolfArmorLayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

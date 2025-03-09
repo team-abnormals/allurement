@@ -1,0 +1,44 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "translate": "enchantment.allurement.spread_of_ailments"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "victim",
+        "effect": {
+          "type": "allurement:transfer_effects",
+          "amount": {
+            "type": "minecraft:linear",
+            "base": 200.0,
+            "per_level_above_first": 200.0
+          },
+          "ignored_effects": "allurement:spread_of_ailments_cannot_inflict"
+        },
+        "enchanted": "attacker",
+        "requirements": {
+          "condition": "minecraft:entity_properties",
+          "entity": "direct_attacker",
+          "predicate": {
+            "type": "#minecraft:arrows"
+          }
+        }
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 50,
+    "per_level_above_first": 0
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 12,
+    "per_level_above_first": 20
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#minecraft:enchantable/crossbow",
+  "weight": 2
+}

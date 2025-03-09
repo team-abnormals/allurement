@@ -3,9 +3,8 @@ package com.teamabnormals.allurement.core.other;
 import com.teamabnormals.allurement.common.dispenser.IronIngotDispenseBehavior;
 import com.teamabnormals.allurement.core.Allurement;
 import com.teamabnormals.allurement.core.AllurementConfig;
-import com.teamabnormals.allurement.core.mixin.LivingEntityAccessor;
 import com.teamabnormals.allurement.core.other.tags.AllurementBlockTags;
-import com.teamabnormals.allurement.core.registry.AllurementEnchantments;
+import com.teamabnormals.allurement.core.registry.AllurementEnchantmentEffects;
 import com.teamabnormals.blueprint.common.world.storage.tracking.IDataManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -13,34 +12,35 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ProjectileWeaponItem;
+import net.minecraft.world.item.enchantment.EnchantedItemInUse;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
-import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
-import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.ArrowNockEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
-import net.minecraftforge.event.level.BlockEvent.FarmlandTrampleEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingExperienceDropEvent;
+import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
+import net.neoforged.neoforge.event.entity.living.LivingGetProjectileEvent;
+import net.neoforged.neoforge.event.entity.player.ArrowNockEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
+import net.neoforged.neoforge.event.level.BlockEvent.FarmlandTrampleEvent;
+import org.apache.commons.lang3.mutable.MutableFloat;
 
-import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @EventBusSubscriber(modid = Allurement.MOD_ID)
@@ -49,97 +49,108 @@ public class AllurementEvents {
 	@SubscribeEvent
 	public static void onLivingFall(LivingFallEvent event) {
 		LivingEntity entity = event.getEntity();
-		Level world = entity.getCommandSenderWorld();
-		int level = EnchantmentHelper.getTagEnchantmentLevel(AllurementEnchantments.SHOCKWAVE.get(), entity.getItemBySlot(EquipmentSlot.FEET));
+		if (entity.level() instanceof ServerLevel level && !entity.isPassenger()) {
+			float fallDistance = event.getDistance() - (float) entity.getAttributeValue(Attributes.SAFE_FALL_DISTANCE);
+			int damage = Mth.ceil((double) (fallDistance * event.getDamageMultiplier()) * entity.getAttributeValue(Attributes.FALL_DAMAGE_MULTIPLIER));
 
-		MobEffectInstance effectInstance = entity.getEffect(MobEffects.JUMP);
-		float f = effectInstance == null ? 0.0F : (float) (effectInstance.getAmplifier() + 1);
-		int damage = Mth.ceil((event.getDistance() - 3.0F - f) * event.getDamageMultiplier());
+			if (damage > 0.0F) {
+				MutableFloat shockwaveRadius = new MutableFloat();
+				EnchantmentHelper.runIterationOnEquipment(entity, (ench, eLevel, use) -> {
+					ench.value().modifyEntityFilteredValue(AllurementEnchantmentEffects.SHOCKWAVE.get(), level, eLevel, use.itemStack(), entity, shockwaveRadius);
+				});
 
-		if (level > 0 && damage > 0) {
-			for (LivingEntity target : world.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(level, 0.0D, level))) {
-				if (entity != target)
-					target.hurt(AllurementDamageTypes.shockwave(world, entity, entity), damage);
-			}
-
-			if (AllurementConfig.COMMON.shockwaveTramplesFarmland.get()) {
-				Stream<BlockPos> affectedBlocks = BlockPos.betweenClosedStream(entity.getBoundingBox().inflate(level, 0.0D, level).move(0, -1.0F, 0));
-				affectedBlocks.forEach(pos -> {
-					BlockState state = world.getBlockState(pos);
-					if (state.is(AllurementBlockTags.TRAMPLED_BY_SHOCKWAVE)) {
-						if (!world.isClientSide && ForgeHooks.onFarmlandTrample(world, pos, Blocks.DIRT.defaultBlockState(), event.getDistance(), entity)) {
-							FarmBlock.turnToDirt(entity, state, world, pos);
+				if (shockwaveRadius.floatValue() > 0.0F) {
+					float radius = shockwaveRadius.floatValue();
+					for (LivingEntity target : level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(radius, 0.0D, radius))) {
+						if (entity != target && !entity.hasPassenger(target) && !target.hasPassenger(entity)) {
+							target.hurt(AllurementDamageTypes.shockwave(level, entity, entity.hasControllingPassenger() ? entity.getControllingPassenger() : entity), damage);
 						}
 					}
+
+					level.sendParticles(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(), 200, radius, 0.5F, radius, 0.0F);
+				}
+
+				MutableFloat farmlandRadius = new MutableFloat();
+				EnchantmentHelper.runIterationOnEquipment(entity, (ench, eLevel, use) -> {
+					ench.value().modifyEntityFilteredValue(AllurementEnchantmentEffects.TRAMPLE_FARMLAND.get(), level, eLevel, use.itemStack(), entity, farmlandRadius);
 				});
+				if (farmlandRadius.floatValue() > 0.0F) {
+					float radius = farmlandRadius.floatValue();
+					Stream<BlockPos> affectedBlocks = BlockPos.betweenClosedStream(entity.getBoundingBox().inflate(radius, 0.0D, radius).move(0, -1.0F, 0));
+					affectedBlocks.forEach(pos -> {
+						BlockState state = level.getBlockState(pos);
+						if (state.is(AllurementBlockTags.TRAMPLED_BY_SHOCKWAVE)) {
+							if (CommonHooks.onFarmlandTrample(level, pos, Blocks.DIRT.defaultBlockState(), fallDistance, entity)) {
+								FarmBlock.turnToDirt(entity, state, level, pos);
+							}
+						}
+					});
+				}
 			}
 
-			if (world instanceof ServerLevel) {
-				((ServerLevel) world).sendParticles(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(), 200, level, 0.5, level, 0);
-			}
+
 		}
 	}
 
 	@SubscribeEvent
 	public static void onPlayerBreak(PlayerEvent.BreakSpeed event) {
-		int baneOfArthropodsLevel = EnchantmentHelper.getTagEnchantmentLevel(Enchantments.BANE_OF_ARTHROPODS, event.getEntity().getMainHandItem());
-		if (AllurementConfig.COMMON.baneOfArthropodsBreaksCobwebsFaster.get() && event.getState().is(AllurementBlockTags.MINEABLE_WITH_BANE_OF_ARTHROPODS) && baneOfArthropodsLevel > 0)
-			event.setNewSpeed(event.getOriginalSpeed() + (5.0F * baneOfArthropodsLevel * baneOfArthropodsLevel));
+		if (event.getState().is(AllurementBlockTags.MINEABLE_WITH_BANE_OF_ARTHROPODS)) {
+			int level = AllurementUtil.getTagEnchantmentLevel(event.getEntity().level(), Enchantments.BANE_OF_ARTHROPODS, event.getEntity().getMainHandItem());
+			if (level > 0) {
+				event.setNewSpeed(event.getOriginalSpeed() + (5.0F * level * level));
+			}
+		}
 	}
 
 	@SubscribeEvent
 	public static void onFarmlandTrample(FarmlandTrampleEvent event) {
-		if (event.getEntity() instanceof LivingEntity && AllurementConfig.COMMON.featherFallingPreventsTrampling.get()) {
-			if (EnchantmentHelper.getTagEnchantmentLevel(Enchantments.FALL_PROTECTION, ((LivingEntity) event.getEntity()).getItemBySlot(EquipmentSlot.FEET)) > 0)
-				event.setCanceled(true);
+		if (event.getEntity() instanceof LivingEntity living && AllurementConfig.COMMON.featherFallingPreventsTrampling.get()) {
+			for (ItemStack stack : living.getArmorAndBodyArmorSlots())
+				if (EnchantmentHelper.has(stack, AllurementEnchantmentEffects.PREVENTS_FARMLAND_TRAMPLE.get())) {
+					event.setCanceled(true);
+				}
 		}
 	}
 
 	@SubscribeEvent
-	public static void onLivingHurt(LivingHurtEvent event) {
+	public static void onLivingHurt(LivingDamageEvent.Pre event) {
 		LivingEntity entity = event.getEntity();
 		Entity source = event.getSource().getEntity();
 		IDataManager manager = (IDataManager) entity;
 
-		if (source instanceof LivingEntity attacker) {
-			int count = AllurementUtil.getTotalEnchantmentLevel(AllurementEnchantments.VENGEANCE.get(), entity, EquipmentSlot.Type.ARMOR);
-			if (count > 0) {
-				manager.setValue(AllurementTrackedData.ABSORBED_DAMAGE, event.getAmount() * count * AllurementConfig.COMMON.vengeanceDamageFactor.get().floatValue());
+		if (entity.level() instanceof ServerLevel serverLevel) {
+			MutableFloat increasedDamage = new MutableFloat(event.getNewDamage());
+			EnchantmentHelper.runIterationOnEquipment(entity, (ench, eLevel, use) -> {
+				ench.value().modifyEntityFilteredValue(AllurementEnchantmentEffects.INCREASE_INCOMING_DAMAGE.get(), serverLevel, eLevel, use.itemStack(), entity, increasedDamage);
+			});
+
+			if (increasedDamage.floatValue() != event.getNewDamage()) {
+				event.setNewDamage(increasedDamage.floatValue());
 			}
 
-			Entry<EquipmentSlot, ItemStack> entry = EnchantmentHelper.getRandomItemWith(AllurementEnchantments.VENGEANCE.get(), attacker);
-			if (entry != null) {
-				IDataManager attackManager = (IDataManager) attacker;
-				float absorbedDamage = attackManager.getValue(AllurementTrackedData.ABSORBED_DAMAGE);
+			if (source instanceof LivingEntity attacker) {
+				MutableFloat mutablefloat = new MutableFloat();
+				EnchantmentHelper.runIterationOnEquipment(entity, (ench, eLevel, use) -> {
+					ench.value().modifyEntityFilteredValue(AllurementEnchantmentEffects.STORE_INCOMING_DAMAGE.get(), serverLevel, eLevel, use.itemStack(), entity, mutablefloat);
+				});
 
-				if (absorbedDamage > 0.0F) {
-					event.setAmount(event.getAmount() + absorbedDamage);
-					attackManager.setValue(AllurementTrackedData.ABSORBED_DAMAGE, 0.0F);
-					entry.getValue().hurtAndBreak(2, attacker, (livingEntity) -> livingEntity.broadcastBreakEvent(entry.getKey()));
+				if (mutablefloat.floatValue() > 0.0F) {
+					manager.setValue(AllurementTrackedData.ABSORBED_DAMAGE, event.getNewDamage() * mutablefloat.floatValue());
+				}
+
+				Optional<EnchantedItemInUse> entry = EnchantmentHelper.getRandomItemWith(AllurementEnchantmentEffects.STORE_INCOMING_DAMAGE.get(), attacker, p -> true);
+				if (entry.isPresent() && entry.get().inSlot() != null) {
+					IDataManager attackManager = (IDataManager) attacker;
+					float absorbedDamage = attackManager.getValue(AllurementTrackedData.ABSORBED_DAMAGE);
+					if (absorbedDamage > 0.0F) {
+						event.setNewDamage(event.getNewDamage() + absorbedDamage);
+						attackManager.setValue(AllurementTrackedData.ABSORBED_DAMAGE, 0.0F);
+						entry.get().itemStack().hurtAndBreak(2, attacker, entry.get().inSlot());
+					}
 				}
 			}
 		}
-
-		if (AllurementConfig.COMMON.soulSpeedHurtsMore.get() && event.getEntity() != null) {
-			if (EnchantmentHelper.hasSoulSpeed(entity) && ((LivingEntityAccessor) entity).isSoulSpeedBlock()) {
-				event.setAmount(event.getAmount() * AllurementConfig.COMMON.soulSpeedDamageFactor.get().floatValue());
-			}
-		}
 	}
-
-	@SubscribeEvent
-	public static void onLivingUpdate(LivingTickEvent event) {
-		LivingEntity entity = event.getEntity();
-		Level world = entity.getCommandSenderWorld();
-		for (EquipmentSlot slot : EquipmentSlot.values()) {
-			ItemStack stack = entity.getItemBySlot(slot);
-			int level = EnchantmentHelper.getTagEnchantmentLevel(AllurementEnchantments.REFORMING.get(), stack);
-			if (!stack.isEmpty() && stack.isDamaged() && level > 0 && world.getGameTime() % AllurementConfig.COMMON.reformingTickRate.get() == 0) {
-				stack.setDamageValue(stack.getDamageValue() - 1);
-			}
-		}
-	}
-
 
 	@SubscribeEvent
 	public static void onExperienceDrop(LivingExperienceDropEvent event) {
@@ -163,9 +174,20 @@ public class AllurementEvents {
 	public static void onArrowNock(ArrowNockEvent event) {
 		Player player = event.getEntity();
 		ItemStack bow = event.getBow();
-		if (!AllurementConfig.COMMON.infinityRequiresArrows.get() && EnchantmentHelper.getTagEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow) > 0 && player.getProjectile(bow).isEmpty()) {
+		if (!AllurementConfig.COMMON.infinityRequiresArrows.get() && EnchantmentHelper.has(bow, AllurementEnchantmentEffects.CAN_SHOOT_WITHOUT_ARROW.get()) && player.getProjectile(bow).isEmpty()) {
 			player.startUsingItem(event.getHand());
 			event.setAction(InteractionResultHolder.consume(bow));
+		}
+	}
+
+	@SubscribeEvent
+	public static void livingGetProjectile(LivingGetProjectileEvent event) {
+		LivingEntity entity = event.getEntity();
+		ItemStack bow = event.getProjectileWeaponItemStack();
+		if (!AllurementConfig.COMMON.infinityRequiresArrows.get() && EnchantmentHelper.has(bow, AllurementEnchantmentEffects.CAN_SHOOT_WITHOUT_ARROW.get()) && event.getProjectileItemStack().isEmpty()) {
+			if (bow.getItem() instanceof ProjectileWeaponItem projectileWeaponItem && entity instanceof Player player) {
+				event.setProjectileItemStack(projectileWeaponItem.getDefaultCreativeAmmo(player, bow));
+			}
 		}
 	}
 

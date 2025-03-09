@@ -1,6 +1,5 @@
 package com.teamabnormals.allurement.core.mixin;
 
-import com.mojang.datafixers.TypeRewriteRule.All;
 import com.teamabnormals.allurement.core.AllurementConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.ItemTags;
@@ -13,8 +12,6 @@ import net.minecraft.world.level.block.entity.ChiseledBookShelfBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import org.spongepowered.asm.mixin.Mixin;
-
-import java.util.stream.Stream;
 
 @Mixin(ChiseledBookShelfBlock.class)
 public abstract class ChiseledBookShelfBlockMixin extends Block {

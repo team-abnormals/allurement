@@ -1,43 +1,19 @@
 package com.teamabnormals.allurement.core.other;
 
-import com.google.common.collect.Maps;
-import com.teamabnormals.allurement.core.Allurement;
 import com.teamabnormals.allurement.core.AllurementConfig;
-import net.minecraft.Util;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import org.violetmoon.quark.content.tools.module.ColorRunesModule;
 
-import java.util.Map;
-
-@EventBusSubscriber(modid = Allurement.MOD_ID)
 public class AllurementUtil {
-	public static final Map<String, Integer> ENCHANTABILITY_MAP = Util.make(Maps.newHashMap(), (map) -> {
-		map.put("minecraft:leather_horse_armor", 15);
-		map.put("minecraft:iron_horse_armor", 9);
-		map.put("minecraft:golden_horse_armor", 25);
-		map.put("minecraft:diamond_horse_armor", 10);
-		map.put("caverns_and_chasms:netherite_horse_armor", 15);
-		map.put("caverns_and_chasms:silver_horse_armor", 17);
-		map.put("caverns_and_chasms:necromium_horse_armor", 13);
-	});
 
-	public static int getTotalEnchantmentLevel(Enchantment ench, LivingEntity entity, EquipmentSlot.Type group) {
-		int count = 0;
-		for (EquipmentSlot slot : EquipmentSlot.values()) {
-			if (slot.getType() == group) {
-				count += entity.getItemBySlot(slot).getEnchantmentLevel(ench);
-			}
-		}
-		return count;
-	}
 
 	public static int getXpNeededForNextLevel(int experienceLevel) {
 		int original = experienceLevel >= 30 ? 112 + (experienceLevel - 30) * 9 : (experienceLevel >= 15 ? 37 + (experienceLevel - 15) * 5 : 7 + experienceLevel * 2);
@@ -86,6 +62,14 @@ public class AllurementUtil {
 	}
 
 	public static void setColorRuneTarget(ItemStack stack) {
-		if (ModList.get().isLoaded("quark")) ColorRunesModule.setTargetStack(stack);
+		// if (ModList.get().isLoaded("quark")) ColorRunesModule.setTargetStack(stack);
+	}
+
+	public static int getTagEnchantmentLevel(Level level, ResourceKey<Enchantment> enchantment, ItemStack stack) {
+		return EnchantmentHelper.getTagEnchantmentLevel(getEnchantment(level, enchantment), stack);
+	}
+
+	public static Holder<Enchantment> getEnchantment(Level level, ResourceKey<Enchantment> enchantment) {
+		return level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(enchantment);
 	}
 }

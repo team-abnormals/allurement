@@ -1,0 +1,76 @@
+{
+  "molding": "json",
+  "remolder": [
+    {
+      "type": "replace",
+      "target": "pools[0].entries[9].functions[0].options",
+      "value": "#allurement:on_end_city_loot"
+    },
+    {
+      "type": "replace",
+      "target": "pools[0].entries[10].functions[0].options",
+      "value": "#allurement:on_end_city_loot"
+    },
+    {
+      "type": "replace",
+      "target": "pools[0].entries[11].functions[0].options",
+      "value": "#allurement:on_end_city_loot"
+    },
+    {
+      "type": "replace",
+      "target": "pools[0].entries[12].functions[0].options",
+      "value": "#allurement:on_end_city_loot"
+    },
+    {
+      "type": "replace",
+      "target": "pools[0].entries[13].functions[0].options",
+      "value": "#allurement:on_end_city_loot"
+    },
+    {
+      "type": "replace",
+      "target": "pools[0].entries[14].functions[0].options",
+      "value": "#allurement:on_end_city_loot"
+    },
+    {
+      "type": "replace",
+      "target": "pools[0].entries[15].functions[0].options",
+      "value": "#allurement:on_end_city_loot"
+    },
+    {
+      "type": "replace",
+      "target": "pools[0].entries[16].functions[0].options",
+      "value": "#allurement:on_end_city_loot"
+    },
+    {
+      "type": "replace",
+      "target": "pools[0].entries[17].functions[0].options",
+      "value": "#allurement:on_end_city_loot"
+    },
+    {
+      "type": "replace",
+      "target": "pools[0].entries[18].functions[0].options",
+      "value": "#allurement:on_end_city_loot"
+    },
+    {
+      "type": "replace",
+      "target": "pools[0].entries[19].functions[0].options",
+      "value": "#allurement:on_end_city_loot"
+    },
+    {
+      "type": "replace",
+      "target": "pools[0].entries[20].functions[0].options",
+      "value": "#allurement:on_end_city_loot"
+    },
+    {
+      "type": "replace",
+      "target": "pools[0].entries[21].functions[0].options",
+      "value": "#allurement:on_end_city_loot"
+    },
+    {
+      "type": "replace",
+      "target": "pools[0].entries[22].functions[0].options",
+      "value": "#allurement:on_end_city_loot"
+    }
+  ],
+  "selector": "minecraft:loot_table/chests/end_city_treasure"
+}
