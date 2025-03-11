@@ -8,7 +8,6 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.resources.ResourceLocation;
 
 public class AllurementTrackedData {
-
 	public static final TrackedData<Boolean> INFINITY_ARROW = TrackedData.Builder.create(ByteBufCodecs.BOOL, () -> false).enableSaving(Codec.BOOL.fieldOf("value")).build();
 	public static final TrackedData<Float> ABSORBED_DAMAGE = TrackedData.Builder.create(ByteBufCodecs.FLOAT, () -> 0.0F).enableSaving(Codec.FLOAT.fieldOf("value")).build();
 
