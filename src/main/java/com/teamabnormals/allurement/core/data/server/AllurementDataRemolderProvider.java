@@ -9,7 +9,7 @@ import com.teamabnormals.allurement.core.AllurementConfig;
 import com.teamabnormals.allurement.core.other.tags.AllurementEnchantmentTags;
 import com.teamabnormals.allurement.core.registry.AllurementConditions;
 import com.teamabnormals.allurement.core.registry.AllurementEnchantmentEffects;
-import com.teamabnormals.allurement.core.registry.AllurementEnchantments;
+import com.teamabnormals.allurement.core.registry.datapack.AllurementEnchantments;
 import com.teamabnormals.blueprint.common.remolder.Remolder;
 import com.teamabnormals.blueprint.common.remolder.SequenceRemolder;
 import com.teamabnormals.blueprint.common.remolder.data.RemolderProvider;

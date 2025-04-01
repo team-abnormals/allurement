@@ -3,7 +3,7 @@ package com.teamabnormals.allurement.core;
 import com.teamabnormals.allurement.common.dispenser.IronIngotDispenseBehavior;
 import com.teamabnormals.allurement.core.data.client.AllurementLanguageProvider;
 import com.teamabnormals.allurement.core.data.server.AllurementDataRemolderProvider;
-import com.teamabnormals.allurement.core.data.server.AllurementDatapackBuiltinEntriesProvider;
+import com.teamabnormals.allurement.core.data.server.AllurementDatapackProvider;
 import com.teamabnormals.allurement.core.data.server.modifiers.AllurementGlobalLootModifierProvider;
 import com.teamabnormals.allurement.core.data.server.tags.AllurementBlockTagsProvider;
 import com.teamabnormals.allurement.core.data.server.tags.AllurementEnchantmentTagsProvider;
@@ -16,10 +16,10 @@ import com.teamabnormals.allurement.core.registry.AllurementLootModifiers;
 import com.teamabnormals.blueprint.core.util.BlockUtil;
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.blueprint.core.util.DataUtil.AlternativeDispenseBehavior;
-import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -27,27 +27,17 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import java.util.concurrent.CompletableFuture;
 
-// TODO: Complete port
-
-/**
- * Add Ascension to End Cities
- * Remove Protection
- */
-
+// TODO: Protection Removal?
 @Mod(Allurement.MOD_ID)
 public class Allurement {
 	public static final String MOD_ID = "allurement";
-	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
 
 	public Allurement(IEventBus bus, ModContainer container) {
-		REGISTRY_HELPER.register(bus);
-
 		AllurementLootModifiers.GLOBAL_LOOT_MODIFIERS.register(bus);
 		AllurementConditions.CONDITION_SERIALIZERS.register(bus);
 		AllurementEnchantmentEffects.COMPONENTS.register(bus);
@@ -75,7 +65,7 @@ public class Allurement {
 		ExistingFileHelper helper = event.getExistingFileHelper();
 
 		boolean server = event.includeServer();
-		DatapackBuiltinEntriesProvider datapack = new AllurementDatapackBuiltinEntriesProvider(output, provider);
+		AllurementDatapackProvider datapack = new AllurementDatapackProvider(output, provider);
 		generator.addProvider(server, datapack);
 		provider = datapack.getRegistryProvider();
 
@@ -89,5 +79,9 @@ public class Allurement {
 
 		boolean client = event.includeClient();
 		generator.addProvider(client, new AllurementLanguageProvider(output));
+	}
+
+	public static ResourceLocation location(String path) {
+		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
 	}
 }

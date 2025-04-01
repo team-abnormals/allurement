@@ -1,10 +1,9 @@
-package com.teamabnormals.allurement.core.other;
+package com.teamabnormals.allurement.core.registry.datapack;
 
 import com.teamabnormals.allurement.core.Allurement;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
@@ -13,7 +12,7 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 
 public class AllurementDamageTypes {
-	public static final ResourceKey<DamageType> SHOCKWAVE = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Allurement.MOD_ID, "shockwave"));
+	public static final ResourceKey<DamageType> SHOCKWAVE = ResourceKey.create(Registries.DAMAGE_TYPE, Allurement.location("shockwave"));
 
 	public static void bootstrap(BootstrapContext<DamageType> context) {
 		context.register(SHOCKWAVE, new DamageType(Allurement.MOD_ID + ".shockwave", 0.1F));

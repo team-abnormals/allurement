@@ -1,7 +1,7 @@
 package com.teamabnormals.allurement.core.data.client;
 
 import com.teamabnormals.allurement.core.Allurement;
-import com.teamabnormals.allurement.core.registry.AllurementEnchantments;
+import com.teamabnormals.allurement.core.registry.datapack.AllurementEnchantments;
 import com.teamabnormals.blueprint.core.data.client.BlueprintLanguageProvider;
 import net.minecraft.Util;
 import net.minecraft.data.PackOutput;

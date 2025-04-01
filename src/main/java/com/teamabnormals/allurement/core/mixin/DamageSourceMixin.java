@@ -2,8 +2,8 @@ package com.teamabnormals.allurement.core.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.teamabnormals.allurement.core.other.AllurementDamageTypes;
 import com.teamabnormals.allurement.core.registry.AllurementEnchantmentEffects;
+import com.teamabnormals.allurement.core.registry.datapack.AllurementDamageTypes;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;

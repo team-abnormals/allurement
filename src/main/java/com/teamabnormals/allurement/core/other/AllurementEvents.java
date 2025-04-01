@@ -5,6 +5,7 @@ import com.teamabnormals.allurement.core.Allurement;
 import com.teamabnormals.allurement.core.AllurementConfig;
 import com.teamabnormals.allurement.core.other.tags.AllurementBlockTags;
 import com.teamabnormals.allurement.core.registry.AllurementEnchantmentEffects;
+import com.teamabnormals.allurement.core.registry.datapack.AllurementDamageTypes;
 import com.teamabnormals.blueprint.common.world.storage.tracking.IDataManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;

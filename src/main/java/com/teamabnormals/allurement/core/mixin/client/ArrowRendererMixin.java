@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(ArrowRenderer.class)
 public abstract class ArrowRendererMixin<T extends AbstractArrow> extends EntityRenderer<T> {
-	private static final ResourceLocation INFINITY_ARROW_TEXTURE = ResourceLocation.fromNamespaceAndPath(Allurement.MOD_ID, "textures/entity/projectiles/infinity_arrow.png");
+	private static final ResourceLocation INFINITY_ARROW_TEXTURE = Allurement.location("textures/entity/projectiles/infinity_arrow.png");
 	private static final ResourceLocation ARROW_TEXTURE = ResourceLocation.withDefaultNamespace("textures/entity/projectiles/arrow.png");
 
 	protected ArrowRendererMixin(EntityRendererProvider.Context renderManager) {

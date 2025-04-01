@@ -2,7 +2,7 @@ package com.teamabnormals.allurement.core.data.server.tags;
 
 import com.teamabnormals.allurement.core.Allurement;
 import com.teamabnormals.allurement.core.other.tags.AllurementEnchantmentTags;
-import com.teamabnormals.allurement.core.registry.AllurementEnchantments;
+import com.teamabnormals.allurement.core.registry.datapack.AllurementEnchantments;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EnchantmentTagsProvider;
@@ -12,7 +12,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
-import static com.teamabnormals.allurement.core.registry.AllurementEnchantments.*;
+import static com.teamabnormals.allurement.core.registry.datapack.AllurementEnchantments.*;
 
 public class AllurementEnchantmentTagsProvider extends EnchantmentTagsProvider {
 

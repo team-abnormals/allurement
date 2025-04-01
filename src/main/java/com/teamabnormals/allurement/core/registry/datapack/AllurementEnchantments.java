@@ -1,4 +1,4 @@
-package com.teamabnormals.allurement.core.registry;
+package com.teamabnormals.allurement.core.registry.datapack;
 
 import com.teamabnormals.allurement.common.enchantment.effects.Launch;
 import com.teamabnormals.allurement.common.enchantment.effects.RepairItem;
@@ -6,13 +6,13 @@ import com.teamabnormals.allurement.common.enchantment.effects.TransferEffects;
 import com.teamabnormals.allurement.core.Allurement;
 import com.teamabnormals.allurement.core.other.tags.AllurementEnchantmentTags;
 import com.teamabnormals.allurement.core.other.tags.AllurementMobEffectTags;
+import com.teamabnormals.allurement.core.registry.AllurementEnchantmentEffects;
 import net.minecraft.advancements.critereon.DamageSourcePredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -114,7 +114,7 @@ public class AllurementEnchantments {
 	}
 
 	private static ResourceKey<Enchantment> create(String name) {
-		return ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(Allurement.MOD_ID, name));
+		return ResourceKey.create(Registries.ENCHANTMENT, Allurement.location(name));
 	}
 
 	private static void register(BootstrapContext<Enchantment> context, ResourceKey<Enchantment> key, Enchantment.Builder builder) {

@@ -14,7 +14,6 @@ import net.minecraft.world.phys.Vec3;
 
 public class AllurementUtil {
 
-
 	public static int getXpNeededForNextLevel(int experienceLevel) {
 		int original = experienceLevel >= 30 ? 112 + (experienceLevel - 30) * 9 : (experienceLevel >= 15 ? 37 + (experienceLevel - 15) * 5 : 7 + experienceLevel * 2);
 		if (AllurementConfig.COMMON.removeLevelScaling.get()) {
@@ -61,6 +60,7 @@ public class AllurementUtil {
 		}
 	}
 
+	// TODO: Re-enable Color Runes integration
 	public static void setColorRuneTarget(ItemStack stack) {
 		// if (ModList.get().isLoaded("quark")) ColorRunesModule.setTargetStack(stack);
 	}
