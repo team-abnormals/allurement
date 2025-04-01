@@ -1,19 +1,24 @@
 {
     "enchantment.allurement.alleviating": "Lenire",
     "enchantment.allurement.alleviating.desc": "Cura il giocatore quando raccoglie Esperienza",
-
-    "enchantment.allurement.shockwave": "Onda Shock",
-    "enchantment.allurement.shockwave.desc": "Crea un onda shock che danneggia le entità vicine quando si prende danno da caduta",
-
+    "enchantment.allurement.ascension_curse": "Maledizione dell'ascensione",
+    "enchantment.allurement.ascension_curse.desc": "Fa sì che l'oggetto maledetto fluttui verso l'alto quando viene lasciato cadere",
+    "enchantment.allurement.fleeting_curse": "Maledizione della fuga",
+    "enchantment.allurement.fleeting_curse.desc": "Le entità vicine respingono l'oggetto maledetto quando viene lasciato cadere",
+    "enchantment.allurement.launch": "Lancio",
+    "enchantment.allurement.launch.desc": "Lancia il bersaglio verso l'alto invece che lontano",
+    "enchantment.allurement.obedience": "Obbedienza",
+    "enchantment.allurement.obedience.desc": "Impedisce ai cavalli di vagare",
     "enchantment.allurement.reeling": "Attirare",
-    "enchantment.allurement.reeling.desc": "Attira il bersaglio colpito dalla freccia verso l'utente",
-
+    "enchantment.allurement.reeling.desc": "Tira i bersagli verso l'utente al momento dell'impatto della freccia",
     "enchantment.allurement.reforming": "Riformazione",
     "enchantment.allurement.reforming.desc": "Ripara la durabilità dell'oggetto molto lentamente mentre è equipaggiato",
-
+    "enchantment.allurement.shockwave": "Onda Shock",
+    "enchantment.allurement.shockwave.desc": "Crea un onda shock che danneggia le entità vicine quando si prende danno da caduta",
+    "enchantment.allurement.spread_of_ailments": "Diffusione dei malanni",
+    "enchantment.allurement.spread_of_ailments.desc": "Applica gli effetti attivi dell'utente alle sue frecce",
     "enchantment.allurement.vengeance": "Vendetta",
     "enchantment.allurement.vengeance.desc": "Immagazzina una parte del danno e lo applica al tuo prossimo attacco",
-
-    "death.attack.allurement.shockwave": "%1$s è stato calpestato",
-    "death.attack.allurement.shockwave.player": "%1$s è stato calpestato da %2$s"
+    "death.attack.allurement.shockwave": "%1$s è stato calpestato da %2$s",
+    "death.attack.allurement.shockwave.item": "%1$s è stato calpestato da %2$s usando %3$s"
 }
