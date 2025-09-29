@@ -16,17 +16,17 @@ public class AllurementLanguageProvider extends BlueprintLanguageProvider {
 
 	@Override
 	protected void addTranslations() {
-		this.addEnchantment(AllurementEnchantments.ALLEVIATING, "Heals the user upon collection of experience");
-		this.addEnchantment(AllurementEnchantments.LAUNCH, "Launches the target upwards instead of away");
-		this.addEnchantment(AllurementEnchantments.OBEDIENCE, "Prevents animals from roaming");
-		this.addEnchantment(AllurementEnchantments.REELING, "Pulls targets towards the user upon arrow impact");
-		this.addEnchantment(AllurementEnchantments.REFORMING, "Repairs the durability of items very slowly over time when in use");
-		this.addEnchantment(AllurementEnchantments.SHOCKWAVE, "Creates a shockwave when taking fall damage that damages nearby entities");
-		this.addEnchantment(AllurementEnchantments.VENGEANCE, "Stores some incoming damage and applies it to the user's next attack");
-		this.addEnchantment(AllurementEnchantments.SPREAD_OF_AILMENTS, "Applies the user's active effects to their arrows");
+		this.addEnchantment(AllurementEnchantments.ALLEVIATING, "Heals the user upon collection of experience.");
+		this.addEnchantment(AllurementEnchantments.LAUNCH, "Launches the target upwards instead of away.");
+		this.addEnchantment(AllurementEnchantments.OBEDIENCE, "Prevents animals from roaming.");
+		this.addEnchantment(AllurementEnchantments.REELING, "Pulls targets towards the user upon arrow impact.");
+		this.addEnchantment(AllurementEnchantments.REFORMING, "Repairs the durability of items very slowly over time when in use.");
+		this.addEnchantment(AllurementEnchantments.SHOCKWAVE, "Creates a shockwave when taking fall damage that damages nearby entities.");
+		this.addEnchantment(AllurementEnchantments.VENGEANCE, "Stores some incoming damage and applies it to the user's next attack.");
+		this.addEnchantment(AllurementEnchantments.SPREAD_OF_AILMENTS, "Applies the user's active effects to their arrows.");
 
-		this.addCurse(AllurementEnchantments.ASCENSION_CURSE, "Causes the cursed item to float upwards when dropped");
-		this.addCurse(AllurementEnchantments.FLEETING_CURSE, "Causes nearby entities to repel the cursed item when dropped");
+		this.addCurse(AllurementEnchantments.ASCENSION_CURSE, "Causes the cursed item to float upwards when dropped.");
+		this.addCurse(AllurementEnchantments.FLEETING_CURSE, "Causes nearby entities to repel the cursed item when dropped.");
 
 		this.addDamageSource("shockwave", "%1$s was stomped by %2$s");
 		this.addDamageSource("shockwave.item", "%1$s was stomped by %2$s using %3$s");
