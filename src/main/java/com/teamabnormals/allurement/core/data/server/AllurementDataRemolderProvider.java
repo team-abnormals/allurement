@@ -91,7 +91,7 @@ public class AllurementDataRemolderProvider extends RemolderProvider {
 				new NamesResourceSelector("minecraft:enchantment/soul_speed"),
 				config(AllurementConfig.COMMON.soulSpeedHurtsMore, "soul_speed_hurts_more", false)
 		)).remolder(sequence(
-				remove(target("effects.minecraft\\:location_changed[2]")),
+				remove(target("effects[\"minecraft:location_changed\"[2]")),
 				addEffect(
 						AllurementEnchantmentEffects.INCREASE_INCOMING_DAMAGE,
 						new ConditionalEffect<>(
@@ -123,10 +123,10 @@ public class AllurementDataRemolderProvider extends RemolderProvider {
 	}
 
 	public static Remolder addEffect(DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> holder) {
-		return add(target("effects." + holder.getKey().location().toString().replace(":", "\\:")), value(Unit.INSTANCE, Unit.CODEC));
+		return add(target("effects[\"" + holder.getKey().location() + "\"]"), value(Unit.INSTANCE, Unit.CODEC));
 	}
 
 	public static Remolder addEffect(DeferredHolder<DataComponentType<?>, DataComponentType<List<ConditionalEffect<EnchantmentValueEffect>>>> holder, ConditionalEffect<EnchantmentValueEffect> value) {
-		return add(target("effects." + holder.getKey().location().toString().replace(":", "\\:")), value(List.of(value), Codec.list(ConditionalEffect.codec(EnchantmentValueEffect.CODEC, LootContextParamSets.ENCHANTED_DAMAGE))));
+		return add(target("effects[\"" + holder.getKey().location() + "\"]"), value(List.of(value), Codec.list(ConditionalEffect.codec(EnchantmentValueEffect.CODEC, LootContextParamSets.ENCHANTED_DAMAGE))));
 	}
 }

@@ -3,12 +3,12 @@
   "remolder": [
     {
       "type": "add",
-      "target": "effects.allurement\\:render_infinity_arrow",
+      "target": "effects[\"allurement:render_infinity_arrow\"]",
       "value": {}
     },
     {
       "type": "add",
-      "target": "effects.allurement\\:can_shoot_without_arrow",
+      "target": "effects[\"allurement:can_shoot_without_arrow\"]",
       "value": {}
     }
   ],
